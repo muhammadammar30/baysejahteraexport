@@ -277,35 +277,6 @@
   .icon { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
 
   /* ══════════════════════════════════════════
-     RESPONSIVE — MOBILE MENU (HAMBURGER)
-     ══════════════════════════════════════════ */
-  .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 36px;
-    height: 36px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1201;
-  }
-  .nav-hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--black, #111);
-    border-radius: 2px;
-    transition: transform .25s ease, opacity .2s ease;
-  }
-  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  /* ══════════════════════════════════════════
      RESPONSIVE — TABLET (≤1024px)
      ══════════════════════════════════════════ */
   @media (max-width: 1024px) {
@@ -317,7 +288,6 @@
       grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
       padding: 1.5rem 1.75rem;
     }
-    .footer-bar { padding: 1.25rem 1.75rem; }
     .modal-box { max-width: 640px; }
   }
 
@@ -325,45 +295,6 @@
      RESPONSIVE — MOBILE / SMALL TABLET (≤768px)
      ══════════════════════════════════════════ */
   @media (max-width: 768px) {
-    /* Navbar */
-    .nav-container { padding: 0 1.25rem; }
-    .nav-hamburger { display: flex; }
-    .nav-menu {
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100vh;
-      width: min(78vw, 300px);
-      background: var(--white, #fff);
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 4px;
-      padding: 88px 28px 28px;
-      box-shadow: -8px 0 30px rgba(0,0,0,.12);
-      transform: translateX(100%);
-      transition: transform .3s ease;
-      z-index: 1200;
-      overflow-y: auto;
-    }
-    .nav-menu.open { transform: translateX(0); }
-    .nav-menu .nav-item { width: 100%; }
-    .nav-menu .nav-link {
-      display: block;
-      width: 100%;
-      padding: 12px 0;
-      font-size: 16px;
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-actions { margin-left: auto; }
-    .nav-menu-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.4);
-      z-index: 1150;
-    }
-    .nav-menu-backdrop.open { display: block; }
-
     /* Hero */
     .hero1 { padding: 2rem 1.25rem 1.5rem; margin-top: 40px; }
     .hero1 h1 { font-size: 24px; }
@@ -388,9 +319,6 @@
     .card-body { padding: 10px 12px; }
     .card-name { font-size: 12.5px; }
 
-    /* Footer bar / pagination */
-    .footer-bar { padding: 1rem 1.25rem; flex-wrap: wrap; gap: 10px; }
-
     /* Product detail modal */
     .modal-overlay { padding: 0; align-items: flex-end; }
     .modal-box { max-width: 100%; width: 100%; max-height: 92vh; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
@@ -406,10 +334,6 @@
 
     /* Buy method modal */
     .buy-modal-box { max-width: 92vw; padding: 24px 18px; }
-
-    /* Site footer */
-    .footer-container { grid-template-columns: 1fr !important; gap: 28px !important; text-align: left; }
-    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
   }
 
   /* ══════════════════════════════════════════
@@ -437,23 +361,12 @@
     .card-price { font-size: 12.5px; }
     .card-sold, .card-rating { font-size: 10px; }
 
-    .footer-bar { padding: .875rem 1rem; justify-content: center; }
-    .pages { flex-wrap: wrap; justify-content: center; }
-
     .modal-main-img { border-radius: var(--radius-sm); }
     .modal-thumbs { flex-wrap: wrap; }
     .modal-qty-input { width: 100%; }
 
     .buy-modal-box { padding: 22px 16px; }
     .buy-modal-title { font-size: 16px; }
-
-    .footer-column.brand-col { text-align: left; }
-    .social-icons-wrapper { justify-content: flex-start; }
-
-    .nav-container { padding: 0 1rem; gap: 8px; }
-    .nav-logo { font-size: 12px; }
-    .lang-switch-container { gap: 4px; }
-    .lang-label { display: none; }
   }
 
   /* ── PRODUCT DETAIL MODAL ── */
@@ -768,13 +681,8 @@
                 <span class="lang-label">EN</span>
             </div>
         </div>
-
-        <button class="nav-hamburger" id="nav-hamburger" aria-label="Buka menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
     </div>
     </nav>
-    <div class="nav-menu-backdrop" id="nav-menu-backdrop"></div>
 
     <section class="hero1">
   <!-- <div class="hero-eyebrow">BAY Sejahtera Export</div> -->
@@ -1419,42 +1327,6 @@
   </script>
 
   <script>
-    // ── MOBILE HAMBURGER MENU ──
-    (function() {
-      var burger = document.getElementById('nav-hamburger');
-      var menu = document.getElementById('nav-menu');
-      var backdrop = document.getElementById('nav-menu-backdrop');
-      if (!burger || !menu) return;
-
-      function openMenu() {
-        menu.classList.add('open');
-        burger.classList.add('open');
-        backdrop.classList.add('open');
-        burger.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeMenu() {
-        menu.classList.remove('open');
-        burger.classList.remove('open');
-        backdrop.classList.remove('open');
-        burger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
-      burger.addEventListener('click', function() {
-        menu.classList.contains('open') ? closeMenu() : openMenu();
-      });
-      backdrop.addEventListener('click', closeMenu);
-      menu.querySelectorAll('.nav-link').forEach(function(link) {
-        link.addEventListener('click', closeMenu);
-      });
-      window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) closeMenu();
-      });
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeMenu();
-      });
-    })();
-
     // ── ACTIVE NAV LINK ──
     (function() {
       const currentFile = window.location.pathname.split('/').pop() || 'index.html';
