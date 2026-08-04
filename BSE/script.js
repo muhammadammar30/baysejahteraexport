@@ -12,9 +12,20 @@ const navActions  = el('nav-actions');
 
 if (hamburger && navMenu && navActions) {
     hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
+        const isOpen = hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
         navActions.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Tutup menu otomatis saat salah satu link diklik (mobile UX)
+    navMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            navActions.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+        });
     });
 }
 
