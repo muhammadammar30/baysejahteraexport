@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bay Sejahtera Export</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <link rel="stylesheet" href="stylee.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg-card: #F8F8F6;
+      --bg-raised: #F0EFEB;
+      --border: #E5E4E0;
+      --border-light: #D8D7D2;
+      --text: #0F0F0F;
+      --text-muted: #6B6B6B;
+      --text-dim: #ABABAB;
+      --accent: #0F0F0F;
+      --accent-off: #333333;
+      --accent-green: #1A6B3A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 60px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 30%, #e8f5ec 0%, #FFFFFF 70%);
+    }
+
+    .hero-grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 80%);
+    }
+
+    .hero-eyebrow {
+      position: relative;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--text-muted);
+    }
+
+    .hero-headline {
+      position: relative;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(48px, 7vw, 100px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -3px;
+      margin-bottom: 40px;
+      max-width: 900px;
+    }
+
+    .hero-headline .line {
+      display: block;
+      overflow: hidden;
+    }
+    .hero-headline .word {
+      display: inline-block;
+      transform: translateY(110%);
+      animation: slideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .hero-headline .word:nth-child(1) { animation-delay: 0.1s; }
+    .hero-headline .word:nth-child(2) { animation-delay: 0.2s; }
+    .hero-headline .word:nth-child(3) { animation-delay: 0.3s; }
+
+    .line-2 .word:nth-child(1) { animation-delay: 0.35s; }
+    .line-2 .word:nth-child(2) { animation-delay: 0.45s; }
+
+    .hero-headline .dim { color: var(--text-muted); }
+
+    @keyframes slideUp {
+      to { transform: translateY(0); }
+    }
+
+    .hero-bottom {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero-desc {
+      max-width: 420px;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .btn-primary {
+      background: #0F0F0F;
+      color: #fff;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      padding: 14px 24px;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: var(--text-muted); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-dim);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: fadeIn 1.5s 1s ease both;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--text-dim), transparent);
+      animation: scrollPulse 2s 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ── COFFEE BEANS ── */
+    .coffee-bean {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      object-fit: cover;
+      animation: beanFloat var(--dur, 12s) var(--delay, 0s) ease-in-out infinite;
+      filter: drop-shadow(0 4px 14px rgba(60,25,5,0.22));
+    }
+    @keyframes beanFloat {
+      0%   { opacity: 0; transform: translateY(20px) rotate(var(--rot0, 0deg)) scale(0.85); }
+      15%  { opacity: var(--op, 0.55); }
+      85%  { opacity: var(--op, 0.55); }
+      100% { opacity: 0; transform: translateY(-60px) rotate(var(--rot1, 40deg)) scale(1); }
+    }
+
+    /* ── STATS BAND ── */
+    #stats {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-item {
+      padding: 48px 50px;
+      border-right: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: var(--bg-card); }
+
+    .stat-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .stat-number span { font-size: 28px; font-weight: 400; color: var(--text-muted); }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      padding: 120px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--text-muted);
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 24px;
+    }
+
+    .section-body {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .about-visual {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-visual-inner {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #e8f5ec 0%, #d4edd9 50%, #e8f5ec 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .about-badge-num {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    .about-badge-label { font-size: 12px; color: var(--text-muted); }
+
+    .warehouse-icon {
+      font-size: 80px;
+      opacity: 0.5;
+    }
+    .warehouse-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── PRODUCTS ── */
+    #products {
+      padding: 100px 0 100px 60px;
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .products-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      padding-right: 60px;
+    }
+
+    .products-carousel-wrapper {
+      position: relative;
+    }
+
+    .products-carousel {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-right: 60px;
+      padding-bottom: 8px;
+      cursor: grab;
+    }
+    .products-carousel:active { cursor: grabbing; }
+    .products-carousel::-webkit-scrollbar { display: none; }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      flex: 0 0 260px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      border-color: var(--border-light);
+    }
+
+    .product-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .product-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--bg-raised);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .product-card:hover .product-icon {
+      background: #e8f5ec;
+      transform: scale(1.08);
+    }
+
+    .product-arrow {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      font-size: 14px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .product-card:hover .product-arrow {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    .product-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+    .product-origin {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+    .product-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .product-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .product-sold {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-align: right;
+    }
+    .product-tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--bg-raised);
+      border-radius: 20px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .products-nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .products-nav-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--text-muted);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .products-nav-btn:hover {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    /* ── WHY US ── */
+    #why {
+      padding: 100px 60px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .why-header {
+      margin-bottom: 60px;
+    }
+    .why-header .section-title {
+      font-size: clamp(36px, 5vw, 64px);
+      margin-bottom: 16px;
+    }
+    .why-header .section-body { max-width: 520px; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s, transform 0.35s cubic-bezier(0.16,1,0.3,1), background 0.35s;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      cursor: default;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.04) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s;
+      pointer-events: none;
+    }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-card:hover {
+      box-shadow: 0 20px 48px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
+      border-color: rgba(0,0,0,0.18);
+      transform: translateY(-4px);
+      background: #fff;
+    }
+
+    .feature-icon-wrap {
+      width: 52px;
+      height: 52px;
+      background: var(--text);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 22px;
+      filter: grayscale(1) brightness(2);
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), background 0.35s, filter 0.35s;
+      position: relative;
+      z-index: 1;
+    }
+    .feature-card:hover .feature-icon-wrap {
+      transform: scale(1.1) rotate(-4deg);
+      background: #333;
+      filter: grayscale(1) brightness(2);
+    }
+
+    .feature-num-bg {
+      position: absolute;
+      right: 16px;
+      bottom: 10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 64px;
+      font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--border);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -3px;
+      transition: -webkit-text-stroke-color 0.35s, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .feature-card:hover .feature-num-bg {
+      -webkit-text-stroke-color: rgba(0,0,0,0.12);
+      transform: scale(1.08) translateX(-4px);
+    }
+
+    .feature-content {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .feature-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+      display: none;
+    }
+    .feature-icon { display: none; }
+    .feature-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-bottom: 8px;
+      transition: color 0.3s;
+    }
+    .feature-card:hover .feature-title { color: var(--text); }
+    .feature-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      padding-right: 56px;
+    }
+
+    /* ── PROCESS ── */
+    #process {
+      padding: 100px 60px;
+      border-top: 1px solid var(--border);
+      background: #f2faf5;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 60px;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border-light), var(--border-light), transparent);
+    }
+
+    .process-step {
+      padding: 0 24px;
+      position: relative;
+    }
+
+    .step-dot {
+      width: 56px;
+      height: 56px;
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s, transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .process-step:hover .step-dot {
+      background: #e8f5ec;
+      border-color: var(--accent-green);
+      transform: scale(1.12);
+      box-shadow: 0 4px 16px rgba(26,107,58,0.15);
+    }
+
+    .step-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.2px;
+    }
+    .step-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── CTA SECTION ── */
+    #cta {
+      padding: 120px 60px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, #e8f5ec, transparent);
+    }
+
+    .cta-title {
+      position: relative;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 700;
+      letter-spacing: -3px;
+      line-height: 1.0;
+      margin-bottom: 24px;
+    }
+    .cta-sub {
+      position: relative;
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+    }
+    .cta-actions {
+      position: relative;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+      overflow: hidden;
+      background: #f2faf5;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 60px;
+      animation: marquee 20s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+    .marquee-item {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-green);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+    .marquee-item::after {
+      content: '✦';
+      font-size: 8px;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── DOCUMENTATION ── */
+    #docs {
+      padding: 100px 60px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .docs-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+
+    .docs-video-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 16/10;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .docs-video-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1);
+      transition: filter 0.3s;
+    }
+    .docs-video-wrap:hover .docs-video-thumb { filter: grayscale(0.5); }
+    .docs-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .docs-video-wrap:hover .docs-play-btn {
+      transform: translate(-50%, -50%) scale(1.08);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.24);
+    }
+    .docs-mute-btn {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      border: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 3;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .docs-mute-btn:hover {
+      background: rgba(0,0,0,0.75);
+      transform: scale(1.08);
+    }
+
+    /* Photo Carousel */
+    .docs-photo-carousel-wrap {
+      position: relative;
+    }
+    .docs-photo-carousel {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 12px;
+    }
+    .docs-photo-carousel::-webkit-scrollbar { display: none; }
+    .docs-photo-slide {
+      flex: 0 0 calc((100% - 24px) / 3);
+      scroll-snap-align: start;
+      aspect-ratio: 16/10;
+      border-radius: 12px;
+      background: var(--bg-raised);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (max-width: 640px) {
+      .docs-photo-slide { flex: 0 0 calc((100% - 24px) / 2); }
+    }
+    .docs-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-dim);
+    }
+    .docs-photo-placeholder-icon { font-size: 48px; opacity: 0.4; }
+    .docs-photo-placeholder-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .docs-carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px;
+    }
+    .docs-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border-light);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      border: none;
+    }
+    .docs-dot.active {
+      background: var(--text);
+      transform: scale(1.3);
+    }
+    .docs-carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--text);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transition: box-shadow 0.2s;
+      z-index: 2;
+    }
+    .docs-carousel-nav:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.14); }
+    .docs-carousel-nav.prev { left: 16px; }
+    .docs-carousel-nav.next { right: 16px; }
+
+    /* ── PRODUCT IMAGES (foto hanya bisa diganti di dalam kode / src img) ── */
+    .product-img-wrap {
+      width: 100%;
+      height: 150px;
+      border-radius: 12px;
+      background: var(--bg-raised);
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .product-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dim);
+      font-size: 22px;
+      pointer-events: none;
+    }
+    .product-img-hint {
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* About visual - foto hanya bisa diganti di dalam kode (src img) */
+
+    /* Docs video - hanya bisa diganti melalui kode (src di #docsVideoContent img/video) */
+
+    /* Docs photo slides */
+    .docs-photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      background: linear-gradient(135deg,#efefef,#e4e4e4);
+      transition: background 0.2s;
+    }
+    .docs-photo-placeholder:hover { background: linear-gradient(135deg,#e8e8e8,#d8d8d8); }
+    .docs-photo-placeholder-icon { font-size: 40px; opacity: 0.4; }
+    .docs-photo-placeholder-label {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .docs-upload-hint {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+    .docs-photo-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .docs-photo-slide {
+      position: relative;
+    }
+    .docs-slide-change-hint {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.2s;
+      cursor: pointer;
+    }
+    .docs-photo-slide:hover .docs-slide-change-hint { opacity: 1; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      #hero { padding: 0 24px 60px; }
+      #stats { grid-template-columns: repeat(2, 1fr); }
+      #about { grid-template-columns: 1fr; padding: 80px 24px; gap: 50px; }
+      .about-visual { display: none; }
+      #products { padding: 80px 0 80px 24px; }
+      .products-header { padding-right: 24px; }
+      .products-carousel { padding-right: 24px; }
+      .product-card { flex: 0 0 220px; }
+      #why { padding: 80px 24px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .process-steps::before { display: none; }
+      .process-step { padding: 0; margin-bottom: 40px; }
+      #docs { padding: 80px 24px; }
+      .docs-inner { grid-template-columns: 1fr; gap: 40px; }
+      #cta { padding: 80px 24px; }
+      footer { grid-template-columns: 1fr; gap: 40px; padding: 50px 24px; }
+      .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <div class="nav-left">
+          <a href="#hero">
+            <img src="logou.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+          </a>
+          <span class="nav-logo">BAY SEJAHTERA EXPORT</span>
+        </div>
+        
+        <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item"><a href="index.html" class="nav-link" data-id="Home" data-en="Home">Home</a></li>
+            <li class="nav-item"><a href="produk.html" class="nav-link" data-id="Produk" data-en="Products">Produk</a></li>
+            <li class="nav-item"><a href="About.html" class="nav-link" data-id="Tentang Kami" data-en="About Us">About Us</a></li>
+        </ul>
+            
+        <div class="nav-actions" id="nav-actions">
+            <div class="lang-switch-container">
+                <img src="https://flagcdn.com/w40/id.png" class="flag-icon" alt="ID">
+                <span class="lang-label">ID</span>
+
+                <label class="switch">
+                    <input type="checkbox" id="lang-toggle">
+                    <span class="slider round"></span>
+                </label>
+
+                <img src="https://flagcdn.com/w40/gb.png" class="flag-icon" alt="EN">
+                <span class="lang-label">EN</span>
+            </div>
+        </div>
+    </div>
+    </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-overlay"></div>
+
+    <!-- Coffee bean photo accents -->
+    <img class="coffee-bean" src="biji.png" 
+      style="width:60px;height:60px;top:18%;left:72%;--dur:14s;--delay:0s;--rot0:-20deg;--rot1:30deg;--op:0.8;border-radius:50%;object-fit:cover;" alt="">
+    <img class="coffee-bean" src="biji.png" 
+      style="width:42px;height:42px;top:55%;left:85%;--dur:10s;--delay:2s;--rot0:15deg;--rot1:-25deg;--op:0.75;border-radius:50%;object-fit:cover;" alt="">
+    <img class="coffee-bean" src="biji.png" 
+      style="width:70px;height:70px;top:30%;left:88%;--dur:16s;--delay:1s;--rot0:40deg;--rot1:-10deg;--op:0.7;border-radius:50%;object-fit:cover;" alt="">
+    <img class="coffee-bean" src="biji.png" 
+      style="width:34px;height:34px;top:70%;left:78%;--dur:11s;--delay:3.5s;--rot0:-35deg;--rot1:20deg;--op:0.78;border-radius:50%;object-fit:cover;" alt="">
+    <img class="coffee-bean" src="biji.png" 
+      style="width:50px;height:50px;top:42%;left:93%;--dur:13s;--delay:5s;--rot0:10deg;--rot1:50deg;--op:0.65;border-radius:50%;object-fit:cover;" alt="">
+    <img class="coffee-bean" src="biji.png" 
+      style="width:44px;height:44px;top:12%;left:80%;--dur:9s;--delay:4s;--rot0:-10deg;--rot1:-50deg;--op:0.8;border-radius:50%;object-fit:cover;" alt="">
+    <img class="coffee-bean" src="biji.png" 
+      style="width:38px;height:38px;top:80%;left:91%;--dur:12s;--delay:6.5s;--rot0:25deg;--rot1:-30deg;--op:0.72;border-radius:50%;object-fit:cover;" alt="">
+
+    <div class="hero-eyebrow">Est. 2026</div>
+
+    <h1 class="hero-headline">
+      <span class="line">
+        <span class="word">BAY</span>
+        <span class="word"> SEJAHTERA</span>
+      </span>
+      <span class="line line-2">
+        <span class="word dim">EXPORT </span>
+      </span>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-desc" data-id="Lahir di Semarang untuk Dunia. Kami hadir memberdayakan potensi alam dan komoditas unggulan Indonesia, menjadi mitra ekspor terpercaya dalam menghadirkan kualitas terbaik Nusantara di pasar internasional." data-en="Born in Semarang for the World. We empower Indonesia's natural potential and premium commodities, serving as a trusted export partner bringing the finest of the Archipelago to international markets.">
+        Lahir di Semarang untuk Dunia. Kami hadir memberdayakan potensi alam dan komoditas unggulan Indonesia, menjadi mitra ekspor terpercaya dalam menghadirkan kualitas terbaik Nusantara di pasar internasional.
+      </p>
+      <div class="hero-actions">
+        <a href="#products" class="btn-primary" data-id="Lihat Produk →" data-en="View Products →">Lihat Produk →</a>
+        <a href="#about" class="btn-ghost" data-id="Pelajari Lebih" data-en="Learn More">Pelajari Lebih</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item">Robusta Green Beans</span>
+      <span class="marquee-item">Arabica Green Beans</span>
+      <span class="marquee-item">Roasted Robusta Beans</span>
+      <span class="marquee-item">Roasted Arabica Beans</span>
+      <span class="marquee-item">Briket Arang</span>
+      <span class="marquee-item">Biji Jagung</span>
+      <span class="marquee-item">Jamur Tiram</span>
+      <span class="marquee-item">Beras Lele</span>
+      <span class="marquee-item">Cengkeh Premium</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <!-- <section id="stats">
+    <div class="stat-item reveal">
+      <div class="stat-number" data-target="20">0<span>+</span></div>
+      <div class="stat-label">Negara Tujuan Ekspor</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number" data-target="10">0<span>K+</span></div>
+      <div class="stat-label">Pengiriman Selesai</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number" data-target="5">0<span>+</span></div>
+      <div class="stat-label">Jenis Komoditas Unggulan</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number" data-target="99">0<span>%</span></div>
+      <div class="stat-label">Kepuasan Klien</div>
+    </div>
+  </section> -->
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div>
+      <!-- <div class="section-eyebrow reveal">Tentang Perusahaan</div> -->
+      <h2 class="section-title reveal" data-id="Introduction" data-en="Introduction">Introduction</h2>
+      <p class="section-body reveal" data-id="Berdiri sejak Januari 2026 di Semarang, PT BAY Sejahtera Export memiliki visi menjadi eksportir utama dengan memprioritaskan kualitas dan keberlanjutan. Kami menawarkan beragam produk unggulan seperti kopi, jagung, cengkeh, dan lainnya untuk pasar global." data-en="Founded in January 2026 in Semarang, PT BAY Sejahtera Export envisions becoming a leading exporter by prioritizing quality and sustainability. We offer a wide range of premium products such as coffee, corn, cloves, and more for global markets.">
+        Berdiri sejak tahun 2026 di Semarang, PT BAY Sejahtera Export memiliki visi menjadi eksportir utama dengan memprioritaskan kualitas dan keberlanjutan. Kami menawarkan beragam produk unggulan seperti kopi, jagung, cengkeh, dan lainnya untuk pasar global.
+      </p>
+      <p class="section-body reveal" data-id="Tim profesional kami mengelola ekspor sepenuhnya legal, aman, dan patuh pada standar regulasi internasional. Dari manajemen logistik yang efisien, penyimpanan, penyortiran, hingga pengemasan." data-en="Our professional team manages exports in a fully legal, safe, and internationally compliant manner. From efficient logistics management and storage to sorting and packaging.">
+        Tim profesional kami mengelola ekspor sepenuhnya legal, aman, dan patuh pada standar regulasi internasional. Dari manajemen logistik yang efisien, penyimpanan, penyortiran, hingga pengemasan.
+      </p>
+      <a href="About.html" class="btn-primary reveal" style="display: inline-flex;" data-id="Selengkapnya →" data-en="Read More →">Selengkapnya →</a>
+    </div>
+    <div class="about-visual reveal" id="aboutVisualWrap">
+      <!-- GANTI FOTO: ubah nilai src di bawah ini menjadi path foto kamu -->
+      <div class="about-visual-inner" id="aboutVisualInner">
+        <img src="intro.jpg" alt="Foto Introduction" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none';document.getElementById('aboutFallback').style.display='flex'">
+        <div id="aboutFallback" style="display:none;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;gap:12px;">
+          <div class="warehouse-icon">🏭</div>
+          <div class="warehouse-label">Gudang Utama</div>
+        </div>
+      </div>
+      <div class="about-badge">
+        <div class="about-badge-num">Juni 26</div>
+        <!-- <div class="about-badge-label" data-id="Tahun Berdiri" data-en="Year Founded">Tahun Berdiri</div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="products-header reveal">
+      <div>
+        <!-- <div class="section-eyebrow">Produk Kami</div> -->
+        <h2 class="section-title" style="margin-bottom:0;" data-id="Produk Kami." data-en="Our Products.">Produk Kami.</h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="products-nav">
+          <button class="products-nav-btn" id="prevBtn" onclick="scrollCarousel(-1)">←</button>
+          <button class="products-nav-btn" id="nextBtn" onclick="scrollCarousel(1)">→</button>
+        </div>
+        <a href="produk.html" class="btn-ghost" data-id="Lihat Selengkapnya →" data-en="View All →">Lihat Selengkapnya →</a>
+      </div>
+    </div>
+
+    <div class="products-carousel-wrapper">
+      <div class="products-carousel" id="productsCarousel">
+
+        <div class="product-card reveal" onclick="location.href='produk.html?produk=kopi-arabika'">
+          <div class="product-img-wrap">
+            <img src="arabikagreen.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
+            <div class="product-arrow">↗</div>
+          </div>
+          <div class="product-tag" data-id="Arabika · Grade A" data-en="Arabica · Grade A">Arabika · Grade A</div>
+          <div class="product-name" data-id="Biji Kopi Arabika" data-en="Arabica Coffee Beans">Arabica Coffee Beans</div>
+          <!-- <div class="product-origin" data-id="Semarang, Jawa Tengah" data-en="Semarang, Central Java">Semarang, Jawa Tengah</div> -->
+          <div class="product-meta">
+            <div class="product-price">Rp195.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
+            <div class="product-sold" data-id="6.198+ Terjual" data-en="6,198+ Sold">6.198+ Terjual</div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" onclick="location.href='produk.html?produk=kopi-sangrai-arabika'">
+          <div class="product-img-wrap">
+            <img src="arabikasangrai.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
+            <div class="product-arrow">↗</div>
+          </div>
+          <div class="product-tag" data-id="Arabika · Grade A" data-en="Arabica · Grade A">Arabika · Grade A</div>
+          <div class="product-name" data-id="Biji Kopi Sangrai Arabika" data-en="Roasted Arabica Coffee Beans">Roasted Arabica Coffee Beans</div>
+          <!-- <div class="product-origin" data-id="Semarang, Jawa Tengah" data-en="Semarang, Central Java">Semarang, Jawa Tengah</div> -->
+          <div class="product-meta">
+            <div class="product-price">Rp325.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
+            <div class="product-sold" data-id="6.198+ Terjual" data-en="6,198+ Sold">6.198+ Terjual</div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" onclick="location.href='produk.html?produk=kopi-robusta'">
+          <div class="product-img-wrap">
+            <img src="Robusta Green Beans.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
+            <div class="product-arrow">↗</div>
+          </div>
+          <div class="product-tag" data-id="Robusta · Premium" data-en="Robusta · Premium">Robusta · Premium</div>
+          <div class="product-name" data-id="Biji Kopi Robusta" data-en="Robusta Coffee Beans">Robusta Coffee Beans</div>
+          <!-- <div class="product-origin" data-id="Semarang, Jawa Tengah" data-en="Semarang, Central Java">Semarang, Jawa Tengah</div> -->
+          <div class="product-meta">
+            <div class="product-price">Rp115.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
+            <div class="product-sold" data-id="10.598+ Terjual" data-en="10,598+ Sold">10.598+ Terjual</div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" onclick="location.href='produk.html?produk=kopi-sangrai-robusta'">
+          <div class="product-img-wrap">
+            <img src="robustasangrai.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
+            <div class="product-arrow">↗</div>
+          </div>
+          <div class="product-tag" data-id="Arabika · Grade A" data-en="Arabica · Grade A">Arabika · Grade A</div>
+          <div class="product-name" data-id="Biji Kopi Sangrai Robusta" data-en="Roasted Robusta Coffee Beans">Roasted Robusta Coffee Beans</div>
+          <!-- <div class="product-origin" data-id="Semarang, Jawa Tengah" data-en="Semarang, Central Java">Semarang, Jawa Tengah</div> -->
+          <div class="product-meta">
+            <div class="product-price">Rp235.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
+            <div class="product-sold" data-id="6.198+ Terjual" data-en="6,198+ Sold">6.198+ Terjual</div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" onclick="location.href='produk.html?produk=briket-arang'">
+          <div class="product-img-wrap">
+            <img src="briket arang.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
+            <div class="product-arrow">↗</div>
+          </div>
+          <div class="product-tag" data-id="Briket · Ekspor" data-en="Briquettes · Export">Briket · Ekspor</div>
+          <div class="product-name" data-id="Briket Arang" data-en="Charcoal Briquettes">Briket</div>
+          <!-- <div class="product-origin" data-id="Jawa Tengah" data-en="Central Java">Jawa Tengah</div> -->
+          <div class="product-meta">
+            <div class="product-price">Rp43.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
+            <div class="product-sold" data-id="5.298+Sold">5.298+ Terjual</div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" onclick="location.href='produk.html?produk=biji-jagung'">
+          <div class="product-img-wrap">
+            <img src="biji jagung.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
+            <div class="product-arrow">↗</div>
+          </div>
+          <div class="product-tag" data-id="Jagung · Pilihan" data-en="Corn · Selected">Jagung · Pilihan</div>
+          <div class="product-name" data-id="Biji Jagung" data-en="Corn Seeds">Biji Jagung</div>
+          <!-- <div class="product-origin" data-id="Jawa Tengah &amp; Tuban" data-en="Central Java &amp; Tuban">Jawa Tengah & Tuban</div> -->
+          <div class="product-meta">
+            <div class="product-price">Rp73.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
+            <div class="product-sold" data-id="Stok Tersedia" data-en="Stock Available">Stok Tersedia</div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" onclick="location.href='produk.html?produk=cengkeh'">
+          <div class="product-img-wrap">
+            <img src="cengkeh.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
+            <div class="product-arrow">↗</div>
+          </div>
+          <div class="product-tag" data-id="Cengkeh · Premium" data-en="Cloves · Premium">Cengkeh · Premium</div>
+          <div class="product-name" data-id="Cengkeh Pilihan" data-en="Selected Cloves">Cengkeh Pilihan</div>
+          <!-- <div class="product-origin" data-id="Maluku &amp; Sulawesi" data-en="Maluku &amp; Sulawesi">Maluku & Sulawesi</div> -->
+          <div class="product-meta">
+            <div class="product-price">Rp195.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
+            <div class="product-sold" data-id="Stok Tersedia" data-en="Stock Available">Stok Tersedia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why">
+    <div class="why-header">
+      <!-- <div class="section-eyebrow reveal">Mengapa BSE</div> -->
+      <h2 class="section-title reveal" style="margin-bottom:12px; display: flex; align-items: center; justify-content: center;"><span data-id="Mengapa Harus Pilih Kami?" data-en="Why Choose Us?">Mengapa Harus Pilih Kami?</span></h2>
+      <p class="section-body reveal" style="margin-bottom:0; display: flex; align-items: center; justify-content: center;">
+        
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon-wrap">🔬</div>
+        <div class="feature-content">
+          <div class="feature-title" data-id="Standar Mutu Ketat" data-en="Strict Quality Standards">Standar Mutu Ketat</div>
+          <div class="feature-desc" data-id="Setiap produk lolos serangkaian inspeksi sebelum dikemas. Kami hanya mengirim apa yang benar-benar layak mewakili nama Anda." data-en="Every product passes a series of inspections before packaging. We only ship what is truly worthy of representing your name.">Setiap produk lolos serangkaian inspeksi sebelum dikemas. Kami hanya mengirim apa yang benar-benar layak mewakili nama Anda.</div>
+        </div>
+        <div class="feature-num-bg">01</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon-wrap">🌐</div>
+        <div class="feature-content">
+          <div class="feature-title" data-id="Jangkauan Global Nyata" data-en="True Global Reach">Jangkauan Global Nyata</div>
+          <div class="feature-desc" data-id="Produk Anda sudah kami kirim ke lebih dari 20 negara. Jalur bea cukai, dokumen ekspor, dan mitra forwarder sudah kami siapkan." data-en="Your products have been shipped to more than 20 countries. Customs routes, export documents, and forwarder partners are all prepared.">Produk Anda sudah kami kirim ke lebih dari 20 negara. Jalur bea cukai, dokumen ekspor, dan mitra forwarder sudah kami siapkan.</div>
+        </div>
+        <div class="feature-num-bg">02</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon-wrap">🏪</div>
+        <div class="feature-content">
+          <div class="feature-title" data-id="Pasar Lokal Tetap Terlayani" data-en="Local Market Still Served">Pasar Lokal Tetap Terlayani</div>
+          <div class="feature-desc" data-id="Ekspor bukan berarti melupakan pembeli dalam negeri. Stok domestik kami kelola terpisah agar harga dan ketersediaan tetap stabil." data-en="Exporting doesn't mean forgetting domestic buyers. Domestic stock is managed separately to keep prices and availability stable.">Ekspor bukan berarti melupakan pembeli dalam negeri. Stok domestik kami kelola terpisah agar harga dan ketersediaan tetap stabil.</div>
+        </div>
+        <div class="feature-num-bg">03</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon-wrap">🚚</div>
+        <div class="feature-content">
+          <div class="feature-title" data-id="Logistik yang Dapat Diandalkan" data-en="Reliable Logistics">Logistik yang Dapat Diandalkan</div>
+          <div class="feature-desc" data-id="Bermitra hanya dengan kurir dan forwarder yang punya rekam jejak pengiriman tepat waktu, bukan sekadar yang menawarkan tarif terkecil." data-en="We only partner with couriers and forwarders with a proven track record of on-time delivery, not just the cheapest rates.">Bermitra hanya dengan kurir dan forwarder yang punya rekam jejak pengiriman tepat waktu, bukan sekadar yang menawarkan tarif terkecil.</div>
+        </div>
+        <div class="feature-num-bg">04</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon-wrap">♻️</div>
+        <div class="feature-content">
+          <div class="feature-title" data-id="Proses Produksi Bertanggung Jawab" data-en="Responsible Production Process">Proses Produksi Bertanggung Jawab</div>
+          <div class="feature-desc" data-id="Sisa bahan diminimalkan, kemasan dipilih agar mudah terurai. Keberlanjutan bukan fitur tambahan, itu bagian dari cara kami bekerja." data-en="Material waste is minimized and packaging is chosen for biodegradability. Sustainability isn't an add-on, it's part of how we work.">Sisa bahan diminimalkan, kemasan dipilih agar mudah terurai. Keberlanjutan bukan fitur tambahan, itu bagian dari cara kami bekerja.</div>
+        </div>
+        <div class="feature-num-bg">05</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon-wrap">🤝</div>
+        <div class="feature-content">
+          <div class="feature-title" data-id="Tim yang Paham Ekspor" data-en="A Team That Knows Export">Tim yang Paham Ekspor</div>
+          <div class="feature-desc" data-id="Tim kami bukan sekadar customer service, mereka mengerti regulasi impor tiap negara tujuan dan siap membantu sebelum masalah muncul." data-en="Our team isn't just customer service, they understand import regulations for each destination country and are ready to help before issues arise.">Tim kami bukan sekadar customer service, mereka mengerti regulasi impor tiap negara tujuan dan siap membantu sebelum masalah muncul.</div>
+        </div>
+        <div class="feature-num-bg">06</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <!-- <div class="section-eyebrow reveal">Cara Kerja</div> -->
+    <h2 class="section-title reveal"><span data-id="Proses Transparan, Hasil Terjamin." data-en="Transparent Process, Guaranteed Results.">Proses Transparan, Hasil Terjamin.</span></h2>
+
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-dot">🤝</div>
+        <div class="step-title" data-id="Konsultasi & Pengadaan" data-en="Consultation & Sourcing">Konsultasi & Sourcing</div>
+        <div class="step-desc" data-id="Kami memahami kebutuhan Anda dan mencarikan komoditas terbaik sesuai spesifikasi pasar tujuan." data-en="We understand your needs and find the best commodities according to the target market specifications.">Kami memahami kebutuhan Anda dan mencarikan komoditas terbaik sesuai spesifikasi pasar tujuan.</div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot">🔍</div>
+        <div class="step-title" data-id="Inspeksi & Pengendalian Mutu" data-en="Inspection & Quality Control">Inspeksi & Quality Control</div>
+        <div class="step-desc" data-id="Setiap batch melewati pemeriksaan kualitas menyeluruh sebelum masuk gudang kami di Semarang." data-en="Every batch undergoes thorough quality inspection before entering our warehouse in Tuban.">Setiap batch melewati pemeriksaan kualitas menyeluruh sebelum masuk gudang kami di Tuban.</div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot">📦</div>
+        <div class="step-title" data-id="Proses & Pengemasan" data-en="Processing & Packaging">Proses & Pengemasan</div>
+        <div class="step-desc" data-id="Sortasi, penyortiran, dan pengemasan sesuai standar ekspor internasional dengan material food-grade." data-en="Sorting and packaging in accordance with international export standards using food-grade materials.">Sortasi, penyortiran, dan pengemasan sesuai standar ekspor internasional dengan material food-grade.</div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot">🚢</div>
+        <div class="step-title" data-id="Pengiriman & Dokumentasi" data-en="Shipping & Documentation">Pengiriman & Dokumentasi</div>
+        <div class="step-desc" data-id="Pengurusan seluruh dokumen ekspor, bea cukai, dan koordinasi dengan forwarder hingga barang tiba." data-en="Handling all export documents, customs, and forwarder coordination until goods arrive.">Pengurusan seluruh dokumen ekspor, bea cukai, dan koordinasi dengan forwarder hingga barang tiba.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCUMENTATION -->
+  <section id="docs">
+    <div class="docs-inner">
+      <div>
+        <!-- <div class="section-eyebrow reveal">Dokumentasi Perusahaan</div> -->
+        <h2 class="section-title reveal" data-id="Dokumentasi Perusahaan" data-en="Company Documentation">Dokumentasi Perusahaan</h2>
+        <p class="section-body reveal" data-id="Kami memastikan setiap tahap pemrosesan produk kami berjalan dengan standar kontrol kualitas yang ketat. Saksikan bagaimana tim profesional kami mengelola penyimpanan, penyortiran, hingga pengemasan produk siap kirim ke pasar internasional dari gudang utama kami di Semarang." data-en="We ensure every stage of our product processing meets strict quality control standards. See how our professional team manages storage, sorting, and packaging of products ready to ship to international markets from our main warehouse in Semarang.">
+          Kami memastikan setiap tahap pemrosesan produk kami berjalan dengan standar kontrol kualitas yang ketat. Saksikan bagaimana tim profesional kami mengelola penyimpanan, penyortiran, hingga pengemasan produk siap kirim ke pasar internasional dari gudang utama kami di Semarang.
+        </p>
+      </div>
+      <div class="docs-video-wrap reveal" id="docsVideoWrap">
+        <div id="docsVideoContent" style="width:100%;height:100%;">
+          <video id="docsVideo" src="doksiivd.mp4" style="width:100%;height:100%;object-fit:cover;" playsinline loop></video>
+        </div>
+        <div class="docs-play-btn" id="docsPlayBtn">▶</div>
+        <button type="button" class="docs-mute-btn" id="docsMuteBtn" aria-label="Matikan atau nyalakan suara video">🔊</button>
+      </div>
+    </div>
+
+    <!-- Photo Carousel -->
+    <div class="docs-photo-carousel-wrap reveal">
+      <div class="docs-photo-carousel" id="docsCarousel">
+        <div class="docs-photo-slide" data-index="0">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,0)">
+          <img src="doksi1.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="docs-photo-slide" data-index="1">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,1)">
+          <img src="doksi2.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="docs-photo-slide" data-index="2">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,2)">
+          <img src="p.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="docs-photo-slide" data-index="3">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,3)">
+          <img src="doksi3.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <button class="docs-carousel-nav prev" onclick="slideDoc(-1)">←</button>
+      <button class="docs-carousel-nav next" onclick="slideDoc(1)">→</button>
+      <div class="docs-carousel-dots" id="docsDots">
+        <button class="docs-dot active" onclick="goDoc(0)"></button>
+        <button class="docs-dot" onclick="goDoc(1)"></button>
+        <button class="docs-dot" onclick="goDoc(2)"></button>
+        <button class="docs-dot" onclick="goDoc(3)"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="main-footer" id="footer">
+        <div class="footer-container">
+
+            <div class="footer-column brand-col">
+                <div class="footer-logo">
+                    <img src="logou.png" alt="Logo PT BAY Sejahtera Export" class="footer-logo-img">
+                    <span class="logo-main-title">BAY Sejahtera Export</span>
+                </div>
+                <p class="footer-description" data-id="PT BAY Sejahtera Export adalah mitra terpercaya yang menghadirkan produk premium Indonesia ke pasar global. Kami menjamin proses ekspor yang sepenuhnya legal, aman, dan patuh pada standar regulasi internasional. Bersama tim ahli dan manajemen logistik yang efisien, kami memastikan konsistensi kualitas dan ketepatan waktu pengiriman langsung ke bisnis Anda." data-en="PT BAY Sejahtera Export is a trusted partner delivering premium Indonesian products to global markets. We guarantee a fully legal, safe, and internationally compliant export process. With our expert team and efficient logistics management, we ensure quality consistency and timely delivery to your business.">
+                    PT BAY Sejahtera Export adalah mitra terpercaya yang menghadirkan produk premium Indonesia ke pasar global. Kami menjamin proses ekspor yang sepenuhnya legal, aman, dan patuh pada standar regulasi internasional. Bersama tim ahli dan manajemen logistik yang efisien, kami memastikan konsistensi kualitas dan ketepatan waktu pengiriman langsung ke bisnis Anda.
+                </p>
+            </div>
+
+            <div class="footer-column address-col">
+                <h3 class="footer-heading">Our Address</h3>
+                <ul class="footer-contact-list">
+                    <li>
+                        <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                        <span>Jl. Dokter Cipto No. 20, Desa/Kelurahan Bugangan, Kec. Semarang	Timur, Kota Semarang, Provinsi Jawa Tengah, Indonesia</span>
+                    </li>
+                    <li>
+                        <span class="contact-icon"><i class="fas fa-phone-alt"></i></span>
+                        <a href="tel:+628117033993">+6281225353152</a>
+                    </li>
+                    <li>
+                        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                        <a href="#">baysejahteraexport@gmail.com</a>
+                    </li>
+                    <li>
+                        <span class="contact-icon"><i class="fas fa-globe"></i></span>
+                        <a href="#" target="_blank">BAYSejahteraExport.vercel.app</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-column social-col">
+                <h3 class="footer-heading">Follow Us</h3>
+                <div class="social-icons-wrapper">
+                    <a href="#" aria-label="Instagram" class="social-link-item">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 BAY Sejahtera Export Indonesia &bull; All Rights Reserved</p>
+            <a href="#hero" class="back-to-top">
+                <span data-id="Kembali ke atas" data-en="Back to top">Kembali ke atas</span>
+                <i class="fas fa-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="script.js"></script>
+
+  <script>
+    // Foto produk hanya bisa diganti langsung di dalam kode (atribut src pada tag <img> tiap product-img-wrap).
+
+    // ── UPLOAD: Docs carousel photos ──
+    function triggerDocsPhoto(idx) {
+      document.querySelectorAll('#docsCarousel .docs-photo-slide')[idx]
+        .querySelector('input[type="file"]').click();
+    }
+    function handleDocsPhoto(e, idx) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      const slide = document.querySelectorAll('#docsCarousel .docs-photo-slide')[idx];
+      const placeholder = slide.querySelector('.docs-photo-placeholder');
+      if (placeholder) placeholder.remove();
+      const oldImg = slide.querySelector('img');
+      if (oldImg) oldImg.remove();
+      const oldHint = slide.querySelector('.docs-slide-change-hint');
+      if (oldHint) oldHint.remove();
+      const img = document.createElement('img');
+      img.src = url;
+      slide.appendChild(img);
+      const hint = document.createElement('div');
+      hint.className = 'docs-slide-change-hint';
+      hint.textContent = '📷 Ganti Foto';
+      hint.onclick = () => triggerDocsPhoto(idx);
+      slide.appendChild(hint);
+    }
+
+    // ── VIDEO ──
+    const docsVideo = document.getElementById('docsVideo');
+    const docsPlayBtn = document.getElementById('docsPlayBtn');
+
+    function showPlayBtn(icon) {
+      docsPlayBtn.style.opacity = '1';
+      docsPlayBtn.style.pointerEvents = 'auto';
+      docsPlayBtn.textContent = icon || '▶';
+    }
+    function hidePlayBtn() {
+      docsPlayBtn.style.opacity = '0';
+      docsPlayBtn.style.pointerEvents = 'none';
+    }
+
+    // Coba play dengan suara; jika diblokir browser, play muted dan tampilkan ikon 🔇
+    function tryPlay() {
+      docsVideo.muted = false;
+      docsVideo.play().then(() => {
+        hidePlayBtn();
+      }).catch(() => {
+        docsVideo.muted = true;
+        docsVideo.play().then(() => {
+          showPlayBtn('🔇');
+        }).catch(() => {
+          showPlayBtn('▶');
+        });
+      });
+    }
+
+    // Klik tombol: jika muted → unmute; jika paused → play; jika playing → pause
+    docsPlayBtn.addEventListener('click', () => {
+      if (docsVideo.muted) {
+        docsVideo.muted = false;
+        hidePlayBtn();
+        return;
+      }
+      if (docsVideo.paused) {
+        docsVideo.play();
+        hidePlayBtn();
+      }
+    });
+
+    // Klik langsung pada video
+    docsVideo.addEventListener('click', () => {
+      if (docsVideo.muted) {
+        docsVideo.muted = false;
+        hidePlayBtn();
+        return;
+      }
+      if (docsVideo.paused) {
+        docsVideo.play();
+        hidePlayBtn();
+      } else {
+        docsVideo.pause();
+      }
+    });
+
+    docsVideo.addEventListener('pause', () => showPlayBtn('▶'));
+    // Video di-loop otomatis (atribut loop), jadi tombol play tidak perlu muncul saat video selesai.
+
+    // ── TOMBOL MUTE KECIL (pojok kanan bawah) ──
+    const docsMuteBtn = document.getElementById('docsMuteBtn');
+    function updateMuteIcon() {
+      docsMuteBtn.textContent = docsVideo.muted ? '🔇' : '🔊';
+    }
+    docsMuteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      docsVideo.muted = !docsVideo.muted;
+      updateMuteIcon();
+      // Jika sebelumnya menampilkan ikon speaker di tombol play besar, sembunyikan agar tidak dobel
+      if (!docsVideo.paused) hidePlayBtn();
+    });
+    docsVideo.addEventListener('volumechange', updateMuteIcon);
+    updateMuteIcon();
+
+    // ── AUTO-PLAY SAAT MASUK VIEWPORT ──
+    const docsSection = document.getElementById('docs');
+    const videoAutoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tryPlay();
+        } else {
+          if (!docsVideo.paused) docsVideo.pause();
+        }
+      });
+    }, { threshold: 0.4 });
+
+    videoAutoObserver.observe(docsSection);
+
+    // ── DOCS CAROUSEL ──
+    let docsCurrent = 0;
+    const docsCarousel = document.getElementById('docsCarousel');
+    const docsDots = document.querySelectorAll('.docs-dot');
+    const docsSlides = docsCarousel.querySelectorAll('.docs-photo-slide');
+
+    function updateDocsDots() {
+      docsDots.forEach((d, i) => d.classList.toggle('active', i === docsCurrent));
+    }
+    function goDoc(n) {
+      docsCurrent = Math.max(0, Math.min(n, docsSlides.length - 1));
+      const slideEl = docsSlides[docsCurrent];
+      docsCarousel.scrollTo({ left: slideEl.offsetLeft - docsCarousel.offsetLeft, behavior: 'smooth' });
+      updateDocsDots();
+    }
+    function slideDoc(dir) { goDoc(docsCurrent + dir); }
+    docsCarousel.addEventListener('scroll', () => {
+      let closest = 0, closestDist = Infinity;
+      docsSlides.forEach((s, i) => {
+        const dist = Math.abs(s.offsetLeft - docsCarousel.offsetLeft - docsCarousel.scrollLeft);
+        if (dist < closestDist) { closestDist = dist; closest = i; }
+      });
+      if (closest !== docsCurrent) { docsCurrent = closest; updateDocsDots(); }
+    });
+
+    // ── PRODUCTS CAROUSEL ──
+    function scrollCarousel(dir) {
+      document.getElementById('productsCarousel').scrollBy({ left: dir * 300, behavior: 'smooth' });
+    }
+    const carousel = document.getElementById('productsCarousel');
+    let isDown = false, startX, scrollLeft;
+    carousel.addEventListener('mousedown', e => {
+      isDown = true;
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+    carousel.addEventListener('mouseleave', () => isDown = false);
+    carousel.addEventListener('mouseup', () => isDown = false);
+    carousel.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      carousel.scrollLeft = scrollLeft - (e.pageX - carousel.offsetLeft - startX);
+    });
+
+    // ── LANGUAGE TOGGLE ──
+    const langToggle = document.getElementById('lang-toggle');
+    let currentLang = 'id';
+
+    function translatePage(lang) {
+      document.querySelectorAll('[data-id][data-en]').forEach(el => {
+        const text = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-id');
+        if (text !== null) el.innerHTML = text;
+      });
+      currentLang = lang;
+    }
+
+    if (langToggle) {
+      langToggle.addEventListener('change', function() {
+        translatePage(this.checked ? 'en' : 'id');
+      });
+    }
+
+    // ── ACTIVE NAV LINK ──
+    (function() {
+      const currentFile = window.location.pathname.split('/').pop() || 'Index.html';
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const linkFile = link.getAttribute('href').split('/').pop();
+        if (linkFile.toLowerCase() === currentFile.toLowerCase()) {
+          link.classList.add('active');
+        }
+      });
+    })();
+
+    // ── NAV SCROLL ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ── REVEAL ON SCROLL ──
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), 80);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+
+    // ── COUNTER ANIMATION ──
+    function animateCounter(el, target, suffix) {
+      let start = 0;
+      const step = (ts) => {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / 1800, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.innerHTML = Math.floor(eased * target) + '<span>' + suffix + '</span>';
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          animateCounter(el, parseInt(el.getAttribute('data-target')), el.querySelector('span')?.textContent || '');
+          statObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
+  </script>
+</body>
+</html>

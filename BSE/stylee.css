@@ -1,0 +1,1260 @@
+/* Reset Style Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+
+
+/* ==================== NAVBAR STYLING ==================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  /* default: transparent / subtle */
+  background: rgba(8, 8, 8, 0);
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, padding 0.35s ease;
+  padding: 22px 0;
+}
+
+/* Scrolled state — frosted glass */
+.navbar.scrolled {
+  background: rgba(10, 10, 10, 0.82);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border-bottom-color: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.28);
+  padding: 14px 0;
+}
+
+.nav-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ── Logo ── */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #0f0f0f;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: color 0.4s ease;
+}
+
+.navbar.scrolled .nav-logo {
+  color: #ffffff;
+}
+
+.nav-logo-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #0f0f0f;
+  transition: color 0.4s ease;
+}
+
+.navbar.scrolled .nav-logo-text {
+  color: #ffffff;
+}
+
+.nav-logo-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #36b96a;
+  margin-bottom: 1px;
+}
+
+/* ── Center Menu ── */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 4px;
+  margin: 0 auto;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: rgba(15, 15, 15, 0.60);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: color 0.2s, background 0.2s;
+  position: relative;
+}
+
+.navbar.scrolled .nav-link {
+  color: rgba(255, 255, 255, 0.60);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 16px;
+  height: 1.5px;
+  background: #36b96a;
+  border-radius: 2px;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-link:hover {
+  color: #0f0f0f;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.navbar.scrolled .nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.nav-link.active {
+  color: #0f0f0f;
+}
+
+.navbar.scrolled .nav-link.active {
+  color: #ffffff;
+}
+
+/* ── Right Actions ── */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+/* CTA Button */
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 20px;
+  background: #36b96a;
+  color: #0a0a0a;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 0 0 0 rgba(54, 185, 106, 0);
+}
+
+.nav-cta:hover {
+  background: #2da85d;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(54, 185, 106, 0.35);
+}
+
+/* Hamburger (Mobile Only) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  background: rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.4s;
+}
+
+.navbar.scrolled .hamburger {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.hamburger:hover {
+  background: rgba(0,0,0,0.12);
+}
+
+.navbar.scrolled .hamburger:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+.ham-bar {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: #0f0f0f;
+  border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.25s, background 0.4s;
+  transform-origin: center;
+}
+
+.navbar.scrolled .ham-bar {
+  background: #ffffff;
+}
+
+/* Animate to X */
+.hamburger.open .ham-bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open .ham-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open .ham-bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── Mobile Drawer ── */
+.nav-drawer {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: rgba(10, 10, 10, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-drawer.open {
+  max-height: 400px;
+}
+
+.drawer-menu {
+  list-style: none;
+  padding: 12px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.drawer-link {
+  display: block;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: rgba(255,255,255,0.65);
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s, background 0.2s;
+}
+
+.drawer-link:hover {
+  color: #ffffff;
+  background: rgba(255,255,255,0.07);
+}
+
+.drawer-cta {
+  margin-top: 8px;
+  color: #36b96a;
+  border: 1px solid rgba(54,185,106,0.35);
+  text-align: center;
+}
+
+.drawer-cta:hover {
+  background: rgba(54,185,106,0.1);
+  color: #36b96a;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .nav-menu { display: none; }
+  .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .nav-drawer { display: block; }
+  .nav-container { padding: 0 20px; }
+
+  body.nav-open { overflow: hidden; }
+}
+
+@media (max-width: 480px) {
+  .lang-switch-container .lang-label { display: none; }
+}
+
+
+
+/* ==================== FOOTER STYLING ==================== */
+.main-footer {
+    --footer-line: rgba(255, 255, 255, 0.09);
+    --footer-text: rgba(255, 255, 255, 0.62);
+    --footer-text-dim: rgba(255, 255, 255, 0.4);
+    --footer-accent: #36b96a; /* brand green, brightened for AA contrast on black */
+    background-color: #0a0a0a;
+    background-image: radial-gradient(ellipse 55% 60% at 12% 0%, rgba(26, 107, 58, 0.16) 0%, transparent 72%);
+    border-top: 1px solid var(--footer-line);
+    padding: 88px 24px 0;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: 1 kolom */
+    gap: 2.75rem;
+}
+
+/* Tablet: 2 kolom */
+@media (min-width: 640px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.75rem 3rem;
+    }
+    .brand-col { grid-column: 1 / -1; }
+}
+
+/* Desktop: 3 kolom proporsional */
+@media (min-width: 1024px) {
+    .footer-container {
+        grid-template-columns: 2fr 1.2fr 1fr;
+        gap: 3rem;
+    }
+    .brand-col { grid-column: auto; }
+}
+
+/* ── Kolom 1: Brand & Deskripsi ── */
+.brand-col .footer-logo {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.logo-main-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: #ffffff;
+}
+
+.footer-logo-img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-sub-title {
+    font-size: 0.85rem;
+    color: var(--footer-text-dim);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    padding-left: 12px;
+    border-left: 1px solid var(--footer-line);
+}
+
+.footer-description {
+    font-size: 0.92rem;
+    font-style: normal;
+    color: var(--footer-text);
+    line-height: 1.75;
+    max-width: 440px;
+}
+
+/* Judul heading kolom 2, 3 & 4 — selaras dengan gaya "eyebrow" di hero */
+.footer-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 22px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.footer-heading::before {
+    content: '';
+    display: block;
+    width: 14px;
+    height: 1px;
+    background: var(--footer-accent);
+    flex-shrink: 0;
+}
+
+/* ── Kolom 2: Kontak ── */
+.footer-contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.footer-contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    line-height: 1.55;
+    color: var(--footer-text);
+    font-size: 0.92rem;
+}
+
+.contact-icon {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--footer-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    color: #ffffff;
+    margin-top: 0;
+}
+
+.footer-contact-list a {
+    color: var(--footer-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    word-break: break-word;
+}
+
+.footer-contact-list a:hover {
+    color: var(--footer-accent);
+}
+
+/* ── Kolom 3: Media Sosial ── */
+.social-icons-wrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.social-link-item {
+    width: 2.6rem;
+    height: 2.6rem;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--footer-line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.social-link-item:hover {
+    background-color: var(--footer-accent);
+    border-color: var(--footer-accent);
+    color: #0a0a0a;
+    transform: translateY(-3px);
+}
+
+/* ── Bagian Bawah: Hak Cipta + Back to Top ── */
+.footer-bottom {
+    max-width: 1300px;
+    margin: 4.5rem auto 0;
+    padding: 1.6rem 0;
+    border-top: 1px solid var(--footer-line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.82rem;
+    color: var(--footer-text-dim);
+}
+
+.back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--footer-text);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.back-to-top i {
+    font-size: 0.7rem;
+}
+
+.back-to-top:hover {
+    color: var(--footer-accent);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 639px) {
+    .main-footer { padding: 64px 24px 0; }
+    .footer-bottom {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 16px;
+    }
+}
+
+/* Container Utama Kapsul Putih */
+.lang-switch-container {
+    background-color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 30px; /* Membuat bentuk kapsul sempurna */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    font-family: sans-serif;
+}
+
+/* Mengatur Bendera Menjadi Bulat Sempurna */
+.lang-switch-container .flag-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+}
+
+/* Teks ID dan EN */
+.lang-switch-container .lang-label {
+    color: #333333;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Struktur Dasar Sakelar (Switch) */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+/* Sembunyikan Checkbox Asli */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Desain Latar Belakang Slide/Tombol */
+/* Latar belakang sakelar saat di posisi awal / Indonesia (Putih/Abu-abu Terang) */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e0e0e0; /* Warna abu-abu netral saat posisi ID */
+    border: 1px solid #ccc; /* Memberi batasan halus agar tidak mati dengan kapsul putih */
+    transition: .3s;
+}
+
+/* Bulatan tombol di dalam sakelar */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px; /* Disesuaikan sedikit agar pas dengan border */
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+    transition: .3s;
+}
+
+/* KETIKA DI-TOGLE / KE INGGRIS: Latar belakang berubah menjadi Biru */
+input:checked + .slider {
+    background-color: #0056b3; /* Warna biru aktif saat posisi EN */
+    border-color: #0056b3;
+}
+
+/* Bulatan tetap putih saat bergeser ke kanan */
+input:checked + .slider:before {
+    transform: translateX(20px);
+    background-color: #ffffff;
+}
+
+/* Membuat bentuk membulat */
+.slider.round {
+    border-radius: 34px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* PRODUK HTML */
+/* Tambahkan ini di bagian PALING ATAS file style.css */
+:root {
+  --pine: #1B3A2B;
+  --pine-deep: #0E2218;
+  --pine-mid: #2C4F3A;
+  --canvas: #FFFFFF;
+  --wheat: #F6F3E9;
+  --terracotta: #BD5B2C;
+  --terracotta-soft: #E9A874;
+  --gold: #B68A3C;
+  --ink: #191B19;
+  --ink-soft: #62675F;
+  --line: #E1DCCB;
+  --line-deep: #33513F;
+  --radius: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--wheat); /* Mengembalikan latar belakang krim hangat */
+  color: var(--ink);             /* Memastikan warna teks dasar terlihat */
+  font-family: 'Inter', sans-serif;
+}
+
+/* Penyesuaian agar teks judul "Produk Kami" tidak nabrak/hilang */
+.section-head h2 {
+  color: var(--pine-deep);
+}
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 44px 32px 80px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.section-head .eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin: 0 0 6px;
+}
+
+.section-head h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 28px;
+  margin: 0;
+}
+
+.head-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.result-count {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.sort-select {
+  border: 1.5px solid var(--ink);
+  background: var(--canvas);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+/* ---------- Catalog layout: sidebar + grid ---------- */
+.catalog {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.filters {
+  position: sticky;
+  top: 20px;
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+}
+
+.filter-block + .filter-block {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px dashed var(--line);
+}
+
+.filter-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+}
+
+.cat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 9px 8px;
+  border-radius: 4px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.cat-item:hover {
+  background: var(--wheat);
+}
+
+.cat-item.active {
+  background: var(--pine);
+  color: #fff;
+}
+
+.price-fields {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.price-fields input[type="number"] {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 9px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 12.5px;
+  background: var(--wheat);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.price-fields span {
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.filters input[type="range"] {
+  width: 100%;
+  accent-color: var(--terracotta);
+}
+
+.rating-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 4px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.rating-pill input {
+  accent-color: var(--terracotta);
+}
+
+.rating-pill .star {
+  color: var(--gold);
+}
+
+/* ---------- Product grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px 20px;
+}
+
+.card {
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+
+.card:hover {
+  border-color: var(--pine);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px -14px rgba(27, 58, 43, .45);
+}
+
+/* Cari kode ini dan hapus property background:${p.color} di JS tadi agar warna latar belakang diganti gambar sepenuhnya */
+.card-media {
+  aspect-ratio: 4/3;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden; /* Tambahkan ini agar gambar tidak keluar batas radius */
+  background: #f0f0f0; /* Latar belakang standar jika gambar loading */
+}
+
+/* Tambahkan class baru ini di bawah .card-media */
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Membuat gambar otomatis terpotong rapi memenuhi kotak */
+  display: block;
+}
+
+.card-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(14, 34, 24, .82);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+
+.card-origin {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, .92);
+  color: var(--pine-deep);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .01em;
+  padding: 4px 9px 4px 7px;
+  border-radius: 999px;
+}
+
+.card-origin svg {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+}
+
+.card-body {
+  padding: 15px 15px 16px;
+  border-top: 1px dashed var(--line);
+}
+
+.card-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 15.5px;
+  line-height: 1.3;
+  margin: 0 0 10px;
+  min-height: 40px;
+}
+
+.card-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.card-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--terracotta);
+}
+
+.card-unit {
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-rating .star {
+  color: var(--gold);
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 70px 20px;
+  color: var(--ink-soft);
+  font-family: 'Fraunces', serif;
+  font-size: 17px;
+}
+
+/* ---------- Media Queries ---------- */
+@media (max-width: 980px) {
+  .catalog {
+    grid-template-columns: 1fr;
+  }
+  .filters {
+    position: static;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 10px;
+  }
+  .page {
+    padding: 32px 16px 56px;
+  }
+  .hero {
+    padding: 44px 16px 36px;
+  }
+  .utility-bar {
+    padding: 8px 16px;
+    font-size: 10.5px;
+  }
+  header.site {
+    padding: 16px;
+  }
+  .stat-rail {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .stat-rail div {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+/* KNP PILIH KMI */
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --navy:       #0B1929;
+  --navy-mid:   #122236;
+  --teal:       #06C7A2;
+  --teal-dim:   #059E82;
+  --white:      #FFFFFF;
+  --off-white:  #F4F8F9;
+  --slate:      #64748B;
+  --border:     #E2EAF0;
+
+  --font: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition: 0.45s var(--ease-out);
+}
+
+/* ============================================================
+   RESET + BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: var(--off-white);
+  color: var(--navy);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   SECTION WRAPPER
+   ============================================================ */
+.wcu {
+  padding: 100px 24px 120px;
+  background: var(--off-white);
+}
+
+.wcu__inner {
+  max-width: 1060px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   HEADER  (left-aligned — deliberate contrast with centering norm)
+   ============================================================ */
+.wcu__head {
+  max-width: 560px;
+  margin-bottom: 72px;
+}
+
+.wcu__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal-dim);
+  margin-bottom: 20px;
+}
+
+.wcu__tag::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--teal);
+  border-radius: 2px;
+}
+
+.wcu__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+
+.wcu__title em {
+  font-style: normal;
+  color: var(--teal-dim);
+}
+
+.wcu__sub {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--slate);
+  max-width: 480px;
+}
+
+/* ============================================================
+   GRID  —  2 columns on desktop
+   ============================================================ */
+.wcu__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* ============================================================
+   CARD
+   ============================================================ */
+.wcu-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 28px;
+  overflow: hidden;
+  cursor: default;
+
+  /* scroll-reveal start state */
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--transition),
+    transform var(--transition),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.wcu-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover lift */
+.wcu-card:hover {
+  border-color: rgba(6, 199, 162, 0.4);
+  box-shadow: 0 12px 40px rgba(6, 199, 162, 0.1), 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* ── Signature watermark number ──
+   Large ghost number in the background — the single distinctive
+   element. It slides up on hover to feel alive without being flashy. */
+.wcu-card::before {
+  content: attr(data-index);
+  position: absolute;
+  right: 18px;
+  bottom: -12px;
+  font-size: 96px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--navy);
+  opacity: 0.045;
+  pointer-events: none;
+  user-select: none;
+  transition: transform 0.45s var(--ease-out), opacity 0.45s ease;
+}
+
+.wcu-card:hover::before {
+  transform: translateY(-6px);
+  opacity: 0.07;
+}
+
+/* ── Teal accent bar on the left edge ── */
+.wcu-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 3px;
+  background: var(--teal);
+  border-radius: 0 3px 3px 0;
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.wcu-card:hover::after,
+.wcu-card:focus-within::after {
+  transform: scaleY(1);
+}
+
+/* ============================================================
+   CARD ICON
+   ============================================================ */
+.wcu-card__icon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  background: var(--navy);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--teal);
+  transition: background 0.3s ease, transform 0.35s var(--ease-out);
+}
+
+.wcu-card__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.wcu-card:hover .wcu-card__icon {
+  background: var(--navy-mid);
+  transform: scale(1.06) rotate(-3deg);
+}
+
+/* ============================================================
+   CARD TEXT
+   ============================================================ */
+.wcu-card__body {
+  padding-top: 2px;
+}
+
+.wcu-card__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.wcu-card__desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--slate);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 680px) {
+  .wcu {
+    padding: 72px 20px 88px;
+  }
+
+  .wcu__head {
+    margin-bottom: 48px;
+  }
+
+  .wcu__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wcu-card::before {
+    font-size: 72px;
+    bottom: -8px;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .wcu-card {
+    opacity: 1;
+    transform: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .wcu-card::before,
+  .wcu-card__icon { transition: none; }
+}

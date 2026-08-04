@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request for Quotation — BAY Sejahtera Export</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    :root {
+      --black: #111111;
+      --white: #ffffff;
+      --gray-50: #f9f9f8;
+      --gray-100: #f0efec;
+      --gray-200: #e4e3de;
+      --gray-400: #9e9d98;
+      --gray-600: #5a5956;
+      --text-primary: #111111;
+      --text-secondary: #5a5956;
+      --text-tertiary: #9e9d98;
+      --border: #e4e3de;
+      --gold: #ca8a04;
+      --gold-light: rgba(202,138,4,.08);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gray-50);
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+    }
+
+    /* ── PAGE LAYOUT ── */
+    .rfq-page {
+      max-width: 860px;
+      margin: 80px auto;
+      padding: 32px 20px 80px;
+    }
+
+    /* ── BREADCRUMB ── */
+    .rfq-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin-bottom: 28px;
+    }
+    .rfq-breadcrumb a {
+      color: var(--text-tertiary);
+      text-decoration: none;
+      transition: color .12s;
+    }
+    .rfq-breadcrumb a:hover { color: var(--gold); }
+    .rfq-breadcrumb .sep { font-size: 10px; }
+    .rfq-breadcrumb .current { color: var(--text-primary); font-weight: 500; }
+
+    /* ── PAGE HEADER ── */
+    .rfq-page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .rfq-page-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .rfq-page-subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+      max-width: 480px;
+      line-height: 1.65;
+    }
+
+    /* Product pill (pre-filled from URL) */
+    .rfq-product-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .rfq-product-pill .pill-label {
+      font-size: 10px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .rfq-product-pill .pill-name {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .rfq-product-pill .pill-price {
+      font-size: 12px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* ── MAIN CARD ── */
+    .rfq-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    /* Progress bar */
+    .rfq-progress-bar {
+      height: 3px;
+      background: var(--gray-100);
+    }
+    .rfq-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), #f59e0b);
+      width: 0%;
+      transition: width .4s ease;
+    }
+
+    /* ── SECTION ── */
+    .rfq-section {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .rfq-section:last-of-type { border-bottom: none; }
+
+    .rfq-section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .rfq-section-num {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--black);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .rfq-section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .rfq-section-desc {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-left: auto;
+    }
+
+    /* ── FORM GRID ── */
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 600px) {
+      .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
+      .rfq-section { padding: 18px 16px; }
+    }
+
+    .form-field { display: flex; flex-direction: column; gap: 5px; }
+    .form-field.full { grid-column: 1 / -1; }
+
+    .form-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .form-req { color: #dc2626; }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      background: var(--white);
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+      -webkit-appearance: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--gray-400); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(202,138,4,.12);
+    }
+    .form-input.error { border-color: #dc2626; }
+    .form-error-msg {
+      font-size: 11px;
+      color: #dc2626;
+      display: none;
+      margin-top: 2px;
+    }
+    .form-input.error + .form-error-msg { display: block; }
+
+    .form-textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+
+    /* Qty + unit row */
+    .qty-unit-row { display: flex; gap: 8px; }
+    .qty-unit-row .form-input { flex: 1; }
+    .qty-unit-row .form-select { width: 110px; flex-shrink: 0; }
+
+    /* ── PAYMENT OPTIONS ── */
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+    }
+    .payment-opt {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: border-color .12s, background .12s;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .payment-opt input[type=radio] { display: none; }
+    .payment-opt:has(input:checked) {
+      border-color: var(--gold);
+      background: var(--gold-light);
+    }
+    .payment-opt-code {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .payment-opt:has(input:checked) .payment-opt-code { color: var(--gold); }
+    .payment-opt-name {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      line-height: 1.4;
+    }
+
+    /* ── INCOTERMS ── */
+    .incoterm-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .incoterm-chip {
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: all .12s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .incoterm-chip input[type=radio] { display: none; }
+    .incoterm-chip:has(input:checked) {
+      border-color: var(--gold);
+      background: var(--gold-light);
+      color: #92610a;
+    }
+
+    /* ── PRODUCT NOTICE (pre-filled) ── */
+    .product-notice {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--gold-light);
+      border: 1px solid rgba(202,138,4,.25);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      margin-bottom: 18px;
+    }
+    .product-notice-icon { color: var(--gold); font-size: 16px; flex-shrink: 0; }
+    .product-notice-text { font-size: 12px; color: #78520a; line-height: 1.5; }
+    .product-notice-text strong { color: #5c3d08; }
+
+    /* ── SUBMIT AREA ── */
+    .rfq-submit-section {
+      padding: 24px 28px;
+      background: var(--gray-50);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .rfq-submit-note {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      line-height: 1.6;
+      max-width: 400px;
+    }
+    .rfq-submit-note a { color: var(--gold); text-decoration: none; }
+    .rfq-submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background .15s;
+      white-space: nowrap;
+    }
+    .rfq-submit-btn:hover { background: var(--gold); }
+
+    /* ── SUCCESS STATE ── */
+    .rfq-success {
+      display: none;
+      text-align: center;
+      padding: 60px 28px;
+    }
+    .rfq-success.show { display: block; }
+    .rfq-success-icon {
+      width: 56px; height: 56px;
+      background: #dcfce7;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 24px;
+    }
+    .rfq-success h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .rfq-success p { font-size: 13px; color: var(--text-secondary); max-width: 380px; margin: 0 auto 24px; line-height: 1.7; }
+    .rfq-back-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 11px 22px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 13px; font-weight: 600; font-family: 'Inter', sans-serif;
+      background: var(--white); color: var(--text-primary);
+      text-decoration: none; cursor: pointer;
+      transition: border-color .12s;
+    }
+    .rfq-back-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── SIDEBAR INFO ── */
+    .rfq-layout {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .rfq-layout { grid-template-columns: 1fr; }
+      .rfq-sidebar { order: -1; }
+    }
+
+    .rfq-sidebar { display: flex; flex-direction: column; gap: 14px; }
+
+    .sidebar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+    .sidebar-card-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-tertiary);
+      margin-bottom: 12px;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .sidebar-item:last-child { margin-bottom: 0; }
+    .sidebar-icon { color: var(--gold); font-size: 13px; margin-top: 1px; flex-shrink: 0; }
+    .sidebar-item strong { color: var(--text-primary); display: block; font-size: 12px; }
+
+    .sidebar-contact-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color .12s;
+    }
+    .sidebar-contact-link:last-child { border-bottom: none; padding-bottom: 0; }
+    .sidebar-contact-link:hover { color: var(--gold); }
+    .sidebar-contact-link i { width: 14px; text-align: center; color: var(--gold); }
+
+    /* ── MOBILE SPACER ── */
+    .mt-14 { margin-top: 14px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR (same as produk.html) -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <img src="logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+        <a href="#" class="nav-logo">BSE</a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="Index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="produk.html" class="nav-link">Produk</a></li>
+        <li class="nav-item"><a href="About.html" class="nav-link">About Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="lang-switch-container">
+          <img src="https://flagcdn.com/w40/id.png" class="flag-icon" alt="ID">
+          <span class="lang-label">ID</span>
+          <label class="switch">
+            <input type="checkbox" id="lang-toggle">
+            <span class="slider round"></span>
+          </label>
+          <img src="https://flagcdn.com/w40/gb.png" class="flag-icon" alt="EN">
+          <span class="lang-label">EN</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE BODY -->
+  <div class="rfq-page">
+
+    <!-- Breadcrumb -->
+    <div class="rfq-breadcrumb">
+      <a href="Index.html">Beranda</a>
+      <span class="sep">›</span>
+      <a href="produk.html">Katalog Produk</a>
+      <span class="sep">›</span>
+      <span class="current">Request for Quotation</span>
+    </div>
+
+    <!-- Page Header -->
+    <div class="rfq-page-header">
+      <div>
+        <div class="rfq-page-title">Request for Quotation</div>
+        <div class="rfq-page-subtitle">Isi form di bawah ini untuk mengajukan permintaan penawaran harga. Tim kami akan menghubungi Anda dalam <strong>1×24 jam kerja</strong>.</div>
+      </div>
+      <div class="rfq-product-pill" id="product-pill" style="display:none">
+        <div>
+          <span class="pill-label">Produk yang diminta</span>
+          <span class="pill-name" id="pill-name"></span>
+          <span class="pill-price" id="pill-price"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two-column layout -->
+    <div class="rfq-layout">
+
+      <!-- ── MAIN FORM ── -->
+      <div>
+        <div class="rfq-card" id="rfq-form-card">
+
+          <!-- Progress bar -->
+          <div class="rfq-progress-bar"><div class="rfq-progress-fill" id="rfq-progress"></div></div>
+
+          <!-- ── SECTION 01: Identitas Pembeli ── -->
+          <div class="rfq-section">
+            <div class="rfq-section-header">
+              <div class="rfq-section-num">01</div>
+              <div class="rfq-section-title">Identitas Pembeli</div>
+              <div class="rfq-section-desc">Wajib diisi</div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Nama Lengkap <span class="form-req">*</span></label>
+                <input class="form-input" type="text" id="f-nama" placeholder="John Smith" oninput="updateProgress()">
+                <span class="form-error-msg">Nama wajib diisi</span>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Nama Perusahaan <span class="form-req">*</span></label>
+                <input class="form-input" type="text" id="f-perusahaan" placeholder="PT / Ltd / Inc ..." oninput="updateProgress()">
+                <span class="form-error-msg">Nama perusahaan wajib diisi</span>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Email Bisnis <span class="form-req">*</span></label>
+                <input class="form-input" type="email" id="f-email" placeholder="name@company.com" oninput="updateProgress()">
+                <span class="form-error-msg">Email tidak valid</span>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Nomor Telepon / WhatsApp</label>
+                <input class="form-input" type="tel" id="f-telp" placeholder="+62 812 3456 7890">
+              </div>
+              <div class="form-field">
+                <label class="form-label">Jabatan / Posisi</label>
+                <input class="form-input" type="text" id="f-jabatan" placeholder="Purchasing Manager, Director ...">
+              </div>
+              <div class="form-field">
+                <label class="form-label">Website Perusahaan</label>
+                <input class="form-input" type="url" id="f-website" placeholder="https://company.com">
+              </div>
+            </div>
+          </div>
+
+          <!-- ── SECTION 02: Tujuan Pengiriman ── -->
+          <div class="rfq-section">
+            <div class="rfq-section-header">
+              <div class="rfq-section-num">02</div>
+              <div class="rfq-section-title">Tujuan Pengiriman</div>
+              <div class="rfq-section-desc">Wajib diisi</div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Negara Tujuan <span class="form-req">*</span></label>
+                <input class="form-input" type="text" id="f-negara" placeholder="Contoh: Malaysia, UAE, Japan" oninput="updateProgress()">
+                <span class="form-error-msg">Negara tujuan wajib diisi</span>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Kota / Port Tujuan</label>
+                <input class="form-input" type="text" id="f-kota" placeholder="Contoh: Port Klang, Jebel Ali">
+              </div>
+              <div class="form-field full">
+                <label class="form-label">Alamat Pengiriman Lengkap</label>
+                <input class="form-input" type="text" id="f-alamat" placeholder="Jalan, Kota, Kode Pos, Negara">
+              </div>
+            </div>
+          </div>
+
+          <!-- ── SECTION 03: Detail Pesanan ── -->
+          <div class="rfq-section">
+            <div class="rfq-section-header">
+              <div class="rfq-section-num">03</div>
+              <div class="rfq-section-title">Detail Pesanan</div>
+              <div class="rfq-section-desc">Wajib diisi</div>
+            </div>
+
+            <!-- Product notice if pre-filled -->
+            <div class="product-notice" id="product-notice" style="display:none">
+              <i class="fas fa-tag product-notice-icon"></i>
+              <div class="product-notice-text">
+                Produk dari halaman sebelumnya sudah diisi otomatis. Anda bisa menambah produk lain di kolom catatan.
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Nama Produk <span class="form-req">*</span></label>
+                <input class="form-input" type="text" id="f-produk" placeholder="Nama produk yang diminta" oninput="updateProgress()">
+                <span class="form-error-msg">Nama produk wajib diisi</span>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Frekuensi Pembelian</label>
+                <select class="form-select" id="f-frekuensi">
+                  <option value="">-- Pilih --</option>
+                  <option value="Sekali (one-time order)">Sekali (one-time order)</option>
+                  <option value="Bulanan">Bulanan</option>
+                  <option value="Triwulan">Triwulan</option>
+                  <option value="Tahunan">Tahunan</option>
+                  <option value="Berkelanjutan (long-term)">Berkelanjutan (long-term)</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Jumlah yang Diminta <span class="form-req">*</span></label>
+                <div class="qty-unit-row">
+                  <input class="form-input" type="number" id="f-jumlah" placeholder="100" min="1" oninput="updateProgress()">
+                  <select class="form-select" id="f-satuan">
+                    <option value="kg">kg</option>
+                    <option value="ton">ton</option>
+                    <option value="karung">karung</option>
+                    <option value="karton">karton</option>
+                    <option value="kontainer">kontainer</option>
+                    <option value="unit">unit</option>
+                  </select>
+                </div>
+                <span class="form-error-msg">Jumlah wajib diisi</span>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Target Harga (Opsional)</label>
+                <input class="form-input" type="text" id="f-target-harga" placeholder="Contoh: USD 2.5/kg">
+              </div>
+            </div>
+          </div>
+
+          <!-- ── SECTION 04: Syarat Pembayaran ── -->
+          <div class="rfq-section">
+            <div class="rfq-section-header">
+              <div class="rfq-section-num">04</div>
+              <div class="rfq-section-title">Syarat Pembayaran</div>
+              <div class="rfq-section-desc">Pilih salah satu</div>
+            </div>
+
+            <div class="payment-grid">
+              <label class="payment-opt">
+                <input type="radio" name="rfq-payment" value="L/C (Letter of Credit)">
+                <div class="payment-opt-code">L/C</div>
+                <div class="payment-opt-name">Letter of Credit</div>
+              </label>
+              <label class="payment-opt">
+                <input type="radio" name="rfq-payment" value="T/T (Telegraphic Transfer)">
+                <div class="payment-opt-code">T/T</div>
+                <div class="payment-opt-name">Telegraphic Transfer</div>
+              </label>
+              <label class="payment-opt">
+                <input type="radio" name="rfq-payment" value="D/P (Documents against Payment)">
+                <div class="payment-opt-code">D/P</div>
+                <div class="payment-opt-name">Documents against Payment</div>
+              </label>
+              <label class="payment-opt">
+                <input type="radio" name="rfq-payment" value="D/A (Documents against Acceptance)">
+                <div class="payment-opt-code">D/A</div>
+                <div class="payment-opt-name">Documents against Acceptance</div>
+              </label>
+              <label class="payment-opt">
+                <input type="radio" name="rfq-payment" value="DP 30% + Pelunasan">
+                <div class="payment-opt-code">DP 30%</div>
+                <div class="payment-opt-name">Down Payment + Pelunasan</div>
+              </label>
+              <label class="payment-opt">
+                <input type="radio" name="rfq-payment" value="Negosiasi">
+                <div class="payment-opt-code">Nego</div>
+                <div class="payment-opt-name">Negosiasi lebih lanjut</div>
+              </label>
+            </div>
+          </div>
+
+          <!-- ── SECTION 05: Incoterms ── -->
+          <div class="rfq-section">
+            <div class="rfq-section-header">
+              <div class="rfq-section-num">05</div>
+              <div class="rfq-section-title">Incoterms yang Diinginkan</div>
+              <div class="rfq-section-desc">Opsional</div>
+            </div>
+
+            <div class="incoterm-grid">
+              <label class="incoterm-chip"><input type="radio" name="rfq-incoterm" value="EXW"> EXW <small style="font-weight:400;color:var(--text-tertiary)">Ex Works</small></label>
+              <label class="incoterm-chip"><input type="radio" name="rfq-incoterm" value="FOB"> FOB <small style="font-weight:400;color:var(--text-tertiary)">Free on Board</small></label>
+              <label class="incoterm-chip"><input type="radio" name="rfq-incoterm" value="CIF"> CIF <small style="font-weight:400;color:var(--text-tertiary)">Cost, Ins & Freight</small></label>
+              <label class="incoterm-chip"><input type="radio" name="rfq-incoterm" value="CFR"> CFR <small style="font-weight:400;color:var(--text-tertiary)">Cost & Freight</small></label>
+              <label class="incoterm-chip"><input type="radio" name="rfq-incoterm" value="DDP"> DDP <small style="font-weight:400;color:var(--text-tertiary)">Delivered Duty Paid</small></label>
+              <label class="incoterm-chip"><input type="radio" name="rfq-incoterm" value="Negosiasi"> Negosiasi</label>
+            </div>
+          </div>
+
+          <!-- ── SECTION 06: Persyaratan & Catatan ── -->
+          <div class="rfq-section">
+            <div class="rfq-section-header">
+              <div class="rfq-section-num">06</div>
+              <div class="rfq-section-title">Persyaratan Khusus & Catatan</div>
+              <div class="rfq-section-desc">Opsional</div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label class="form-label">Sertifikasi yang Dibutuhkan</label>
+                <input class="form-input" type="text" id="f-sertifikasi" placeholder="Halal, ISO, Organic, HACCP ...">
+              </div>
+              <div class="form-field">
+                <label class="form-label">Kemasan yang Diinginkan</label>
+                <input class="form-input" type="text" id="f-kemasan" placeholder="Karung 50kg, karton, vacuum pack ...">
+              </div>
+              <div class="form-field">
+                <label class="form-label">Target Tanggal Pengiriman</label>
+                <input class="form-input" type="date" id="f-tanggal">
+              </div>
+              <div class="form-field">
+                <label class="form-label">Referensi / Nomor PO Internal</label>
+                <input class="form-input" type="text" id="f-po" placeholder="Opsional — untuk referensi internal Anda">
+              </div>
+              <div class="form-field full">
+                <label class="form-label">Pertanyaan / Catatan Tambahan</label>
+                <textarea class="form-textarea" id="f-catatan" placeholder="Sampaikan persyaratan detail lainnya: spesifikasi produk, standar kualitas, jadwal rutin, dll..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── SUBMIT ── -->
+          <div class="rfq-submit-section">
+            <div class="rfq-submit-note">
+              Dengan mengirim form ini, Anda menyetujui bahwa tim <strong>BAY Sejahtera Export</strong> akan menghubungi Anda melalui email atau WhatsApp yang tertera.
+            </div>
+            <button class="rfq-submit-btn" onclick="submitRFQ()">
+              <i class="fas fa-paper-plane"></i>
+              Kirim RFQ
+            </button>
+          </div>
+
+          <!-- ── SUCCESS STATE ── -->
+          <div class="rfq-success" id="rfq-success">
+            <div class="rfq-success-icon">✅</div>
+            <h2>RFQ Berhasil Dikirim!</h2>
+            <p>Terima kasih. Email RFQ Anda telah disiapkan dan siap dikirim. Tim kami akan merespons dalam <strong>1×24 jam kerja</strong>.</p>
+            <a href="produk.html" class="rfq-back-btn">
+              <i class="fas fa-arrow-left"></i> Kembali ke Katalog
+            </a>
+          </div>
+
+        </div><!-- /rfq-card -->
+      </div><!-- /main -->
+
+      <!-- ── SIDEBAR ── -->
+      <div class="rfq-sidebar">
+
+        <!-- Why RFQ -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Mengapa RFQ?</div>
+          <div class="sidebar-item">
+            <i class="fas fa-check-circle sidebar-icon"></i>
+            <div><strong>Harga Terbaik</strong>Kami berikan penawaran kompetitif sesuai volume dan spesifikasi Anda.</div>
+          </div>
+          <div class="sidebar-item">
+            <i class="fas fa-shield-alt sidebar-icon"></i>
+            <div><strong>Tanpa Komitmen</strong>RFQ tidak mengikat — Anda bebas memutuskan setelah menerima penawaran.</div>
+          </div>
+          <div class="sidebar-item">
+            <i class="fas fa-clock sidebar-icon"></i>
+            <div><strong>Respons Cepat</strong>Tim export kami merespons dalam 1×24 jam kerja.</div>
+          </div>
+          <div class="sidebar-item">
+            <i class="fas fa-file-contract sidebar-icon"></i>
+            <div><strong>Dokumen Lengkap</strong>Invoice, packing list, CoA, Phytosanitary, dan dokumen ekspor lainnya tersedia.</div>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Hubungi Langsung</div>
+          <a href="mailto:BAYSejahteraExport@gmail.com" class="sidebar-contact-link">
+            <i class="fas fa-envelope"></i>
+            BAYSejahteraExport@gmail.com
+          </a>
+          <a href="https://wa.me/6288888888888" target="_blank" class="sidebar-contact-link">
+            <i class="fab fa-whatsapp"></i>
+            +62 888-8888-8888
+          </a>
+          <a href="https://BAYSejahteraExport.vercel.app" target="_blank" class="sidebar-contact-link">
+            <i class="fas fa-globe"></i>
+            BAYSejahteraExport.vercel.app
+          </a>
+        </div>
+
+        <!-- Certifications -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Layanan Kami</div>
+          <div class="sidebar-item">
+            <i class="fas fa-ship sidebar-icon"></i>
+            <div>Ekspor ke 20+ negara tujuan</div>
+          </div>
+          <div class="sidebar-item">
+            <i class="fas fa-certificate sidebar-icon"></i>
+            <div>Sertifikasi Halal, ISO, Organic tersedia</div>
+          </div>
+          <div class="sidebar-item">
+            <i class="fas fa-boxes sidebar-icon"></i>
+            <div>Custom packaging & private label</div>
+          </div>
+          <div class="sidebar-item">
+            <i class="fas fa-hand-holding-usd sidebar-icon"></i>
+            <div>Pembayaran fleksibel: L/C, T/T, DP</div>
+          </div>
+        </div>
+
+      </div><!-- /sidebar -->
+    </div><!-- /rfq-layout -->
+  </div><!-- /rfq-page -->
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-column brand-col">
+        <div class="footer-logo">
+          <span class="logo-main-title">BSE</span>
+          <span class="logo-sub-title">BAY Sejahtera Export</span>
+        </div>
+        <p class="footer-description">
+          PT BAY Sejahtera Export adalah mitra terpercaya yang menghadirkan produk premium Indonesia ke pasar global.
+        </p>
+      </div>
+      <div class="footer-column address-col">
+        <h3 class="footer-heading">Our Address</h3>
+        <ul class="footer-contact-list">
+          <li><i class="fas fa-map-marker-alt contact-icon"></i><span>GUNUNG PARTY</span></li>
+          <li><i class="fas fa-phone-alt contact-icon"></i><a href="tel:+6288888888888">+6288888888888</a></li>
+          <li><i class="fas fa-envelope contact-icon"></i><a href="mailto:BAYSejahteraExport@gmail.com">BAYSejahteraExport@gmail.com</a></li>
+          <li><i class="fas fa-globe contact-icon"></i><a href="#" target="_blank">BAYSejahteraExport.vercel.app</a></li>
+        </ul>
+      </div>
+      <div class="footer-column social-col">
+        <h3 class="footer-heading">Follow Us</h3>
+        <div class="social-icons-wrapper">
+          <a href="#" aria-label="Instagram" class="social-link-item"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 BAY Sejahtera Export Indonesia &bull; All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Pre-fill from URL params (passed from produk.html) ──
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var produk = params.get('produk');
+      var harga  = params.get('harga');
+
+      if (produk) {
+        document.getElementById('f-produk').value = produk;
+        document.getElementById('pill-name').textContent = produk;
+        document.getElementById('pill-price').textContent = harga ? ' — ' + harga : '';
+        document.getElementById('product-pill').style.display = 'inline-flex';
+        document.getElementById('product-notice').style.display = 'flex';
+      }
+      updateProgress();
+    })();
+
+    // ── Progress bar ──
+    function updateProgress() {
+      var fields = ['f-nama', 'f-perusahaan', 'f-email', 'f-negara', 'f-produk', 'f-jumlah'];
+      var filled = fields.filter(function(id) {
+        return document.getElementById(id).value.trim() !== '';
+      }).length;
+      var pct = Math.round((filled / fields.length) * 100);
+      document.getElementById('rfq-progress').style.width = pct + '%';
+    }
+
+    // ── Validation & Submit ──
+    function submitRFQ() {
+      var nama      = document.getElementById('f-nama').value.trim();
+      var perus     = document.getElementById('f-perusahaan').value.trim();
+      var email     = document.getElementById('f-email').value.trim();
+      var telp      = document.getElementById('f-telp').value.trim();
+      var jabatan   = document.getElementById('f-jabatan').value.trim();
+      var website   = document.getElementById('f-website').value.trim();
+      var negara    = document.getElementById('f-negara').value.trim();
+      var kota      = document.getElementById('f-kota').value.trim();
+      var alamat    = document.getElementById('f-alamat').value.trim();
+      var produk    = document.getElementById('f-produk').value.trim();
+      var jumlah    = document.getElementById('f-jumlah').value.trim();
+      var satuan    = document.getElementById('f-satuan').value;
+      var frekuensi = document.getElementById('f-frekuensi').value;
+      var tHarga    = document.getElementById('f-target-harga').value.trim();
+      var sertif    = document.getElementById('f-sertifikasi').value.trim();
+      var kemasan   = document.getElementById('f-kemasan').value.trim();
+      var tanggal   = document.getElementById('f-tanggal').value;
+      var po        = document.getElementById('f-po').value.trim();
+      var catatan   = document.getElementById('f-catatan').value.trim();
+
+      var paymentEl   = document.querySelector('input[name="rfq-payment"]:checked');
+      var incotermEl  = document.querySelector('input[name="rfq-incoterm"]:checked');
+      var payment     = paymentEl  ? paymentEl.value  : '(belum dipilih)';
+      var incoterm    = incotermEl ? incotermEl.value : '(belum dipilih)';
+
+      // Validation
+      var valid = true;
+      function validate(id, condition) {
+        var el = document.getElementById(id);
+        if (!condition) { el.classList.add('error'); valid = false; }
+        else el.classList.remove('error');
+      }
+      var emailOK = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      validate('f-nama', nama !== '');
+      validate('f-perusahaan', perus !== '');
+      validate('f-email', emailOK);
+      validate('f-negara', negara !== '');
+      validate('f-produk', produk !== '');
+      validate('f-jumlah', jumlah !== '');
+
+      if (!valid) {
+        document.querySelector('.form-input.error').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // Build email
+      var rfqDate = new Date().toLocaleDateString('id-ID', { day:'2-digit', month:'long', year:'numeric' });
+      var subject = encodeURIComponent('[RFQ] ' + produk + ' — ' + perus + ' (' + negara + ')');
+      var body = encodeURIComponent(
+        '================================================================\n' +
+        '        REQUEST FOR QUOTATION — BAY SEJAHTERA EXPORT\n' +
+        '================================================================\n' +
+        'Tanggal RFQ     : ' + rfqDate + '\n' +
+        '----------------------------------------------------------------\n\n' +
+
+        '[ 01 ] IDENTITAS PEMBELI\n' +
+        '  Nama Lengkap   : ' + nama + '\n' +
+        '  Perusahaan     : ' + perus + '\n' +
+        '  Jabatan        : ' + (jabatan  || '(tidak diisi)') + '\n' +
+        '  Email          : ' + email + '\n' +
+        '  Telepon / WA   : ' + (telp    || '(tidak diisi)') + '\n' +
+        '  Website        : ' + (website || '(tidak diisi)') + '\n\n' +
+
+        '[ 02 ] TUJUAN PENGIRIMAN\n' +
+        '  Negara Tujuan  : ' + negara + '\n' +
+        '  Kota / Port    : ' + (kota   || '(tidak diisi)') + '\n' +
+        '  Alamat Lengkap : ' + (alamat || '(tidak diisi)') + '\n\n' +
+
+        '[ 03 ] DETAIL PESANAN\n' +
+        '  Nama Produk    : ' + produk + '\n' +
+        '  Jumlah         : ' + jumlah + ' ' + satuan + '\n' +
+        '  Target Harga   : ' + (tHarga    || '(tidak diisi)') + '\n' +
+        '  Frekuensi      : ' + (frekuensi || '(tidak diisi)') + '\n\n' +
+
+        '[ 04 ] SYARAT PEMBAYARAN\n' +
+        '  Preferensi     : ' + payment + '\n\n' +
+
+        '[ 05 ] INCOTERMS\n' +
+        '  Preferensi     : ' + incoterm + '\n\n' +
+
+        '[ 06 ] PERSYARATAN KHUSUS\n' +
+        '  Sertifikasi    : ' + (sertif  || '(tidak diisi)') + '\n' +
+        '  Kemasan        : ' + (kemasan || '(tidak diisi)') + '\n' +
+        '  Target Kirim   : ' + (tanggal || '(tidak diisi)') + '\n' +
+        '  Ref / No. PO   : ' + (po      || '(tidak diisi)') + '\n' +
+        '  Catatan        : ' + (catatan || '(tidak ada catatan)') + '\n\n' +
+
+        '================================================================\n' +
+        'Email ini dikirim melalui form RFQ website BAY Sejahtera Export.\n' +
+        'Hubungi buyer di : ' + email + '\n' +
+        '================================================================'
+      );
+
+      // Open mail client
+      window.location.href = 'mailto:BAYSejahteraExport@gmail.com?subject=' + subject + '&body=' + body;
+
+      // Show success state
+      setTimeout(function() {
+        document.getElementById('rfq-success').classList.add('show');
+        document.getElementById('rfq-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById('rfq-progress').style.width = '100%';
+      }, 600);
+    }
+  </script>
+
+</body>
+</html>

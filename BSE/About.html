@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bay Sejahtera Export</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <link rel="stylesheet" href="stylee.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #111111;
+  --dark: #f0f0f0;
+  --mid: #e0e0e0;
+  --border: #d4d4d4;
+  --muted: #777777;
+  --grey: #555555;
+  --light-grey: #888888;
+  --off-white: #1a1a1a;
+  --white: #1a1a1a;
+  --pure: #ffffff;
+  --radius: 4px;
+  --radius-lg: 12px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  line-height: 1.65;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  cursor: auto;
+}
+
+/* ─── CUSTOM CURSOR ─── */
+.cursor, .cursor-ring {
+  display: none !important;
+}
+
+
+/* ─── HERO ─── */
+.hero {
+  margin-top: 60px;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 2rem 4rem;
+}
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(255,255,255,0.8) 80%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.hero-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px; height: 1px;
+  background: var(--muted);
+}
+.hero h1 {
+  font-size: clamp(3.2rem, 7vw, 7rem);
+  font-weight: 700;
+  line-height: 1.0;
+  color: var(--white);
+  letter-spacing: -0.04em;
+  max-width: 800px;
+  margin-bottom: 2rem;
+}
+.hero h1 .word-outline {
+  -webkit-text-stroke: 1px #1a1a1a;
+  color: transparent;
+}
+.hero-sub {
+  font-size: 16px;
+  color: var(--grey);
+  max-width: 780px;
+  line-height: 1.75;
+  font-weight: 400;
+}
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero-scroll-hint::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--muted), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ─── STATS ─── */
+.stats-band {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: #f5f5f5;
+}
+.stats-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat-item {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: transparent;
+  transition: background 0.4s ease;
+}
+.stat-item:hover::before { background: var(--white); }
+.stat-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--white);
+  letter-spacing: -0.05em;
+}
+.stat-label {
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ─── SECTION COMMON ─── */
+section { padding: 100px 2rem; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before {
+  content: '//';
+  color: var(--border);
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: var(--white);
+}
+.section-desc {
+  margin-top: 1.2rem;
+  font-size: 15px;
+  color: var(--grey);
+  max-width: 480px;
+  line-height: 1.75;
+}
+
+/* ─── REVEAL ANIMATION ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── MISI ─── */
+#misi { background: #ffffff; }
+.misi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  margin-top: 4rem;
+}
+.misi-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.misi-text p {
+  font-size: 15px;
+  color: var(--grey);
+  line-height: 1.85;
+  margin-bottom: 1.2rem;
+  border-left: 1px solid var(--border);
+  padding-left: 1.5rem;
+}
+.misi-text p:last-child { margin-bottom: 0; }
+.misi-img-wrap {
+  position: sticky;
+  top: 100px;
+}
+.misi-img-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.misi-img-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: none;
+  transition: filter 0.5s ease;
+}
+.misi-img-placeholder:hover img { filter: brightness(1.05) contrast(1.05); }
+.misi-img-badge {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  color: #1a1a1a;
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.misi-img-badge strong {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.04em;
+  margin-bottom: 2px;
+}
+
+/* ─── NILAI ─── */
+.nilai-section { background: #f5f5f5; }
+.nilai-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  gap: 2rem;
+}
+.nilai-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.nilai-card {
+  background: #ffffff;
+  padding: 2.5rem;
+  position: relative;
+  transition: background 0.3s ease;
+}
+.nilai-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+.nilai-card:hover { background: #f0f0f0; }
+.nilai-card:hover::after { background: #1a1a1a; }
+.nilai-icon {
+  width: 42px; height: 42px;
+  background: var(--border);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: background 0.3s ease;
+}
+.nilai-card:hover .nilai-icon { background: var(--muted); }
+.nilai-icon svg {
+  width: 20px; height: 20px;
+  stroke: var(--grey);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s ease;
+}
+.nilai-card:hover .nilai-icon svg { stroke: var(--white); }
+.nilai-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--off-white);
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.01em;
+}
+.nilai-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.75;
+  transition: color 0.3s ease;
+}
+.nilai-card:hover p { color: var(--grey); }
+
+/* ─── PASAR ─── */
+#pasar { background: #ffffff; }
+.pasar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+.pasar-card {
+  background: #f5f5f5;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+.pasar-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, rgba(0,0,0,0.02) 0%, transparent 60%);
+  pointer-events: none;
+}
+.pasar-card:hover { border-color: var(--muted); }
+.pasar-card.featured:hover { border-color: var(--muted); }
+.pasar-card.featured {
+  background: #f5f5f5;
+  border-color: var(--border);
+}
+.pasar-card.featured h3 { color: #1a1a1a; }
+.pasar-card.featured p { color: var(--grey); }
+.pasar-card.featured .pasar-icon { background: var(--border); }
+.pasar-card.featured .pasar-icon svg { stroke: var(--grey); }
+.pasar-card.featured .pasar-tag { background: var(--border); color: var(--grey); }
+.pasar-card.featured .product-chip { background: rgba(0,0,0,0.04); color: var(--grey); border-color: var(--border); }
+.pasar-icon {
+  width: 44px; height: 44px;
+  background: var(--border);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.8rem;
+}
+.pasar-icon svg {
+  width: 22px; height: 22px;
+  stroke: var(--grey);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pasar-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.025em;
+}
+.pasar-card p {
+  font-size: 14px;
+  color: var(--grey);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+.pasar-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--border);
+  color: var(--grey);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 5px 12px;
+  border-radius: 2px;
+}
+.products-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 1.5rem;
+}
+.product-chip {
+  font-family: 'Space Mono', monospace;
+  background: rgba(0,0,0,0.04);
+  color: var(--grey);
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  letter-spacing: 0.02em;
+}
+
+/* ─── TIM / ORG CHART ─── */
+.tim-section { background: #f5f5f5; }
+
+/* Tree container */
+.org-tree {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* Level rows */
+.org-level {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+}
+
+/* Connector lines */
+.org-connector-down {
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+  margin: 0 auto;
+}
+.org-connector-branch {
+  position: relative;
+  height: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.org-connector-branch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  transform: translateX(-50%);
+}
+.org-connector-branch::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  /* width set dynamically via inline style */
+  height: 1px;
+  background: var(--border);
+}
+
+/* The horizontal bar spanning child nodes */
+.org-h-line {
+  position: relative;
+  height: 40px;
+  width: 100%;
+}
+.org-h-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  transform: translateX(-50%);
+}
+.org-h-line::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: var(--line-left, 25%);
+  right: var(--line-right, 25%);
+  height: 1px;
+  background: var(--border);
+}
+
+/* Drop lines from horizontal bar to each child */
+.org-children-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.org-child-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.org-child-col .org-connector-down {
+  height: 20px;
+}
+
+/* Instagram overlay on avatar hover */
+.tim-avatar-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  text-decoration: none;
+}
+.tim-avatar-overlay svg {
+  width: 28px;
+  height: 28px;
+  fill: #ffffff;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+  transform: scale(0.85);
+  transition: transform 0.25s ease;
+}
+.tim-card:hover .tim-avatar-overlay { opacity: 1; }
+.tim-card:hover .tim-avatar-overlay svg { transform: scale(1); }
+
+/* Card styles — compact modern */
+.tim-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+}
+.tim-card:hover {
+  border-color: var(--muted);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+}
+.tim-card.ceo-card {
+  width: 340px;
+  border-color: #1a1a1a;
+}
+.tim-avatar {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.tim-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top;
+  filter: none;
+  transition: filter 0.4s ease;
+}
+.tim-card:hover .tim-avatar img { filter: brightness(1.03); }
+.tim-avatar-initials {
+  font-family: 'Space Mono', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #aaaaaa;
+  letter-spacing: -0.04em;
+}
+.tim-info { padding: 1.2rem 1.1rem 1.4rem; }
+.tim-info h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--off-white);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.tim-role {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 0;
+}
+.tim-card.ceo-card .tim-role {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+.tim-divider {
+  display: none;
+}
+.tim-desc {
+  display: none;
+}
+
+/* ─── LOKASI ─── */
+.lokasi-section { background: #ffffff; }
+.lokasi-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 4rem;
+}
+.lokasi-details { display: flex; flex-direction: column; gap: 0; }
+.lokasi-detail-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding-left 0.3s ease;
+}
+.lokasi-detail-item:hover { padding-left: 0.5rem; }
+.lokasi-detail-item:first-child { border-top: 1px solid var(--border); }
+.lokasi-detail-icon {
+  width: 36px; height: 36px;
+  background: var(--dark);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.lokasi-detail-icon svg {
+  width: 16px; height: 16px;
+  stroke: var(--muted);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.lokasi-detail-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.lokasi-detail-value {
+  font-size: 14px;
+  color: var(--off-white);
+  line-height: 1.5;
+}
+.lokasi-map {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 360px;
+  border: 1px solid var(--border);
+}
+.lokasi-map iframe {
+  width: 100%; height: 100%;
+  border: none;
+}
+.lokasi-section .section-desc {
+  max-width: 800px;
+}
+
+/* ─── PROGRESS TABS (interactif) ─── */
+.tabs-section { background: #f5f5f5; }
+.tabs-nav {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
+  width: fit-content;
+}
+.tab-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+  border-right: 1px solid var(--border);
+  letter-spacing: 0.02em;
+}
+.tab-btn:last-child { border-right: none; }
+.tab-btn.active { background: #1a1a1a; color: #ffffff; }
+.tab-btn.active:hover { background: #333333; color: #ffffff; }
+.tab-btn:hover:not(.active) { background: var(--mid); color: var(--grey); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px; top: 0; bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+.timeline-item {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 1.5rem;
+  padding-bottom: 2.5rem;
+  position: relative;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: background 0.3s, border-color 0.3s;
+}
+.timeline-item:hover .timeline-dot { background: var(--white); border-color: var(--white); }
+.timeline-dot::after {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: background 0.3s;
+}
+.timeline-item:hover .timeline-dot::after { background: var(--black); }
+.timeline-year {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+.timeline-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--off-white);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.timeline-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ─── SERTIFIKASI ─── */
+.cert-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.cert-item {
+  background: #ffffff;
+  padding: 1.8rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  transition: background 0.2s;
+}
+.cert-item:hover { background: #f0f0f0; }
+.cert-check {
+  width: 32px; height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cert-check svg {
+  width: 14px; height: 14px;
+  stroke: var(--grey);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cert-name { font-size: 14px; color: var(--off-white); font-weight: 500; }
+.cert-body { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* ─── CTA ─── */
+.cta-section {
+  background: #1a1a1a;
+  text-align: center;
+  padding: 100px 2rem;
+}
+.cta-inner { max-width: 640px; margin: 0 auto; }
+.cta-section .section-label { justify-content: center; color: #777777; }
+.cta-section .section-label::before { color: rgba(255,255,255,0.2); }
+.cta-title {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #f5f5f5;
+  margin: 1.2rem 0 1.5rem;
+  line-height: 1.1;
+}
+.cta-desc {
+  font-size: 15px;
+  color: #888888;
+  max-width: 440px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.75;
+}
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: #ffffff;
+  color: #111111;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 13px 32px;
+  border-radius: 999px;
+  transition: opacity 0.2s;
+  letter-spacing: 0.02em;
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-outline {
+  background: transparent;
+  color: #f5f5f5;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 13px 32px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  transition: border-color 0.2s, background 0.2s;
+  letter-spacing: 0.02em;
+}
+.btn-outline:hover { border-color: #ffffff; background: rgba(255,255,255,0.08); }
+</style>
+</head>
+<body>
+
+<!-- BACKSOUND -->
+<audio id="bgAudio" src="backsound.mp3" loop preload="auto" autoplay muted></audio>
+<script>
+(function() {
+  var audio = document.getElementById('bgAudio');
+  audio.volume = 0.5;
+
+  // Sebagian besar browser mengizinkan autoplay hanya jika audio di-mute.
+  // Jadi kita autoplay dalam kondisi muted, lalu unmute otomatis begitu
+  // ada interaksi pertama dari user (klik/tap/scroll/tombol), tanpa perlu
+  // tombol apapun yang terlihat di halaman.
+  function unmute() {
+    audio.muted = false;
+    audio.play().catch(function() {});
+    document.removeEventListener('click', unmute);
+    document.removeEventListener('touchstart', unmute);
+    document.removeEventListener('keydown', unmute);
+    document.removeEventListener('scroll', unmute);
+  }
+
+  document.addEventListener('click', unmute);
+  document.addEventListener('touchstart', unmute);
+  document.addEventListener('keydown', unmute);
+  document.addEventListener('scroll', unmute, { passive: true });
+
+  // Coba juga langsung play unmuted saat load (kalau browser mengizinkan)
+  audio.muted = false;
+  var p = audio.play();
+  if (p !== undefined) {
+    p.catch(function() {
+      // Diblokir -> fallback ke muted autoplay
+      audio.muted = true;
+      audio.play().catch(function() {});
+    });
+  }
+})();
+</script>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <div class="nav-left">
+          <a href="#hero">
+            <img src="logou.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+          </a>
+          <span class="nav-logo">BAY SEJAHTERA EXPORT</span>
+        </div>
+        
+        <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item"><a href="index.html" class="nav-link" data-id="Home" data-en="Home">Home</a></li>
+            <li class="nav-item"><a href="produk.html" class="nav-link" data-id="Produk" data-en="Products">Produk</a></li>
+            <li class="nav-item"><a href="About.html" class="nav-link" data-id="Tentang Kami" data-en="About Us">About Us</a></li>
+        </ul>
+            
+        <div class="nav-actions" id="nav-actions">
+            <div class="lang-switch-container">
+                <img src="https://flagcdn.com/w40/id.png" class="flag-icon" alt="ID">
+                <span class="lang-label">ID</span>
+
+                <label class="switch">
+                    <input type="checkbox" id="lang-toggle">
+                    <span class="slider round"></span>
+                </label>
+
+                <img src="https://flagcdn.com/w40/gb.png" class="flag-icon" alt="EN">
+                <span class="lang-label">EN</span>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-inner">
+    <!-- <div class="hero-eyebrow">Berdiri sejak Oktober 2023</div> -->
+    <h1 style="font-size: 80px;" data-id="Tentang Kami" data-en="About Us">Tentang Kami<span class="word-outline"></span><br></h1>
+    <p class="hero-sub" data-id="PT BAY Sejahtera Export adalah perusahaan perdagangan internasional terkemuka yang berpusat di Semarang. Kami berdedikasi untuk menghubungkan komoditas unggulan Indonesia mulai dari biji kopi berkualitas, hasil bumi pilihan seperti jagung, hingga produk briket dengan standar mutu global. Berlandaskan komitmen pada integritas, kepuasan mitra, dan keberlanjutan rantai pasok, kami hadir sebagai mitra strategis terpercaya untuk memenuhi kebutuhan pasar lokal maupun internasional." data-en="PT BAY Sejahtera Export is a leading international trading company based in Semarang. We are dedicated to connecting Indonesia’s premium commodities—ranging from high-quality coffee beans and select agricultural produce like corn to briquettes—with global quality standards. Driven by a commitment to integrity, partner satisfaction, and supply chain sustainability, we serve as a trusted strategic partner meeting the demands of both local and international markets.">Berdiri sejak Juni 2026 di Semarang, PT BAY Sejahtera Export bercita-cita menjadi eksportir terkemuka dengan mengedepankan kualitas dan keberlanjutan. Kami menawarkan beragam produk unggulan seperti briket, jagung, ikan asin, dan lainnya untuk pasar lokal dan global.</p>
+  </div>
+  <div class="hero-scroll-hint">Scroll</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num">1+</div>
+      <div class="stat-label" data-id="Tahun pengalaman" data-en="Years of experience">Tahun pengalaman</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-num">10+</div>
+      <div class="stat-label" data-id="Produk unggulan" data-en="Featured products">Produk unggulan</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-num">15+</div>
+      <div class="stat-label" data-id="Negara tujuan" data-en="Destination countries">Negara tujuan</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-num">∞</div>
+      <div class="stat-label" data-id="Komitmen kualitas" data-en="Quality commitment">Komitmen kualitas</div>
+    </div>
+  </div>
+</div>
+
+<!-- MISI -->
+<section id="misi">
+  <div class="section-inner">
+    <!-- <div class="section-label reveal">Misi Kami</div> -->
+    <div class="misi-grid">
+      <div class="misi-text">
+        <div class="section-title reveal" data-id="Misi Kami" data-en="Our Mission">Misi Kami</div>
+        <p class="reveal reveal-delay-1" style="margin-top:2rem;" data-id="BAY Sejahtera Export hadir untuk mengangkat potensi komoditas terbaik Indonesia seperti biji kopi, jagung, dan briket ke kancah global melalui standar mutu internasional yang ketat. Kami hadir sebagai jembatan dan mitra strategis yang handal bagi para produsen serta petani lokal untuk memperluas jangkauan distribusi produk mereka ke pasar internasional secara profesional." data-en="BAY Sejahtera Export is dedicated to showcasing Indonesia's finest commodities such as coffee beans, corn, and briquettes on the global stage by adhering to rigorous international quality standards. We serve as a reliable bridge and strategic partner, enabling local producers and farmers to professionally expand their product distribution into international markets.">BAY Sejahtera Export lahir dari keyakinan bahwa produk-produk Indonesia memiliki nilai dan potensi yang layak diakui dunia. Kami hadir sebagai mitra terpercaya bagi petani, produsen, dan pelaku usaha lokal yang ingin memperluas jangkauan mereka.</p>
+        <p class="reveal reveal-delay-2" data-id="Selain berfokus pada pertumbuhan bisnis, kami berkomitmen untuk menerapkan praktik perdagangan yang bertanggung jawab dan berkelanjutan bagi komunitas serta lingkungan. Setiap langkah kemitraan yang kami bangun senantiasa dilandasi oleh prinsip transparansi, integritas, dan kolaborasi jangka panjang demi menciptakan nilai tambah yang saling menguntungkan bagi semua pihak." data-en="Beyond focusing on business growth, we are committed to implementing responsible and sustainable trade practices that benefit both the community and the environment. Every partnership we build is grounded in principles of transparency, integrity, and long-term collaboration, aiming to create mutually beneficial value for all parties involved.">Dengan mengedepankan standar kualitas internasional dan praktik perdagangan yang bertanggung jawab, kami membangun ekosistem ekspor yang tidak hanya menguntungkan secara bisnis, tetapi juga berkelanjutan bagi komunitas dan lingkungan.</p>
+      </div>
+      <div class="misi-img-wrap reveal">
+        <div class="misi-img-placeholder">
+          <img
+            src="ppp.jpg"
+            alt="Petani Indonesia"
+            onerror="this.style.display='none'"
+          >
+          <div class="misi-img-badge">
+            <strong>2026</strong>
+            <span data-id="Berdiri di Semarang, Jawa Tengah" data-en="Founded in Semarang, Central Java">Berdiri di Semarang, Jawa Tengah</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERJALANAN (Tab Interaktif) -->
+<section class="tabs-section" id="perjalanan">
+  <div class="section-inner">
+    <!-- <div class="section-label reveal">Profil Perusahaan</div> -->
+    <div class="section-title reveal" data-id="Lebih dalam tentang kami" data-en="Learn more about us">Lebih dalam tentang kami</div>
+    <div class="tabs-nav reveal">
+      <button class="tab-btn active" data-tab="perjalanan-tab" data-id="Perjalanan" data-en="Journey">Perjalanan</button>
+      <button class="tab-btn" data-tab="sertifikasi-tab" data-id="Sertifikasi" data-en="Certifications">Sertifikasi</button>
+      <button class="tab-btn" data-tab="pasar-tab" data-id="Jangkauan" data-en="Reach">Jangkauan</button>
+    </div>
+
+    <!-- Tab 1: Perjalanan -->
+    <div class="tab-content active" id="perjalanan-tab">
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-year" data-id="Juni 2026" data-en="June 2026">Juni 2026</div>
+            <div class="timeline-title" data-id="Pendirian PT BAY Sejahtera Export" data-en="Founding of PT BAY Sejahtera Export">Pendirian PT BAY Sejahtera Export</div>
+            <div class="timeline-desc" data-id="Perusahaan resmi berdiri di Semarang, Jawa Tengah, dengan fokus awal pada komoditas pertanian lokal untuk pasar domestik dan regional." data-en="The company was officially established in Semarang, Central Java, with an initial focus on local agricultural commodities for domestic and regional markets.">Perusahaan resmi berdiri di Semarang, Jawa Tengah, dengan fokus awal pada komoditas pertanian lokal untuk pasar domestik dan regional.</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-year" data-id="Juni 2026" data-en="June 2026">Akhir Juli 2026</div>
+            <div class="timeline-title" data-id="Ekspansi ke Pasar Internasional" data-en="Expansion to International Markets">Ekspansi ke Pasar Internasional</div>
+            <div class="timeline-desc" data-id="Berhasil menjalin mitra dagang pertama di Asia Tenggara dan mulai mengekspor produk unggulan seperti biji kopi dan komoditas pertanian." data-en="Successfully established the first trading partners in Southeast Asia and began exporting flagship products such as coffee beans and agricultural commodities.">Berhasil menjalin mitra dagang pertama di Asia Tenggara dan mulai mengekspor produk unggulan seperti biji kopi dan komoditas pertanian.</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-2">
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-year" data-id="Juni 2026 — sekarang" data-en="June 2026 — present">Juli 2026 — sekarang</div>
+            <div class="timeline-title" data-id="Jangkauan 15+ Negara" data-en="Reach of 15+ Countries">Jangkauan 15+ Negara</div>
+            <div class="timeline-desc" data-id="Jaringan distribusi berkembang ke Asia, Eropa, Timur Tengah, dan Afrika — dengan lebih dari 10 jenis produk unggulan Indonesia." data-en="Distribution network expanded to Asia, Europe, the Middle East, and Africa — with more than 10 types of Indonesian flagship products.">Jaringan distribusi berkembang ke Asia, Eropa, Timur Tengah, dan Afrika — dengan lebih dari 10 jenis produk unggulan Indonesia.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Sertifikasi -->
+    <div class="tab-content" id="sertifikasi-tab">
+      <div class="cert-list">
+        <div class="cert-item reveal">
+          <div class="cert-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><div class="cert-name" data-id="Izin Ekspor Resmi" data-en="Official Export License">Izin Ekspor Resmi</div><div class="cert-body" data-id="Kementerian Perdagangan RI" data-en="Ministry of Trade of the Republic of Indonesia">Kementerian Perdagangan RI</div></div>
+        </div>
+        <div class="cert-item reveal reveal-delay-1">
+          <div class="cert-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><div class="cert-name" data-id="Sertifikasi Halal" data-en="Halal Certification">Sertifikasi Halal</div><div class="cert-body" data-id="MUI — untuk produk pangan ekspor" data-en="MUI — for exported food products">MUI — untuk produk pangan ekspor</div></div>
+        </div>
+        <div class="cert-item reveal reveal-delay-2">
+          <div class="cert-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><div class="cert-name" data-id="Standar Phytosanitary" data-en="Phytosanitary Standards">Standar Phytosanitary</div><div class="cert-body" data-id="Karantina Pertanian Indonesia" data-en="Indonesian Agricultural Quarantine">Karantina Pertanian Indonesia</div></div>
+        </div>
+        <div class="cert-item reveal reveal-delay-3">
+          <div class="cert-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><div class="cert-name" data-id="NPWP & NIB Aktif" data-en="Active NPWP & NIB">NPWP & NIB Aktif</div><div class="cert-body" data-id="Badan Koordinasi Penanaman Modal" data-en="Investment Coordinating Board">Badan Koordinasi Penanaman Modal</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Jangkauan Pasar -->
+    <div class="tab-content" id="pasar-tab">
+      <div class="pasar-grid">
+        <div class="pasar-card reveal">
+          <div class="pasar-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          </div>
+          <h3 data-id="Pasar Dalam Negeri" data-en="Domestic Market">Pasar Dalam Negeri</h3>
+          <p data-id="Layanan pengiriman domestik ke seluruh wilayah Indonesia. Sistem pemesanan mudah dan responsif." data-en="Domestic delivery service across all regions of Indonesia. Easy and responsive ordering system.">Layanan pengiriman domestik ke seluruh wilayah Indonesia. Sistem pemesanan mudah dan responsif.</p>
+          <span class="pasar-tag" data-id="↗ Seluruh Indonesia" data-en="↗ All of Indonesia">↗ Seluruh Indonesia</span>
+        </div>
+        <div class="pasar-card featured reveal reveal-delay-1">
+          <div class="pasar-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <h3 data-id="Ekspor Internasional" data-en="International Export">Ekspor Internasional</h3>
+          <p data-id="Asia, Eropa, Timur Tengah, dan Afrika — dengan standar ekspor global yang ketat." data-en="Asia, Europe, the Middle East, and Africa — with strict global export standards.">Asia, Eropa, Timur Tengah, dan Afrika — dengan standar ekspor global yang ketat.</p>
+          <span class="pasar-tag" data-id="↗ 15+ Negara tujuan" data-en="↗ 15+ Destination countries">↗ 15+ Negara tujuan</span>
+          <div class="products-list">
+            <span class="product-chip">Biji Kopi</span>
+            <span class="product-chip">Jagung</span>
+            <span class="product-chip">Ikan Asin</span>
+            <span class="product-chip">Kayu Manis</span>
+            <span class="product-chip">Jamur Kering</span>
+            <span class="product-chip">Beras</span>
+            <span class="product-chip">Briket</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NILAI -->
+<section class="nilai-section" id="nilai">
+  <div class="section-inner">
+    <div class="nilai-header">
+      <div>
+        <!-- <div class="section-label reveal">Nilai Kami</div> -->
+        <div class="section-title reveal" data-id="Fondasi Sukses Kami" data-en="The Foundation of Our Success">Fondasi Sukses Kami</div>
+      </div>
+    </div>
+    <div class="nilai-grid">
+      <div class="nilai-card reveal">
+        <div class="nilai-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <h3 data-id="Kualitas Terstandar" data-en="Standardized Quality">Kualitas Terstandar</h3>
+        <p data-id="Setiap produk melewati seleksi dan quality control ketat mengacu standar pasar internasional." data-en="Every product undergoes rigorous selection and quality control aligned with international market standards.">Setiap produk melewati seleksi dan quality control ketat mengacu standar pasar internasional.</p>
+      </div>
+      <div class="nilai-card reveal reveal-delay-1">
+        <div class="nilai-icon"><svg viewBox="0 0 24 24"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3 data-id="Jangkauan Global" data-en="Global Reach">Jangkauan Global</h3>
+        <p data-id="Jaringan distribusi mencakup Asia, Eropa, dan Afrika — produk Indonesia untuk dunia." data-en="Distribution network covering Asia, Europe, and Africa — Indonesian products for the world.">Jaringan distribusi mencakup Asia, Eropa, dan Afrika — produk Indonesia untuk dunia.</p>
+      </div>
+      <div class="nilai-card reveal reveal-delay-2">
+        <div class="nilai-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3 data-id="Keandalan & Kepercayaan" data-en="Reliability & Trust">Keandalan & Kepercayaan</h3>
+        <p data-id="Hubungan jangka panjang berdasarkan kejujuran dan konsistensi — dari pengiriman hingga purna jual." data-en="Long-term relationships built on honesty and consistency — from delivery to after-sales service.">Hubungan jangka panjang berdasarkan kejujuran dan konsistensi — dari pengiriman hingga purna jual.</p>
+      </div>
+      <div class="nilai-card reveal">
+        <div class="nilai-icon"><svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1M4.22 4.22l.71.71m14.14 14.14.71.71M3 12H4m16 0h1M4.22 19.78l.71-.71M18.36 5.64l.71-.71"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <h3 data-id="Keberlanjutan" data-en="Sustainability">Keberlanjutan</h3>
+        <p data-id="Mendukung petani lokal dengan harga adil dan metode produksi yang ramah lingkungan." data-en="Supporting local farmers with fair prices and environmentally friendly production methods.">Mendukung petani lokal dengan harga adil dan metode produksi yang ramah lingkungan.</p>
+      </div>
+      <div class="nilai-card reveal reveal-delay-1">
+        <div class="nilai-icon"><svg viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+        <h3 data-id="Kemitraan Bermakna" data-en="Meaningful Partnership">Kemitraan Bermakna</h3>
+        <p data-id="Kesuksesan kami adalah kesuksesan mitra kami — dijaga dengan profesionalisme dan rasa hormat." data-en="Our success is our partners' success — maintained with professionalism and respect.">Kesuksesan kami adalah kesuksesan mitra kami — dijaga dengan profesionalisme dan rasa hormat.</p>
+      </div>
+      <div class="nilai-card reveal reveal-delay-2">
+        <div class="nilai-icon"><svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+        <h3 data-id="Inovasi Berkelanjutan" data-en="Continuous Innovation">Inovasi Berkelanjutan</h3>
+        <p data-id="Mengadopsi teknologi terkini dalam logistik, dokumentasi, dan komunikasi untuk layanan lebih efisien." data-en="Adopting the latest technology in logistics, documentation, and communication for more efficient service.">Mengadopsi teknologi terkini dalam logistik, dokumentasi, dan komunikasi untuk layanan lebih efisien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIM -->
+<section class="tim-section" id="tim">
+  <div class="section-inner">
+    <div class="section-title reveal" style="text-align: center;" data-id="Kepemimpinan Kami" data-en="Our Leadership">Kepemimpinan Kami</div>
+    <p class="section-desc reveal" style="text-align: center; margin-left: auto; margin-right: auto;" data-id="Dipimpin oleh profesional muda yang berdedikasi di bidang perdagangan internasional dan pengembangan bisnis." data-en="Led by dedicated young professionals in international trade and business development.">Dipimpin oleh profesional muda yang berdedikasi di bidang perdagangan internasional dan pengembangan bisnis.</p>
+
+    <!-- ORG CHART TREE -->
+    <div class="org-tree reveal">
+
+      <!-- Level 1: CEO -->
+      <div class="org-level">
+        <div class="tim-card ceo-card">
+          <div class="tim-avatar">
+            <img src="bayu.jpg" alt="Bayu">
+            <a href="https://www.instagram.com/baykrizz_/" target="_blank" class="tim-avatar-overlay" aria-label="Instagram Bayu">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
+          <div class="tim-info">
+            <h3>Bayu Krisna Ari Sadewa</h3>
+            <div class="tim-role">Chief Executive Officer</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connector: CEO → branch -->
+      <div class="org-h-line" style="--line-left: 22%; --line-right: 22%; width: 460px; max-width: 90vw;"></div>
+
+      <!-- Level 2: Founder & Co-Founder -->
+      <div class="org-children-wrap">
+
+        <div class="org-child-col">
+          <div class="org-connector-down"></div>
+          <div class="tim-card reveal reveal-delay-1">
+            <div class="tim-avatar">
+              <img src="taniaa.jpeg" alt="Tania">
+              <a href="https://www.instagram.com/oktaniarama/" target="_blank" class="tim-avatar-overlay" aria-label="Instagram Mbak Tania">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+            </div>
+            <div class="tim-info">
+              <h3>Oktania Ramadhani Pamujaningtyas</h3>
+              <div class="tim-role">Director of Human Resources</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="org-child-col">
+          <div class="org-connector-down"></div>
+          <div class="tim-card reveal reveal-delay-2">
+            <div class="tim-avatar">
+              <img src="ojin.png" alt="Ojan">
+              <a href="https://www.instagram.com/_oznnnn_/" target="_blank" class="tim-avatar-overlay" aria-label="Instagram Muhammad Ammar">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+            </div>
+            <div class="tim-info">
+              <h3>Muhammad Ammar Farras Fauzan</h3>
+              <div class="tim-role">Marketing Director</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- END ORG CHART -->
+
+  </div>
+</section>
+
+<!-- LOKASI -->
+<section class="lokasi-section" id="lokasi">
+  <div class="section-inner">
+    <!-- <div class="section-label reveal">Lokasi Kami</div> -->
+    <div class="section-title reveal" data-id="Lokasi Kami" data-en="Our Location">Lokasi Kami</div>
+    <p class="section-desc reveal" data-id="Berbasis di Kota Semarang, pusat operasional dan distribusi PT BAY Sejahtera Export berada pada posisi yang sangat strategis. Lokasi ini memberikan kami kemudahan akses langsung menuju sentra-sentra produksi pertanian utama serta jalur logistik nasional dan internasional, memastikan setiap rantai pasok berjalan secara efisien, cepat, dan tepat waktu." data-en="Our distribution center is located in Semarang — a strategic position for access to agricultural production centers and national logistics routes.">Pusat distribusi kami berada di Semarang — posisi strategis untuk akses ke sentra produksi pertanian dan jalur logistik nasional.</p>
+    <div class="lokasi-inner">
+      <div class="lokasi-details">
+        <div class="lokasi-detail-item reveal">
+          <div class="lokasi-detail-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <div class="lokasi-detail-label" data-id="Alamat" data-en="Address">Alamat</div>
+            <div class="lokasi-detail-value">Jl. Dokter Cipto No. 20, Desa/Kelurahan Bugangan, Kec. Semarang	Timur, Kota Semarang, Provinsi Jawa Tengah, Indonesia</div>
+          </div>
+        </div>
+        <div class="lokasi-detail-item reveal reveal-delay-1">
+          <div class="lokasi-detail-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18H5a2 2 0 012 1.72c.13.97.36 1.92.69 2.83a2 2 0 01-.45 2.11L5.91 8.1A16 16 0 0013.9 16.1l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.83.69A2 2 0 0122 16.92z"/></svg></div>
+          <div>
+            <div class="lokasi-detail-label" data-id="Telepon" data-en="Phone">Telepon</div>
+            <div class="lokasi-detail-value">+62 81225353152</div>
+          </div>
+        </div>
+        <div class="lokasi-detail-item reveal reveal-delay-2">
+          <div class="lokasi-detail-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+          <div>
+            <div class="lokasi-detail-label" data-id="Email" data-en="Email">Email</div>
+            <div class="lokasi-detail-value">baysejahteraexport@gmail.com</div>
+          </div>
+        </div>
+        <div class="lokasi-detail-item reveal reveal-delay-3">
+          <div class="lokasi-detail-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <div>
+            <div class="lokasi-detail-label" data-id="Website" data-en="Website">Website</div>
+            <div class="lokasi-detail-value">BAYSejahteraExport.vercel.app</div>
+          </div>
+        </div>
+      </div>
+      <div class="lokasi-map reveal">
+        <iframe
+          src="https://www.google.com/maps?q=Jalan+Dokter+Cipto+No.20,+Kebonagung,+Kec.+Semarang+Timur,+Kota+Semarang,+Jawa+Tengah+50126&output=embed" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"
+          width="100%" height="100%"
+          style="border:none;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Lokasi PT BAY Sejahtera Export"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- FOOTER -->
+  <!-- FOOTER -->
+  <footer class="main-footer" id="footer">
+        <div class="footer-container">
+
+            <div class="footer-column brand-col">
+                <div class="footer-logo">
+                    <img src="logou.png" alt="Logo PT BAY Sejahtera Export" class="footer-logo-img">
+                    <span class="logo-main-title">BAY Sejahtera Export</span>
+                </div>
+                <p class="footer-description" data-id="PT BAY Sejahtera Export adalah mitra terpercaya yang menghadirkan produk premium Indonesia ke pasar global. Kami menjamin proses ekspor yang sepenuhnya legal, aman, dan patuh pada standar regulasi internasional. Bersama tim ahli dan manajemen logistik yang efisien, kami memastikan konsistensi kualitas dan ketepatan waktu pengiriman langsung ke bisnis Anda." data-en="PT BAY Sejahtera Export is a trusted partner delivering premium Indonesian products to global markets. We guarantee a fully legal, safe, and internationally compliant export process. With our expert team and efficient logistics management, we ensure quality consistency and timely delivery to your business.">
+                    PT BAY Sejahtera Export adalah mitra terpercaya yang menghadirkan produk premium Indonesia ke pasar global. Kami menjamin proses ekspor yang sepenuhnya legal, aman, dan patuh pada standar regulasi internasional. Bersama tim ahli dan manajemen logistik yang efisien, kami memastikan konsistensi kualitas dan ketepatan waktu pengiriman langsung ke bisnis Anda.
+                </p>
+            </div>
+
+            <div class="footer-column address-col">
+                <h3 class="footer-heading">Our Address</h3>
+                <ul class="footer-contact-list">
+                    <li>
+                        <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                        <span>Jl. Dokter Cipto No. 20, Desa/Kelurahan Bugangan, Kec. Semarang	Timur, Kota Semarang, Provinsi Jawa Tengah, Indonesia</span>
+                    </li>
+                    <li>
+                        <span class="contact-icon"><i class="fas fa-phone-alt"></i></span>
+                        <a href="tel:+628117033993">+6281225353152</a>
+                    </li>
+                    <li>
+                        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                        <a href="#">BAYSejahteraExport@gmail.com</a>
+                    </li>
+                    <li>
+                        <span class="contact-icon"><i class="fas fa-globe"></i></span>
+                        <a href="#" target="_blank">BAYSejahteraExport.vercel.app</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-column social-col">
+                <h3 class="footer-heading">Follow Us</h3>
+                <div class="social-icons-wrapper">
+                    <a href="#" aria-label="Instagram" class="social-link-item">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 BAY Sejahtera Export Indonesia &bull; All Rights Reserved</p>
+            <a href="#hero" class="back-to-top">
+                <span data-id="Kembali ke atas" data-en="Back to top">Kembali ke atas</span>
+                <i class="fas fa-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js"></script>
+
+<script>
+// ─── CUSTOM CURSOR ───
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button, .nilai-card, .tim-card, .stat-item').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.classList.add('hovering'); ring.classList.add('hovering'); });
+  el.addEventListener('mouseleave', () => { cursor.classList.remove('hovering'); ring.classList.remove('hovering'); });
+});
+
+// ─── SCROLL REVEAL ───
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ─── TABS ───
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    // re-trigger reveal for newly shown tab
+    document.querySelectorAll('#' + btn.dataset.tab + ' .reveal').forEach(el => {
+      el.classList.remove('visible');
+      setTimeout(() => el.classList.add('visible'), 50);
+    });
+  });
+});
+
+// ─── HAMBURGER ───
+const ham = document.getElementById('hamburger');
+const mob = document.getElementById('mobileMenu');
+if (ham && mob) {
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+}
+
+// ─── NAV ACTIVE PAGE ───
+(function() {
+  const currentFile = window.location.pathname.split('/').pop() || 'Index.html';
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const linkFile = link.getAttribute('href').split('/').pop();
+    if (linkFile.toLowerCase() === currentFile.toLowerCase()) {
+      link.classList.add('active');
+    }
+  });
+})();
+
+// ─── LANGUAGE TOGGLE (standalone, tidak bergantung script.js) ───
+(function() {
+  function applyLang(lang) {
+    document.querySelectorAll('[data-id][data-en]').forEach(function(el) {
+      var text = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-id');
+      if (!text) return;
+      // Ganti text node pertama, jaga child elements
+      var textNode = Array.from(el.childNodes).find(function(n) {
+        return n.nodeType === 3 && n.textContent.trim() !== '';
+      });
+      if (textNode) {
+        textNode.textContent = text;
+      } else if (!el.querySelector('*')) {
+        el.textContent = text;
+      } else {
+        el.insertBefore(document.createTextNode(text), el.firstChild);
+      }
+    });
+
+    // Flag opacity
+    document.querySelectorAll('.flag-icon[alt="ID"]').forEach(function(f) { f.style.opacity = lang === 'id' ? '1' : '0.4'; });
+    document.querySelectorAll('.flag-icon[alt="EN"]').forEach(function(f) { f.style.opacity = lang === 'en' ? '1' : '0.4'; });
+
+    // Label bold
+    var labels = document.querySelectorAll('.lang-label');
+    if (labels[0]) labels[0].style.fontWeight = lang === 'id' ? '700' : '400';
+    if (labels[1]) labels[1].style.fontWeight = lang === 'en' ? '700' : '400';
+
+    localStorage.setItem('selectedLanguage', lang);
+    document.documentElement.lang = lang;
+  }
+
+  var toggle = document.getElementById('lang-toggle');
+  if (!toggle) return;
+
+  var saved = localStorage.getItem('selectedLanguage') || 'id';
+  toggle.checked = (saved === 'en');
+  if (saved === 'en') applyLang('en');
+
+  toggle.addEventListener('change', function() {
+    applyLang(this.checked ? 'en' : 'id');
+  });
+})();
+
+// ─── NAV SCROLL (dark on scroll) ───
+(function() {
+  var navbar = document.getElementById('navbar');
+  if (!navbar) return;
+  function updateNav() {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+})();
+</script>
+</body>
+</html>
