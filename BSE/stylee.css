@@ -195,6 +195,7 @@
   width: 36px;
   height: 36px;
   padding: 6px;
+  flex-shrink: 0;
   background: rgba(0,0,0,0.06);
   border: 1px solid rgba(0,0,0,0.12);
   border-radius: 8px;
@@ -299,9 +300,12 @@
 
 /* HP & Tablet portrait: navbar berubah jadi hamburger + dropdown */
 @media (max-width: 900px) {
-  .nav-container { padding: 0 20px; gap: 12px; }
+  .nav-container { padding: 0 20px; gap: 10px; }
   .nav-cta { display: none; }
   .hamburger { display: flex; }
+
+  .nav-left { min-width: 0; flex-shrink: 1; }
+  .nav-actions { flex-shrink: 0; }
 
   .nav-menu {
     display: flex;
@@ -354,8 +358,19 @@
 
 @media (max-width: 480px) {
   .lang-switch-container .lang-label { display: none; }
-  .nav-logo { font-size: 16px; }
-  .logo-img { height: 38px; }
+  .lang-switch-container .flag-icon { display: none; }
+  .lang-switch-container { padding: 4px 6px; gap: 6px; }
+
+  .nav-left { gap: 6px; }
+  .logo-img { height: 32px; }
+  .nav-logo {
+    font-size: 13px;
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+  }
 }
 
 
