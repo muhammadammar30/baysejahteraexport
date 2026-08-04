@@ -1038,28 +1038,107 @@
     }
     .docs-photo-slide:hover .docs-slide-change-hint { opacity: 1; }
 
-    /* ── RESPONSIVE ── */
+    /* ══════════════════════════════════════════
+       RESPONSIVE — TABLET & HP
+       ══════════════════════════════════════════ */
+
+    /* ── TABLET LANDSCAPE (≤ 1024px) ── */
+    @media (max-width: 1024px) {
+      #hero { padding: 0 40px 70px; }
+      .hero-headline { letter-spacing: -2px; }
+
+      #about { padding: 100px 40px; gap: 60px; }
+
+      #products { padding: 90px 0 90px 40px; }
+      .products-header { padding-right: 40px; }
+      .products-carousel { padding-right: 40px; }
+
+      #why { padding: 90px 40px; }
+
+      #process { padding: 90px 40px; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); row-gap: 48px; }
+      .process-steps::before { display: none; }
+      .process-step { padding: 0; }
+
+      #docs { padding: 90px 40px; }
+      .docs-inner { gap: 50px; }
+    }
+
+    /* ── TABLET PORTRAIT / HP BESAR (≤ 900px) ── */
     @media (max-width: 900px) {
-      nav { padding: 16px 24px; }
-      .nav-links { display: none; }
       #hero { padding: 0 24px 60px; }
-      #stats { grid-template-columns: repeat(2, 1fr); }
-      #about { grid-template-columns: 1fr; padding: 80px 24px; gap: 50px; }
-      .about-visual { display: none; }
+
+      #about { grid-template-columns: 1fr; padding: 80px 24px; gap: 40px; }
+      .about-visual { max-width: 380px; margin: 0 auto; }
+
       #products { padding: 80px 0 80px 24px; }
-      .products-header { padding-right: 24px; }
+      .products-header { padding-right: 24px; flex-wrap: wrap; gap: 16px; }
       .products-carousel { padding-right: 24px; }
       .product-card { flex: 0 0 220px; }
+
       #why { padding: 80px 24px; }
-      .features-grid { grid-template-columns: 1fr; }
-      .process-steps { grid-template-columns: 1fr; }
-      .process-steps::before { display: none; }
-      .process-step { padding: 0; margin-bottom: 40px; }
+
+      #process { padding: 80px 24px; }
+      .process-steps { grid-template-columns: 1fr; margin-top: 40px; }
+      .process-step { padding: 0; margin-bottom: 36px; }
+      .process-step:last-child { margin-bottom: 0; }
+
       #docs { padding: 80px 24px; }
-      .docs-inner { grid-template-columns: 1fr; gap: 40px; }
-      #cta { padding: 80px 24px; }
-      footer { grid-template-columns: 1fr; gap: 40px; padding: 50px 24px; }
-      .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+      .docs-inner { grid-template-columns: 1fr; gap: 40px; margin-bottom: 56px; }
+    }
+
+    /* ── HP (≤ 640px) ── */
+    @media (max-width: 640px) {
+      body { font-size: 15px; }
+
+      /* Hero */
+      #hero { padding: 0 20px 48px; min-height: 100svh; }
+      .hero-eyebrow { margin-bottom: 20px; font-size: 10px; }
+      .hero-headline { letter-spacing: -1.5px; margin-bottom: 28px; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .hero-desc { max-width: 100%; }
+      .hero-actions { width: 100%; flex-wrap: wrap; }
+      .btn-primary, .btn-ghost { flex: 1 1 auto; justify-content: center; text-align: center; }
+
+      /* About */
+      #about { padding: 60px 20px; gap: 32px; }
+      .about-visual { display: none; }
+
+      /* Products */
+      #products { padding: 60px 0 60px 20px; }
+      .products-header { padding-right: 20px; align-items: flex-start; }
+      .products-header .section-title { font-size: 26px; }
+      .products-carousel { padding-right: 20px; gap: 14px; }
+      .product-card { flex: 0 0 200px; padding: 22px 18px; }
+
+      /* Why Us */
+      #why { padding: 60px 20px; }
+      .why-header { margin-bottom: 36px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feature-card { padding: 22px 20px; gap: 16px; }
+      .feature-desc { padding-right: 0; }
+      .feature-num-bg { font-size: 48px; right: 12px; }
+
+      /* Process */
+      #process { padding: 60px 20px; }
+      .process-steps { margin-top: 36px; }
+      .step-dot { width: 48px; height: 48px; font-size: 20px; margin-bottom: 20px; }
+
+      /* Docs */
+      #docs { padding: 60px 20px; }
+      .docs-video-wrap { border-radius: 14px; }
+      .docs-carousel-nav { width: 34px; height: 34px; }
+
+      /* Footer */
+      .main-footer { padding: 56px 20px 0; }
+    }
+
+    /* ── HP KECIL (≤ 400px) ── */
+    @media (max-width: 400px) {
+      .hero-headline { font-size: 40px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .product-card { flex: 0 0 84vw; }
+      .docs-photo-slide { flex: 0 0 calc(100% - 24px); }
     }
   </style>
 </head>
@@ -1095,6 +1174,12 @@
                 <span class="lang-label">EN</span>
             </div>
         </div>
+
+        <button type="button" class="hamburger" id="hamburger" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-menu">
+            <span class="ham-bar"></span>
+            <span class="ham-bar"></span>
+            <span class="ham-bar"></span>
+        </button>
     </div>
     </nav>
 
