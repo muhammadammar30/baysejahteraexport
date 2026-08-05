@@ -277,96 +277,80 @@
   .icon { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
 
   /* ══════════════════════════════════════════
-     RESPONSIVE — TABLET (≤1024px)
+     RESPONSIVE — TABLET & HP
      ══════════════════════════════════════════ */
+
+  /* ── TABLET (≤ 1024px) ── */
   @media (max-width: 1024px) {
-    .hero1 { padding: 3rem 1.75rem 2rem; }
-    .toolbar { padding: .875rem 1.75rem; }
-    .filter-panel { padding-left: 1.75rem; padding-right: 1.75rem; }
-    .filter-panel.open { padding: 1.5rem 1.75rem; }
-    .product-grid {
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      padding: 1.5rem 1.75rem;
-    }
-    .modal-box { max-width: 640px; }
+    .hero1 { padding: 3rem 2rem 2rem; }
+    .toolbar { padding: .875rem 2rem; }
+    .filter-panel { padding-left: 2rem; padding-right: 2rem; }
+    .filter-panel.open { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+    .product-grid { padding: 1.5rem 2rem; }
+    .footer-bar { padding: 1.25rem 2rem; }
   }
 
-  /* ══════════════════════════════════════════
-     RESPONSIVE — MOBILE / SMALL TABLET (≤768px)
-     ══════════════════════════════════════════ */
+  /* ── TABLET PORTRAIT / HP BESAR (≤ 768px) ── */
   @media (max-width: 768px) {
-    /* Hero */
-    .hero1 { padding: 2rem 1.25rem 1.5rem; margin-top: 40px; }
-    .hero1 h1 { font-size: 24px; }
+    .hero1 { padding: 2rem 1.25rem 1.5rem; margin-top: 64px; }
+    .hero1 h1 { font-size: 26px; }
     .hero1 p { max-width: 100%; }
 
-    /* Toolbar */
-    .toolbar { padding: .75rem 1.25rem; align-items: flex-start; }
-    .toolbar-left { width: 100%; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
-    .toolbar-left::-webkit-scrollbar { height: 0; }
-    .toolbar-left .chip { flex-shrink: 0; }
+    .toolbar { padding: .75rem 1.25rem; }
     .toolbar-right { width: 100%; justify-content: space-between; }
+    .sort-select { flex: 1; max-width: 200px; }
 
-    /* Filter panel */
-    .filter-panel { padding: 0 1.25rem; }
-    .filter-panel.open { padding: 1.25rem; max-height: 620px; }
-    .fp-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .fp-footer { justify-content: stretch; }
-    .fp-footer .btn { flex: 1; }
+    .filter-panel { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .filter-panel.open { padding: 1.25rem; }
+    .fp-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
 
-    /* Product grid */
     .product-grid { grid-template-columns: repeat(2, 1fr); padding: 1rem 1.25rem; gap: 12px; }
-    .card-body { padding: 10px 12px; }
-    .card-name { font-size: 12.5px; }
 
-    /* Product detail modal */
-    .modal-overlay { padding: 0; align-items: flex-end; }
-    .modal-box { max-width: 100%; width: 100%; max-height: 92vh; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
-    .modal-breadcrumb { padding: 14px 16px 0; font-size: 11px; }
-    .modal-top { grid-template-columns: 1fr; gap: 1.25rem; padding: 14px 16px 18px; }
-    .modal-thumb { width: 56px; height: 56px; }
+    .footer-bar { padding: 1rem 1.25rem; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+    /* Modal */
+    .modal-breadcrumb { padding: 14px 18px 0; }
+    .modal-top { padding: 14px 18px 20px; gap: 1.5rem; }
+    .modal-tabs { padding: 0 18px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .modal-tab { white-space: nowrap; padding: 12px 14px; }
+    .modal-tab-content { padding: 16px 18px 24px; }
     .modal-product-name { font-size: 18px; }
     .modal-price { font-size: 22px; }
-    .modal-tabs { padding: 0 16px; overflow-x: auto; }
-    .modal-tab { padding: 12px 12px; white-space: nowrap; }
-    .modal-tab-content { padding: 16px 16px 22px; }
-    .modal-rfq-btn { font-size: 13px; padding: 13px; }
-
-    /* Buy method modal */
-    .buy-modal-box { max-width: 92vw; padding: 24px 18px; }
   }
 
-  /* ══════════════════════════════════════════
-     RESPONSIVE — SMALL PHONES (≤480px)
-     ══════════════════════════════════════════ */
+  /* ── HP (≤ 480px) ── */
   @media (max-width: 480px) {
-    .hero1 { padding: 1.5rem 1rem 1.25rem; }
-    .hero1 h1 { font-size: 21px; }
+    .hero1 { padding: 1.75rem 1rem 1.25rem; }
+    .hero1 h1 { font-size: 22px; }
     .hero1 p { font-size: 13px; }
 
-    .toolbar { padding: .625rem 1rem; }
-    .toolbar-right { flex-wrap: wrap; gap: 8px; }
-    select.sort-select { flex: 1; min-width: 0; }
+    .toolbar { padding: .75rem 1rem; gap: 10px; }
+    .toolbar-left { gap: 5px; }
+    .chip { padding: 5px 10px; font-size: 11px; }
 
-    .filter-panel { padding: 0 1rem; }
+    .filter-panel { padding-left: 1rem; padding-right: 1rem; }
     .filter-panel.open { padding: 1rem; }
+    .fp-grid { grid-template-columns: 1fr; gap: 1.25rem; }
 
-    .product-grid {
-      grid-template-columns: repeat(2, 1fr);
-      padding: .875rem 1rem;
-      gap: 10px;
-    }
-    .card-body { padding: 9px 10px; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); padding: .875rem 1rem; gap: 10px; }
+    .card-body { padding: 10px 12px; }
     .card-name { font-size: 12px; margin-bottom: 8px; }
-    .card-price { font-size: 12.5px; }
-    .card-sold, .card-rating { font-size: 10px; }
 
-    .modal-main-img { border-radius: var(--radius-sm); }
-    .modal-thumbs { flex-wrap: wrap; }
-    .modal-qty-input { width: 100%; }
+    .footer-bar { padding: .875rem 1rem; }
+    .pages { gap: 3px; }
+    .pg { width: 28px; height: 28px; font-size: 12px; }
 
-    .buy-modal-box { padding: 22px 16px; }
-    .buy-modal-title { font-size: 16px; }
+    /* Modal */
+    .modal-top { grid-template-columns: 1fr; padding: 12px 14px 18px; }
+    .modal-main-img { aspect-ratio: 4/3; }
+    .modal-thumb { width: 52px; height: 52px; }
+    .modal-btn, .modal-rfq-btn { padding: 12px; font-size: 13px; }
+    .buy-modal-box { padding: 24px 18px; }
+  }
+
+  /* ── HP KECIL (≤ 360px) ── */
+  @media (max-width: 360px) {
+    .product-grid { grid-template-columns: 1fr; }
   }
 
   /* ── PRODUCT DETAIL MODAL ── */
@@ -681,6 +665,12 @@
                 <span class="lang-label">EN</span>
             </div>
         </div>
+
+        <button type="button" class="hamburger" id="hamburger" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-menu">
+            <span class="ham-bar"></span>
+            <span class="ham-bar"></span>
+            <span class="ham-bar"></span>
+        </button>
     </div>
     </nav>
 
