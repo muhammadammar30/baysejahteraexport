@@ -1066,7 +1066,9 @@
 
     /* ── TABLET PORTRAIT / HP BESAR (≤ 900px) ── */
     @media (max-width: 900px) {
-      #hero { padding: 0 24px 60px; }
+      #hero { padding: 0 24px 48px; justify-content: center; }
+      .hero-scroll { display: none; }
+      .coffee-bean { display: none; }
 
       #about { grid-template-columns: 1fr; padding: 80px 24px; gap: 40px; }
       .about-visual { max-width: 380px; margin: 0 auto; }
@@ -1092,13 +1094,13 @@
       body { font-size: 15px; }
 
       /* Hero */
-      #hero { padding: 0 20px 48px; min-height: 100svh; }
+      #hero { padding: 0 20px 40px; min-height: 100svh; }
       .hero-eyebrow { margin-bottom: 20px; font-size: 10px; }
-      .hero-headline { letter-spacing: -1.5px; margin-bottom: 28px; }
-      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .hero-headline { letter-spacing: -1.5px; margin-bottom: 24px; }
+      .hero-bottom { flex-direction: column; align-items: stretch; gap: 24px; }
       .hero-desc { max-width: 100%; }
-      .hero-actions { width: 100%; flex-wrap: wrap; }
-      .btn-primary, .btn-ghost { flex: 1 1 auto; justify-content: center; text-align: center; }
+      .hero-actions { width: 100%; flex-direction: column; gap: 12px; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; text-align: center; }
 
       /* About */
       #about { padding: 60px 20px; gap: 32px; }
@@ -1136,7 +1138,6 @@
     /* ── HP KECIL (≤ 400px) ── */
     @media (max-width: 400px) {
       .hero-headline { font-size: 40px; }
-      .hero-actions { flex-direction: column; align-items: stretch; }
       .product-card { flex: 0 0 84vw; }
       .docs-photo-slide { flex: 0 0 calc(100% - 24px); }
     }
