@@ -1069,6 +1069,15 @@
       #hero { padding: 0 24px 48px; justify-content: center; }
       .hero-scroll { display: none; }
       .coffee-bean { display: none; }
+      /* Munculkan hanya 4 aksen biji kopi di layar kecil, ukuran diperkecil */
+      .coffee-bean:nth-of-type(1),
+      .coffee-bean:nth-of-type(7),
+      .coffee-bean:nth-of-type(8),
+      .coffee-bean:nth-of-type(11) {
+        display: block;
+        width: 32px !important;
+        height: 32px !important;
+      }
 
       #about { grid-template-columns: 1fr; padding: 80px 24px; gap: 40px; }
       .about-visual { max-width: 380px; margin: 0 auto; }
@@ -1149,7 +1158,7 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
         <div class="nav-left">
-          <a href="index.html">
+          <a href="#hero">
             <img src="logou.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
           </a>
           <span class="nav-logo">BAY SEJAHTERA EXPORT</span>
@@ -1334,7 +1343,7 @@
 
         <div class="product-card reveal" onclick="location.href='produk.html?produk=kopi-arabika'">
           <div class="product-img-wrap">
-            <img src="arabicagreenbeans.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="arabikagreen.png" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
             <div class="product-arrow">↗</div>
@@ -1350,7 +1359,7 @@
 
         <div class="product-card reveal" onclick="location.href='produk.html?produk=kopi-sangrai-arabika'">
           <div class="product-img-wrap">
-            <img src="arabicaroastedbeans.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="arabikasangrai.png" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
             <div class="product-arrow">↗</div>
@@ -1366,7 +1375,7 @@
 
         <div class="product-card reveal" onclick="location.href='produk.html?produk=kopi-robusta'">
           <div class="product-img-wrap">
-            <img src="robustagreenbeans.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="Robusta Green Beans.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
             <div class="product-arrow">↗</div>
@@ -1382,7 +1391,7 @@
 
         <div class="product-card reveal" onclick="location.href='produk.html?produk=kopi-sangrai-robusta'">
           <div class="product-img-wrap">
-            <img src="robustaroastedbeans.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="robustasangrai.png" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
             <div class="product-arrow">↗</div>
