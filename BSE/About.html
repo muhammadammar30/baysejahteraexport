@@ -1091,7 +1091,21 @@ section { padding: 100px 2rem; }
                 <img src="https://flagcdn.com/w40/gb.png" class="flag-icon" alt="EN">
                 <span class="lang-label">EN</span>
             </div>
+
+            <button class="hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu">
+                <span class="ham-bar"></span>
+                <span class="ham-bar"></span>
+                <span class="ham-bar"></span>
+            </button>
         </div>
+    </div>
+
+    <div class="nav-drawer" id="mobileMenu">
+        <ul class="drawer-menu">
+            <li><a href="index.html" class="drawer-link" data-id="Home" data-en="Home">Home</a></li>
+            <li><a href="produk.html" class="drawer-link" data-id="Produk" data-en="Products">Produk</a></li>
+            <li><a href="About.html" class="drawer-link" data-id="Tentang Kami" data-en="About Us">About Us</a></li>
+        </ul>
     </div>
 </nav>
 <!-- HERO -->
@@ -1529,15 +1543,25 @@ const ham = document.getElementById('hamburger');
 const mob = document.getElementById('mobileMenu');
 if (ham && mob) {
   ham.addEventListener('click', () => {
-    ham.classList.toggle('open');
-    mob.classList.toggle('open');
+    const isOpen = ham.classList.toggle('open');
+    mob.classList.toggle('open', isOpen);
+    ham.setAttribute('aria-expanded', isOpen);
+    document.body.classList.toggle('nav-open', isOpen);
+  });
+  mob.querySelectorAll('.drawer-link').forEach(link => {
+    link.addEventListener('click', () => {
+      ham.classList.remove('open');
+      mob.classList.remove('open');
+      ham.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    });
   });
 }
 
 // ─── NAV ACTIVE PAGE ───
 (function() {
   const currentFile = window.location.pathname.split('/').pop() || 'Index.html';
-  document.querySelectorAll('.nav-link').forEach(link => {
+  document.querySelectorAll('.nav-link, .drawer-link').forEach(link => {
     const linkFile = link.getAttribute('href').split('/').pop();
     if (linkFile.toLowerCase() === currentFile.toLowerCase()) {
       link.classList.add('active');
