@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bay Sejahtera Export</title>
-
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -56,17 +55,17 @@
     letter-spacing: .1em;
     margin-bottom: 10px;
   }
-  .hero h1 {
-    font-size: 32px;
+  .hero1 h1 {
+    font-size: 37px;
     font-weight: 500;
     line-height: 1.15;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
     letter-spacing: -.02em;
   }
-  .hero p {
-    font-size: 14px;
+  .hero1 p {
+    font-size: 17px;
     color: var(--text-secondary);
-    max-width: 480px;
+    max-width: none;
     line-height: 1.7;
   }
 
@@ -183,19 +182,25 @@
   /* GRID */
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-    gap: 16px;
-    padding: 1.5rem 2.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 2rem 2.5rem;
   }
   .card {
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     overflow: hidden;
     cursor: pointer;
-    transition: background .12s;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
     background: var(--white);
+    width: 100%;
   }
-  .card:hover { background: var(--gray-50); }
+  .card:hover {
+    background: var(--gray-50);
+    border-color: var(--gray-600);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    transform: translateY(-3px);
+  }
   .card-img {
     width: 100%;
     aspect-ratio: 4/3;
@@ -209,42 +214,43 @@
     object-fit: cover;
     display: block;
   }
-  .card-body { padding: 14px 16px; }
+  .card-body { padding: 1.2rem 1.1rem 1.4rem; }
   .card-cat {
-    font-size: 10px;
+    font-size: 12px;
     color: var(--text-tertiary);
     text-transform: uppercase;
     letter-spacing: .08em;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
   .badge-tag {
     display: inline-block;
     background: var(--gray-100);
     color: var(--gray-600);
-    font-size: 10px;
-    padding: 2px 7px;
+    font-size: 11px;
+    padding: 3px 8px;
     border-radius: 4px;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
   }
   .card-name {
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 12px;
-    line-height: 1.4;
+    margin-bottom: 14px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
   }
   .card-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .card-sold {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--text-tertiary);
   }
-  .card-price { font-size: 13px; font-weight: 500; color: var(--text-primary); }
-  .card-rating { font-size: 11px; color: var(--text-tertiary); display: flex; align-items: center; gap: 3px; }
+  .card-price { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+  .card-rating { font-size: 13px; color: var(--text-tertiary); display: flex; align-items: center; gap: 3px; }
 
   /* PAGINATION */
   .footer-bar {
@@ -277,81 +283,17 @@
   /* SVG icon helpers */
   .icon { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
 
-  /* ══════════════════════════════════════════
-     RESPONSIVE — TABLET & HP
-     ══════════════════════════════════════════ */
-
-  /* ── TABLET (≤ 1024px) ── */
-  @media (max-width: 1024px) {
-    .hero1 { padding: 3rem 2rem 2rem; }
-    .toolbar { padding: .875rem 2rem; }
-    .filter-panel { padding-left: 2rem; padding-right: 2rem; }
-    .filter-panel.open { padding-top: 1.5rem; padding-bottom: 1.5rem; }
-    .product-grid { padding: 1.5rem 2rem; }
-    .footer-bar { padding: 1.25rem 2rem; }
-  }
-
-  /* ── TABLET PORTRAIT / HP BESAR (≤ 768px) ── */
   @media (max-width: 768px) {
-    .hero1 { padding: 2rem 1.25rem 1.5rem; margin-top: 64px; }
-    .hero1 h1 { font-size: 26px; }
-    .hero1 p { max-width: 100%; }
-
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    .hero1 { padding: 2rem 1.25rem 1.5rem; }
+    .hero1 h1 { font-size: 30px; }
+    .hero1 p { font-size: 15px; }
     .toolbar { padding: .75rem 1.25rem; }
-    .toolbar-right { width: 100%; justify-content: space-between; }
-    .sort-select { flex: 1; max-width: 200px; }
-
-    .filter-panel { padding-left: 1.25rem; padding-right: 1.25rem; }
     .filter-panel.open { padding: 1.25rem; }
     .fp-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-
     .product-grid { grid-template-columns: repeat(2, 1fr); padding: 1rem 1.25rem; gap: 12px; }
-
-    .footer-bar { padding: 1rem 1.25rem; flex-wrap: wrap; gap: 12px; justify-content: center; }
-
-    /* Modal */
-    .modal-breadcrumb { padding: 14px 18px 0; }
-    .modal-top { padding: 14px 18px 20px; gap: 1.5rem; }
-    .modal-tabs { padding: 0 18px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .modal-tab { white-space: nowrap; padding: 12px 14px; }
-    .modal-tab-content { padding: 16px 18px 24px; }
-    .modal-product-name { font-size: 18px; }
-    .modal-price { font-size: 22px; }
-  }
-
-  /* ── HP (≤ 480px) ── */
-  @media (max-width: 480px) {
-    .hero1 { padding: 1.75rem 1rem 1.25rem; }
-    .hero1 h1 { font-size: 22px; }
-    .hero1 p { font-size: 13px; }
-
-    .toolbar { padding: .75rem 1rem; gap: 10px; }
-    .toolbar-left { gap: 5px; }
-    .chip { padding: 5px 10px; font-size: 11px; }
-
-    .filter-panel { padding-left: 1rem; padding-right: 1rem; }
-    .filter-panel.open { padding: 1rem; }
-    .fp-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-
-    .product-grid { grid-template-columns: repeat(2, 1fr); padding: .875rem 1rem; gap: 10px; }
-    .card-body { padding: 10px 12px; }
-    .card-name { font-size: 12px; margin-bottom: 8px; }
-
-    .footer-bar { padding: .875rem 1rem; }
-    .pages { gap: 3px; }
-    .pg { width: 28px; height: 28px; font-size: 12px; }
-
-    /* Modal */
-    .modal-top { grid-template-columns: 1fr; padding: 12px 14px 18px; }
-    .modal-main-img { aspect-ratio: 4/3; }
-    .modal-thumb { width: 52px; height: 52px; }
-    .modal-btn, .modal-rfq-btn { padding: 12px; font-size: 13px; }
-    .buy-modal-box { padding: 24px 18px; }
-  }
-
-  /* ── HP KECIL (≤ 360px) ── */
-  @media (max-width: 360px) {
-    .product-grid { grid-template-columns: 1fr; }
+    .footer-bar { padding: 1rem 1.25rem; }
   }
 
   /* ── PRODUCT DETAIL MODAL ── */
@@ -635,12 +577,47 @@
   .buy-option-btn.buy-option-wa { background: #25D366; border-color: #25D366; color: #fff; }
   .buy-option-btn.buy-option-wa:hover { background: #1ebe5b; border-color: #1ebe5b; }
 
+  /* Override khusus produk.html: warna nav link jadi hitam (tidak memengaruhi index.html) */
+  .navbar-light .nav-logo,
+  .navbar-light .nav-logo-text,
+  .navbar-light .nav-link {
+    color: #191B19;
+  }
+
+  .navbar-light .nav-link:hover {
+    color: #000000;
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  .navbar-light .nav-link.active {
+    color: #000000;
+  }
+
+  .navbar-light.scrolled .nav-logo,
+  .navbar-light.scrolled .nav-logo-text,
+  .navbar-light.scrolled .nav-link,
+  .navbar-light.scrolled .nav-link.active {
+    color: #FFFFFF;
+  }
+
+  .navbar-light.scrolled .nav-link:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .navbar-light.scrolled .hamburger .ham-bar {
+    background: #FFFFFF;
+  }
+
+  .navbar-light .hamburger .ham-bar {
+    background: #191B19;
+  }
     </style>
 
-    <nav class="navbar" id="navbar">
+    <nav class="navbar navbar-light" id="navbar">
     <div class="nav-container">
         <div class="nav-left">
-          <a href="index.html">
+          <a href="#hero">
             <img src="logou.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
           </a>
           <span class="nav-logo">BAY SEJAHTERA EXPORT</span>
@@ -666,19 +643,13 @@
                 <span class="lang-label">EN</span>
             </div>
         </div>
-
-        <button type="button" class="hamburger" id="hamburger" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-menu">
-            <span class="ham-bar"></span>
-            <span class="ham-bar"></span>
-            <span class="ham-bar"></span>
-        </button>
     </div>
     </nav>
 
     <section class="hero1">
   <!-- <div class="hero-eyebrow">BAY Sejahtera Export</div> -->
   <h1>Produk Kami</h1>
-  <p>Temukan berbagai solusi produk yang Anda butuhkan langsung dari perusahaan kami</p>
+  <p>Sebagai mitra terpercaya dalam perdagangan internasional, kami mempersembahkan lini produk pilihan terbaik yang siap diekspor ke berbagai belahan dunia. Mulai dari spesifikasi standar hingga kustomisasi sesuai kebutuhan industri Anda, dapatkan solusi produk langsung dari sumber tangan pertama perusahaan kami dengan jaminan kualitas dan legalitas ekspor yang teruji.</p>
 </section>
 
 <div class="toolbar">
@@ -743,7 +714,7 @@
 
 <div class="product-grid" id="product-grid">
   <div class="card" data-cat="kopi" data-harga="190000" data-rating="4.8" data-terjual="6198" data-slug="kopi-arabika"
-       onclick="openModal({name:'Biji Kopi Arabika',name_en:'Arabica Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp190.000',stock:150,sold:'6.198',rating:'4.8',reviews:2,img:'arabicagreenbeans.png',desc:'Biji Kopi Arabika Grade A dipanen dari perkebunan pilihan di Semarang, Jawa Tengah. Memiliki cita rasa lembut dengan tingkat keasaman seimbang, cocok untuk kebutuhan roasting maupun ekspor green bean.',desc_en:'Grade A Arabica coffee beans harvested from selected plantations in Semarang, Central Java. Known for a smooth flavor with balanced acidity, ideal for roasting or green bean export.',ulasan:[{nama:'Budi S.',bintang:5,teks:'Kualitasnya sangat baik, aroma kopi terasa kuat dan segar. Pengiriman juga cepat!',teks_en:'The quality is very good, the coffee aroma is strong and fresh. Shipping was fast too!'},{nama:'Sari W.',bintang:5,teks:'Sudah beli berkali-kali, konsisten kualitasnya. Highly recommended!',teks_en:'I have bought this many times, the quality is consistently good. Highly recommended!'}]})">
+       onclick="openModal({name:'Biji Kopi Arabika',name_en:'Arabica Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp190.000',stock:150,sold:'6.198',rating:'4.8',reviews:2,images:['arabicagreenbeans.png','arabicagreenbeans2.png'],desc:'Biji Kopi Arabika Grade A dipanen dari perkebunan pilihan di Semarang, Jawa Tengah. Memiliki cita rasa lembut dengan tingkat keasaman seimbang, cocok untuk kebutuhan roasting maupun ekspor green bean.',desc_en:'Grade A Arabica coffee beans harvested from selected plantations in Semarang, Central Java. Known for a smooth flavor with balanced acidity, ideal for roasting or green bean export.',ulasan:[{nama:'Budi S.',bintang:5,teks:'Kualitasnya sangat baik, aroma kopi terasa kuat dan segar. Pengiriman juga cepat!',teks_en:'The quality is very good, the coffee aroma is strong and fresh. Shipping was fast too!'},{nama:'Sari W.',bintang:5,teks:'Sudah beli berkali-kali, konsisten kualitasnya. Highly recommended!',teks_en:'I have bought this many times, the quality is consistently good. Highly recommended!'}]})">
     <div class="card-img"><img src="arabicagreenbeans.png" alt="Biji Kopi Arabika"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Kopi" data-en="Coffee">Kopi</div>
@@ -756,7 +727,7 @@
     </div>
   </div>
   <div class="card" data-cat="kopi" data-harga="325000" data-rating="4.7" data-terjual="6198" data-slug="kopi-sangrai-arabika"
-       onclick="openModal({name:'Biji Kopi Sangrai Arabika',name_en:'Roasted Arabica Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp325.000',stock:150,sold:'6.198',rating:'4.7',reviews:2,img:'arabicaroastedbeans.png',desc:'Biji Kopi Sangrai Arabika diproses dengan tingkat roasting yang terjaga untuk menghasilkan aroma khas dan rasa yang kaya. Siap seduh maupun diolah lebih lanjut untuk kebutuhan kedai kopi.',desc_en:'Roasted Arabica coffee beans processed with carefully controlled roasting to bring out a distinctive aroma and rich flavor. Ready to brew or further processed for coffee shop needs.',ulasan:[{nama:'Dewi K.',bintang:5,teks:'Aroma sangrainya pas, tidak gosong. Rasanya nikmat saat diseduh.',teks_en:'The roast aroma is just right, not burnt. Tastes great when brewed.'},{nama:'Hendra L.',bintang:4,teks:'Kemasan rapi dan kopi tetap segar sampai tujuan.',teks_en:'Neat packaging and the coffee stayed fresh until it arrived.'}]})">
+       onclick="openModal({name:'Biji Kopi Sangrai Arabika',name_en:'Roasted Arabica Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp325.000',stock:150,sold:'6.198',rating:'4.7',reviews:2,images:['arabicaroastedbeans.png','arabicaroastedbeans2.png'],desc:'Biji Kopi Sangrai Arabika diproses dengan tingkat roasting yang terjaga untuk menghasilkan aroma khas dan rasa yang kaya. Siap seduh maupun diolah lebih lanjut untuk kebutuhan kedai kopi.',desc_en:'Roasted Arabica coffee beans processed with carefully controlled roasting to bring out a distinctive aroma and rich flavor. Ready to brew or further processed for coffee shop needs.',ulasan:[{nama:'Dewi K.',bintang:5,teks:'Aroma sangrainya pas, tidak gosong. Rasanya nikmat saat diseduh.',teks_en:'The roast aroma is just right, not burnt. Tastes great when brewed.'},{nama:'Hendra L.',bintang:4,teks:'Kemasan rapi dan kopi tetap segar sampai tujuan.',teks_en:'Neat packaging and the coffee stayed fresh until it arrived.'}]})">
     <div class="card-img"><img src="arabicaroastedbeans.png" alt="Biji Kopi Sangrai Arabika"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Kopi" data-en="Coffee">Kopi</div>
@@ -768,35 +739,35 @@
       <div class="card-sold">6.198 terjual</div>
     </div>
   </div>
-  <div class="card" data-cat="kopi" data-harga="140000" data-rating="4.9" data-terjual="10598" data-slug="kopi-robusta"
-       onclick="openModal({name:'Biji Kopi Robusta',name_en:'Robusta Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp140.000',stock:200,sold:'10.598',rating:'4.9',reviews:2,img:'robustagreenbeans.jpg',desc:'Biji Kopi Robusta Premium dari Semarang, Jawa Tengah dengan kandungan kafein tinggi dan cita rasa kuat. Cocok untuk campuran espresso maupun produk kopi premium lainnya.',desc_en:'Premium Robusta coffee beans from Semarang, Central Java, with high caffeine content and a bold flavor. Ideal for espresso blends or other premium coffee products.',ulasan:[{nama:'Ahmad R.',bintang:5,teks:'Kualitas robustanya konsisten, cocok untuk campuran espresso.',teks_en:'The robusta quality is consistent, great for espresso blends.'},{nama:'Rizky M.',bintang:5,teks:'Sudah repeat order berkali-kali, kualitas terjaga terus.',teks_en:'I have reordered many times, the quality stays consistent.'}]})">
-    <div class="card-img"><img src="robustagreenbeans.jpg" alt="Biji Kopi Robusta"></div>
+  <div class="card" data-cat="kopi" data-harga="115000" data-rating="4.9" data-terjual="10598" data-slug="kopi-robusta"
+       onclick="openModal({name:'Biji Kopi Robusta',name_en:'Robusta Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp115.000',stock:200,sold:'10.598',rating:'4.9',reviews:2,images:['robustagreenbeans.png','robustagreenbeans2.png'],desc:'Biji Kopi Robusta Premium dari Semarang, Jawa Tengah dengan kandungan kafein tinggi dan cita rasa kuat. Cocok untuk campuran espresso maupun produk kopi premium lainnya.',desc_en:'Premium Robusta coffee beans from Semarang, Central Java, with high caffeine content and a bold flavor. Ideal for espresso blends or other premium coffee products.',ulasan:[{nama:'Ahmad R.',bintang:5,teks:'Kualitas robustanya konsisten, cocok untuk campuran espresso.',teks_en:'The robusta quality is consistent, great for espresso blends.'},{nama:'Rizky M.',bintang:5,teks:'Sudah repeat order berkali-kali, kualitas terjaga terus.',teks_en:'I have reordered many times, the quality stays consistent.'}]})">
+    <div class="card-img"><img src="robustagreenbeans.png" alt="Biji Kopi Robusta"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Kopi" data-en="Coffee">Kopi</div>
       <div class="badge-tag" data-id="Terlaris" data-en="Best Seller">Terlaris</div>
       <div class="card-name" data-id="Biji Kopi Robusta" data-en="Robusta Coffee Beans">Biji Kopi Robusta</div>
       <div class="card-bottom">
-        <div class="card-price">Rp140.000</div>
+        <div class="card-price">Rp115.000</div>
         <div class="card-rating"><span class="star">★</span> 4.9</div>
       </div>
       <div class="card-sold">10.598 terjual</div>
     </div>
   </div>
-  <div class="card" data-cat="kopi" data-harga="150000" data-rating="4.6" data-terjual="6198" data-slug="kopi-sangrai-robusta"
-       onclick="openModal({name:'Biji Kopi Sangrai Robusta',name_en:'Roasted Robusta Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp150.000',stock:150,sold:'6.198',rating:'4.6',reviews:1,img:'robustaroastedbeans.png',desc:'Biji Kopi Sangrai Robusta menawarkan rasa yang tegas dan aroma sangrai yang kuat, hasil proses roasting yang konsisten dari biji robusta pilihan asal Semarang.',desc_en:'Roasted Robusta coffee beans offer a bold taste and strong roast aroma, the result of consistent roasting from selected robusta beans from Semarang.',ulasan:[{nama:'Tono S.',bintang:5,teks:'Rasanya kuat dan pas untuk kopi hitam sehari-hari.',teks_en:'The taste is bold and perfect for everyday black coffee.'}]})">
+  <div class="card" data-cat="kopi" data-harga="235000" data-rating="4.6" data-terjual="6198" data-slug="kopi-sangrai-robusta"
+       onclick="openModal({name:'Biji Kopi Sangrai Robusta',name_en:'Roasted Robusta Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp235.000',stock:150,sold:'6.198',rating:'4.6',reviews:1,images:['robustaroastedbeans.png','robustaroastedbeans2.png'],desc:'Biji Kopi Sangrai Robusta menawarkan rasa yang tegas dan aroma sangrai yang kuat, hasil proses roasting yang konsisten dari biji robusta pilihan asal Semarang.',desc_en:'Roasted Robusta coffee beans offer a bold taste and strong roast aroma, the result of consistent roasting from selected robusta beans from Semarang.',ulasan:[{nama:'Tono S.',bintang:5,teks:'Rasanya kuat dan pas untuk kopi hitam sehari-hari.',teks_en:'The taste is bold and perfect for everyday black coffee.'}]})">
     <div class="card-img"><img src="robustaroastedbeans.png" alt="Biji Kopi Sangrai Robusta"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Kopi" data-en="Coffee">Kopi</div>
       <div class="card-name" data-id="Biji Kopi Sangrai Robusta" data-en="Roasted Robusta Coffee Beans">Biji Kopi Sangrai Robusta</div>
       <div class="card-bottom">
-        <div class="card-price">Rp150.000</div>
+        <div class="card-price">Rp235.000</div>
         <div class="card-rating"><span class="star">★</span> 4.6</div>
       </div>
       <div class="card-sold">6.198 terjual</div>
     </div>
   </div>
   <div class="card" data-cat="briket" data-harga="43000" data-rating="4.5" data-terjual="5298" data-slug="briket-arang"
-       onclick="openModal({name:'Briket Arang',name_en:'Charcoal Briquettes',cat:'Briket',cat_en:'Briquettes',price:'Rp43.000',stock:100,sold:'5.298',rating:'4.5',reviews:2,img:'briket arang.jpg',desc:'Briket arang asal Jawa Tengah yang diproses untuk menghasilkan panas tinggi, tahan lama, dan rendah asap. Cocok untuk kebutuhan ekspor maupun penggunaan komersial.',desc_en:'Charcoal briquettes from Central Java processed to produce high heat, long burn time, and low smoke. Suitable for export needs or commercial use.',ulasan:[{nama:'Fauzi A.',bintang:5,teks:'Briketnya panas merata dan tidak cepat habis.',teks_en:'The briquettes burn evenly and last a long time.'},{nama:'Lina F.',bintang:4,teks:'Asapnya minim, sesuai untuk ekspor.',teks_en:'Very little smoke, suitable for export.'}]})">
+       onclick="openModal({name:'Briket Arang',name_en:'Charcoal Briquettes',cat:'Briket',cat_en:'Briquettes',price:'Rp43.000',stock:100,sold:'5.298',rating:'4.5',reviews:2,images:['briket arang.jpg','briketarang2.png'],desc:'Briket arang asal Jawa Tengah yang diproses untuk menghasilkan panas tinggi, tahan lama, dan rendah asap. Cocok untuk kebutuhan ekspor maupun penggunaan komersial.',desc_en:'Charcoal briquettes from Central Java processed to produce high heat, long burn time, and low smoke. Suitable for export needs or commercial use.',ulasan:[{nama:'Fauzi A.',bintang:5,teks:'Briketnya panas merata dan tidak cepat habis.',teks_en:'The briquettes burn evenly and last a long time.'},{nama:'Lina F.',bintang:4,teks:'Asapnya minim, sesuai untuk ekspor.',teks_en:'Very little smoke, suitable for export.'}]})">
     <div class="card-img"><img src="briket arang.jpg" alt="Briket Arang"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Briket" data-en="Briquette">Briket</div>
@@ -809,7 +780,7 @@
     </div>
   </div>
   <div class="card" data-cat="biji" data-harga="73000" data-rating="4.3" data-terjual="320" data-slug="biji-jagung"
-       onclick="openModal({name:'Biji Jagung',name_en:'Corn Seeds',cat:'Biji-bijian',cat_en:'Grains',price:'Rp73.000',stock:200,sold:'320',rating:'4.3',reviews:1,img:'biji jagung.jpg',desc:'Biji Jagung pilihan dari Jawa Tengah dan Tuban, diproses dari hasil panen terbaik. Cocok untuk kebutuhan industri pakan ternak maupun ekspor langsung.',desc_en:'Selected corn seeds from Central Java and Tuban, processed from the best harvests. Suitable for the animal feed industry or direct export.',ulasan:[{nama:'Rina H.',bintang:4,teks:'Jagungnya bersih dan kering, sesuai ekspektasi.',teks_en:'The corn is clean and dry, matches my expectations.'}]})">
+       onclick="openModal({name:'Biji Jagung',name_en:'Corn Seeds',cat:'Biji-bijian',cat_en:'Grains',price:'Rp73.000',stock:200,sold:'320',rating:'4.3',reviews:1,images:['biji jagung.jpg','bijijagung2.png'],desc:'Biji Jagung pilihan dari Jawa Tengah dan Tuban, diproses dari hasil panen terbaik. Cocok untuk kebutuhan industri pakan ternak maupun ekspor langsung.',desc_en:'Selected corn seeds from Central Java and Tuban, processed from the best harvests. Suitable for the animal feed industry or direct export.',ulasan:[{nama:'Rina H.',bintang:4,teks:'Jagungnya bersih dan kering, sesuai ekspektasi.',teks_en:'The corn is clean and dry, matches my expectations.'}]})">
     <div class="card-img"><img src="biji jagung.jpg" alt="Biji Jagung"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Biji-bijian" data-en="Grains">Biji-bijian</div>
@@ -822,7 +793,7 @@
     </div>
   </div>
   <div class="card" data-cat="kopi" data-harga="195000" data-rating="4.8" data-terjual="145" data-slug="cengkeh"
-       onclick="openModal({name:'Cengkeh Pilihan',name_en:'Selected Cloves',cat:'Rempah',cat_en:'Spices',price:'Rp195.000',stock:75,sold:'145',rating:'4.8',reviews:1,img:'cengkeh.jpg',desc:'Cengkeh Pilihan asal Maluku dan Sulawesi dengan aroma khas yang kuat dan kualitas premium. Diproses dan disortir dengan teliti untuk memenuhi standar ekspor internasional.',desc_en:'Selected cloves from Maluku and Sulawesi with a strong distinctive aroma and premium quality. Carefully processed and sorted to meet international export standards.',ulasan:[{nama:'Agus B.',bintang:5,teks:'Cengkehnya wangi dan kering sempurna, kualitas ekspor.',teks_en:'The cloves are fragrant and perfectly dried, export quality.'}]})">
+       onclick="openModal({name:'Cengkeh Pilihan',name_en:'Selected Cloves',cat:'Rempah',cat_en:'Spices',price:'Rp195.000',stock:75,sold:'145',rating:'4.8',reviews:1,images:['cengkeh.jpg','cengkeh2.png'],desc:'Cengkeh Pilihan asal Maluku dan Sulawesi dengan aroma khas yang kuat dan kualitas premium. Diproses dan disortir dengan teliti untuk memenuhi standar ekspor internasional.',desc_en:'Selected cloves from Maluku and Sulawesi with a strong distinctive aroma and premium quality. Carefully processed and sorted to meet international export standards.',ulasan:[{nama:'Agus B.',bintang:5,teks:'Cengkehnya wangi dan kering sempurna, kualitas ekspor.',teks_en:'The cloves are fragrant and perfectly dried, export quality.'}]})">
     <div class="card-img"><img src="cengkeh.jpg" alt="Cengkeh Pilihan"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Rempah" data-en="Spices">Rempah</div>
@@ -837,14 +808,14 @@
 </div>
 
 <div class="footer-bar">
-  <span class="footer-label">Halaman 1 dari 1</span>
+  <span class="footer-label">Halaman 1 </span>
   <div class="pages">
     <button class="pg">
       <svg class="icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
     </button>
     <button class="pg active">1</button>
-    <button class="pg">2</button>
-    <button class="pg">3</button>
+    <!-- <button class="pg">2</button>
+    <button class="pg">3</button> -->
     <button class="pg">
       <svg class="icon" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
     </button>
@@ -854,6 +825,8 @@
   <!-- FOOTER -->
   <!-- FOOTER -->
   <footer class="main-footer" id="footer">
+    <img class="footer-side-photo footer-side-left" src="kiri.png" alt="">
+    <img class="footer-side-photo footer-side-right" src="kanan.png" alt="">
         <div class="footer-container">
 
             <div class="footer-column brand-col">
@@ -870,20 +843,28 @@
                 <h3 class="footer-heading">Our Address</h3>
                 <ul class="footer-contact-list">
                     <li>
-                        <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
-                        <span>Jl. Dokter Cipto No. 20, Desa/Kelurahan Bugangan, Kec. Semarang	Timur, Kota Semarang, Provinsi Jawa Tengah, Indonesia</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Jl.+Dokter+Cipto+No.+20%2C+Bugangan%2C+Kec.+Semarang+Timur%2C+Kota+Semarang%2C+Jawa+Tengah" target="_blank" rel="noopener" class="contact-icon" aria-label="Buka lokasi di Google Maps">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Jl.+Dokter+Cipto+No.+20%2C+Bugangan%2C+Kec.+Semarang+Timur%2C+Kota+Semarang%2C+Jawa+Tengah" target="_blank" rel="noopener">Jl. Dokter Cipto No. 20, Desa/Kelurahan Bugangan, Kec. Semarang Timur, Kota Semarang, Provinsi Jawa Tengah, Indonesia</a>
                     </li>
                     <li>
-                        <span class="contact-icon"><i class="fas fa-phone-alt"></i></span>
-                        <a href="tel:+628117033993">+62882000765023</a>
+                        <a href="https://wa.me/62882000765023" target="_blank" rel="noopener" class="contact-icon" aria-label="Hubungi kami via WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://wa.me/62882000765023" target="_blank" rel="noopener">+62882000765023</a>
                     </li>
                     <li>
-                        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
-                        <a href="#">baysejahteraexport@gmail.com</a>
+                        <a href="mailto:baysejahteraexport@gmail.com" class="contact-icon" aria-label="Kirim email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="mailto:baysejahteraexport@gmail.com">baysejahteraexport@gmail.com</a>
                     </li>
                     <li>
-                        <span class="contact-icon"><i class="fas fa-globe"></i></span>
-                        <a href="#" target="_blank">baysejahteraexport.vercel.app</a>
+                        <a href="https://baysejahteraexport.vercel.app" target="_blank" rel="noopener" class="contact-icon" aria-label="Kunjungi website">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                        <a href="https://baysejahteraexport.vercel.app" target="_blank" rel="noopener">BAYSejahteraExport.vercel.app</a>
                     </li>
                 </ul>
             </div>
@@ -1194,27 +1175,28 @@
       buyBtn.dataset.produk = name;
       buyBtn.dataset.harga = p.price;
 
-      // Image
+      // Daftar gambar produk (mendukung banyak foto; fallback ke p.img jika p.images belum diisi)
+      var imgList = (p.images && p.images.length) ? p.images : [p.img];
+
+      // Gambar utama: selalu mulai dari foto pertama saat modal dibuka
       var mainImg = document.getElementById('modal-main-img');
-      mainImg.src = p.img;
+      mainImg.src = imgList[0];
       mainImg.alt = name;
 
-      // Thumbnails
+      // Thumbnails — dirender sesuai jumlah foto yang tersedia (tidak dipaksa 2)
       var thumbsEl = document.getElementById('modal-thumbs');
       thumbsEl.innerHTML = '';
-      for (var i = 0; i < 2; i++) {
+      imgList.forEach(function (src, i) {
         var t = document.createElement('img');
-        t.src = p.img; t.alt = name;
+        t.src = src; t.alt = name;
         t.className = 'modal-thumb' + (i === 0 ? ' active' : '');
-        t.onclick = (function(src, el) {
-          return function() {
-            document.getElementById('modal-main-img').src = src;
-            document.querySelectorAll('.modal-thumb').forEach(function(x){ x.classList.remove('active'); });
-            el.classList.add('active');
-          };
-        })(p.img, t);
+        t.onclick = function () {
+          document.getElementById('modal-main-img').src = this.src;
+          document.querySelectorAll('.modal-thumb').forEach(function (x) { x.classList.remove('active'); });
+          this.classList.add('active');
+        };
         thumbsEl.appendChild(t);
-      }
+      });
 
       // Description
       document.getElementById('tab-deskripsi').textContent = desc;
@@ -1296,7 +1278,7 @@
       var lang = getCurrentLang();
       var msg = getBuyMessage(lang);
       closeBuyModal();
-      window.open('https://wa.me/62882000765023?text=' + encodeURIComponent(msg), '_blank');
+      window.open('https://wa.me/6281225353152?text=' + encodeURIComponent(msg), '_blank');
     }
 
     function switchTab(tab, el) {
@@ -1340,8 +1322,8 @@
       // hero
       '.hero-eyebrow':      { id: 'BAY Sejahtera Export', en: 'BAY Sejahtera Export' },
       '.hero1 h1':          { id: 'Produk Kami',          en: 'Our Products' },
-      '.hero1 p':           { id: 'Temukan berbagai solusi produk yang Anda butuhkan langsung dari perusahaan kami',
-                              en: 'Explore our range of premium products available directly from our company' },
+      '.hero1 p':           { id: 'Sebagai mitra terpercaya dalam perdagangan internasional, kami mempersembahkan lini produk pilihan terbaik yang siap diekspor ke berbagai belahan dunia. Mulai dari spesifikasi standar hingga kustomisasi sesuai kebutuhan industri Anda, dapatkan solusi produk langsung dari sumber tangan pertama perusahaan kami dengan jaminan kualitas dan legalitas ekspor yang teruji.',
+                              en: 'As a trusted partner in international trade, we offer a range of premium products ready for export to markets worldwide. Whether you require standard specifications or custom solutions tailored to your industries needs, you can source products directly from us backed by guaranteed quality and verified export compliance.' },
       // toolbar chips
       '.chip[data-cat="semua"]':   { id: 'Semua',        en: 'All' },
       '.chip[data-cat="kopi"]':    { id: 'Kopi & Rempah',en: 'Coffee & Spices' },
