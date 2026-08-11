@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bay Sejahtera Export</title>
-
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -50,27 +49,31 @@ body {
 
 /* ─── HERO ─── */
 .hero {
-  margin-top: 60px;
-  min-height: 92vh;
+  margin-top: 0;
+  min-height: calc(92vh + 60px);
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 6rem 2rem 4rem;
+  padding: calc(6rem + 60px) 2rem 4rem;
+  background-image: url('hero-bg.jpg');
+  background-size: cover;
+  background-position: center 20%;
+  background-repeat: no-repeat;
 }
 .hero-grid-bg {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
   background-size: 48px 48px;
   pointer-events: none;
 }
 .hero-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 30%, rgba(255,255,255,0.8) 80%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.8) 100%);
   pointer-events: none;
 }
 .hero-inner {
@@ -85,7 +88,7 @@ body {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(255,255,255,0.75);
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
@@ -95,27 +98,29 @@ body {
   content: '';
   display: block;
   width: 32px; height: 1px;
-  background: var(--muted);
+  background: rgba(255,255,255,0.75);
 }
 .hero h1 {
   font-size: clamp(3.2rem, 7vw, 7rem);
   font-weight: 700;
   line-height: 1.0;
-  color: var(--white);
+  color: #ffffff;
   letter-spacing: -0.04em;
   max-width: 800px;
   margin-bottom: 2rem;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.35);
 }
 .hero h1 .word-outline {
-  -webkit-text-stroke: 1px #1a1a1a;
+  -webkit-text-stroke: 1px #ffffff;
   color: transparent;
 }
 .hero-sub {
   font-size: 16px;
-  color: var(--grey);
+  color: rgba(255,255,255,0.85);
   max-width: 780px;
   line-height: 1.75;
   font-weight: 400;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.3);
 }
 .hero-scroll-hint {
   position: absolute;
@@ -130,14 +135,14 @@ body {
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(255,255,255,0.75);
 }
 .hero-scroll-hint::after {
   content: '';
   display: block;
   width: 1px;
   height: 40px;
-  background: linear-gradient(to bottom, var(--muted), transparent);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.75), transparent);
   animation: scrollPulse 2s ease-in-out infinite;
 }
 @keyframes scrollPulse {
@@ -192,6 +197,9 @@ body {
 
 /* ─── SECTION COMMON ─── */
 section { padding: 100px 2rem; }
+/* garis pembatas atas & bawah antar section yang berurutan */
+section + section { border-top: 1px solid var(--border); }
+#footer { border-top: 1px solid var(--border); }
 .section-inner { max-width: 1200px; margin: 0 auto; }
 .section-label {
   font-family: 'Space Mono', monospace;
@@ -468,7 +476,21 @@ section { padding: 100px 2rem; }
 }
 
 /* ─── TIM / ORG CHART ─── */
-.tim-section { background: #f5f5f5; }
+.tim-section {
+  background-color: #f5f5f5;
+  background-image: url('batik-outline-bw.png');
+  background-repeat: repeat;
+  background-size: 420px auto;
+  position: relative;
+}
+.tim-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(245, 245, 245, 0.75);
+  pointer-events: none;
+}
+.tim-section .section-inner { position: relative; z-index: 1; }
 
 /* Tree container */
 .org-tree {
@@ -902,121 +924,6 @@ section { padding: 100px 2rem; }
   letter-spacing: 0.02em;
 }
 .btn-outline:hover { border-color: #ffffff; background: rgba(255,255,255,0.08); }
-
-/* ══════════════════════════════════════════════════════════
-   RESPONSIVE — konten halaman About saja.
-   Navbar & Footer sengaja TIDAK disentuh (sudah diatur di file terpisah).
-   ══════════════════════════════════════════════════════════ */
-
-/* ─── TABLET (≤1024px) ─── */
-@media (max-width: 1024px) {
-  section { padding: 80px 2rem; }
-
-  .misi-grid { gap: 3rem; }
-
-  .nilai-grid { grid-template-columns: repeat(2, 1fr); }
-
-  .lokasi-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .lokasi-map { height: 320px; }
-
-  .tim-card, .tim-card.ceo-card { width: 300px; }
-}
-
-/* ─── MOBILE (≤768px) ─── */
-@media (max-width: 768px) {
-  section { padding: 60px 1.25rem; }
-  .section-inner { max-width: 100%; }
-  .section-desc { max-width: 100%; }
-
-  /* HERO */
-  .hero {
-    margin-top: 0;
-    min-height: auto;
-    padding: 7rem 1.25rem 3rem;
-    text-align: left;
-  }
-  .hero h1,
-  .hero h1[style] {
-    font-size: clamp(2.2rem, 11vw, 3.2rem) !important;
-    max-width: 100%;
-  }
-  .hero-sub { font-size: 15px; max-width: 100%; }
-  .hero-scroll-hint { display: none; }
-
-  /* STATS */
-  .stats-inner { grid-template-columns: repeat(2, 1fr); }
-  .stat-item {
-    padding: 1.75rem 1.25rem;
-    border-right: 1px solid var(--border);
-  }
-  .stat-item:nth-child(2n) { border-right: none; }
-  .stat-item:nth-child(1), .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
-  .stat-num { font-size: 2.2rem; }
-
-  /* MISI */
-  .misi-grid { grid-template-columns: 1fr; gap: 2.5rem; margin-top: 2.5rem; }
-  .misi-img-wrap { position: static; order: -1; }
-
-  /* NILAI */
-  .nilai-header { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 2.5rem; }
-  .nilai-grid { grid-template-columns: 1fr; }
-  .nilai-card { padding: 2rem; }
-
-  /* PASAR */
-  .pasar-grid { grid-template-columns: 1fr; margin-top: 2.5rem; gap: 1.25rem; }
-  .pasar-card { padding: 2rem; }
-
-  /* TABS / TIMELINE / SERTIFIKASI */
-  .tabs-nav { width: 100%; overflow-x: auto; margin-top: 2rem; }
-  .tab-btn { flex: 1; padding: 10px 14px; white-space: nowrap; }
-  .cert-list { grid-template-columns: 1fr; }
-  .cert-item { padding: 1.4rem 1.5rem; }
-
-  /* TIM / ORG CHART */
-  .org-tree { margin-top: 2.5rem; }
-  .org-level, .org-children-wrap {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-  .org-h-line { display: none; }
-  .org-connector-branch, .org-child-col .org-connector-down { height: 24px; }
-  .tim-card, .tim-card.ceo-card { width: 100%; max-width: 340px; }
-
-  /* LOKASI */
-  .lokasi-inner { margin-top: 2.5rem; }
-  .lokasi-map { height: 280px; }
-
-  /* CTA */
-  .cta-section { padding: 70px 1.25rem; }
-  .cta-buttons { flex-direction: column; align-items: stretch; }
-  .btn-primary, .btn-outline { text-align: center; }
-}
-
-/* ─── SMALL MOBILE (≤480px) ─── */
-@media (max-width: 480px) {
-  .hero { padding-top: 6.5rem; }
-  .hero h1, .hero h1[style] { font-size: clamp(1.9rem, 12vw, 2.4rem) !important; }
-  .hero-sub { font-size: 14px; }
-
-  .stats-inner { grid-template-columns: repeat(2, 1fr); }
-  .stat-item { padding: 1.5rem 1rem; }
-  .stat-num { font-size: 1.9rem; }
-
-  .section-title { font-size: clamp(1.6rem, 7vw, 2rem); }
-
-  .misi-text p { padding-left: 1rem; font-size: 14px; }
-
-  .nilai-card, .pasar-card { padding: 1.5rem; }
-
-  .tim-card, .tim-card.ceo-card { max-width: 100%; }
-  .tim-info { padding: 1rem; }
-
-  .lokasi-detail-value { font-size: 13px; }
-
-  .cta-title { font-size: clamp(1.7rem, 8vw, 2.2rem); }
-  .cta-desc { font-size: 14px; }
-}
 </style>
 </head>
 <body>
@@ -1067,7 +974,7 @@ section { padding: 100px 2rem; }
 <nav class="navbar" id="navbar">
     <div class="nav-container">
         <div class="nav-left">
-          <a href="index.html">
+          <a href="#hero">
             <img src="logou.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
           </a>
           <span class="nav-logo">BAY SEJAHTERA EXPORT</span>
@@ -1092,26 +999,12 @@ section { padding: 100px 2rem; }
                 <img src="https://flagcdn.com/w40/gb.png" class="flag-icon" alt="EN">
                 <span class="lang-label">EN</span>
             </div>
-
-            <button class="hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu">
-                <span class="ham-bar"></span>
-                <span class="ham-bar"></span>
-                <span class="ham-bar"></span>
-            </button>
         </div>
-    </div>
-
-    <div class="nav-drawer" id="mobileMenu">
-        <ul class="drawer-menu">
-            <li><a href="index.html" class="drawer-link" data-id="Home" data-en="Home">Home</a></li>
-            <li><a href="produk.html" class="drawer-link" data-id="Produk" data-en="Products">Produk</a></li>
-            <li><a href="About.html" class="drawer-link" data-id="Tentang Kami" data-en="About Us">About Us</a></li>
-        </ul>
     </div>
 </nav>
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-grid-bg"></div>
+  <!-- <div class="hero-grid-bg"></div> -->
   <div class="hero-vignette"></div>
   <div class="hero-inner">
     <!-- <div class="hero-eyebrow">Berdiri sejak Oktober 2023</div> -->
@@ -1149,9 +1042,11 @@ section { padding: 100px 2rem; }
     <!-- <div class="section-label reveal">Misi Kami</div> -->
     <div class="misi-grid">
       <div class="misi-text">
+        <div class="section-title reveal" data-id="Visi Kami" data-en="Our Vision">Visi Kami</div>
+        <p class="reveal" style="margin-top:2rem; margin-bottom:2.5rem;" data-id="Menjadi perusahaan ekspor bertaraf internasional yang unggul, terpercaya, dan berkelanjutan dalam menghubungkan produk-produk berkualitas Indonesia dengan pasar global, serta berkontribusi terhadap pertumbuhan ekonomi nasional dan daya saing Indonesia di perdagangan internasional." data-en="To become a leading, trusted, and sustainable international standard export company that connects high-quality Indonesian products with global markets, while contributing to national economic growth and Indonesia's competitiveness in international trade.">Menjadi perusahaan ekspor bertaraf internasional yang unggul, terpercaya, dan berkelanjutan dalam menghubungkan produk-produk berkualitas Indonesia dengan pasar global, serta berkontribusi terhadap pertumbuhan ekonomi nasional dan daya saing Indonesia di perdagangan internasional.</p>
+
         <div class="section-title reveal" data-id="Misi Kami" data-en="Our Mission">Misi Kami</div>
-        <p class="reveal reveal-delay-1" style="margin-top:2rem;" data-id="BAY Sejahtera Export hadir untuk mengangkat potensi komoditas terbaik Indonesia seperti biji kopi, jagung, dan briket ke kancah global melalui standar mutu internasional yang ketat. Kami hadir sebagai jembatan dan mitra strategis yang handal bagi para produsen serta petani lokal untuk memperluas jangkauan distribusi produk mereka ke pasar internasional secara profesional." data-en="BAY Sejahtera Export is dedicated to showcasing Indonesia's finest commodities such as coffee beans, corn, and briquettes on the global stage by adhering to rigorous international quality standards. We serve as a reliable bridge and strategic partner, enabling local producers and farmers to professionally expand their product distribution into international markets.">BAY Sejahtera Export lahir dari keyakinan bahwa produk-produk Indonesia memiliki nilai dan potensi yang layak diakui dunia. Kami hadir sebagai mitra terpercaya bagi petani, produsen, dan pelaku usaha lokal yang ingin memperluas jangkauan mereka.</p>
-        <p class="reveal reveal-delay-2" data-id="Selain berfokus pada pertumbuhan bisnis, kami berkomitmen untuk menerapkan praktik perdagangan yang bertanggung jawab dan berkelanjutan bagi komunitas serta lingkungan. Setiap langkah kemitraan yang kami bangun senantiasa dilandasi oleh prinsip transparansi, integritas, dan kolaborasi jangka panjang demi menciptakan nilai tambah yang saling menguntungkan bagi semua pihak." data-en="Beyond focusing on business growth, we are committed to implementing responsible and sustainable trade practices that benefit both the community and the environment. Every partnership we build is grounded in principles of transparency, integrity, and long-term collaboration, aiming to create mutually beneficial value for all parties involved.">Dengan mengedepankan standar kualitas internasional dan praktik perdagangan yang bertanggung jawab, kami membangun ekosistem ekspor yang tidak hanya menguntungkan secara bisnis, tetapi juga berkelanjutan bagi komunitas dan lingkungan.</p>
+        <p class="reveal reveal-delay-1" style="margin-top:2rem;" data-id="Kami berkomitmen untuk menghadirkan keunggulan kualitas pada setiap produk melalui kontrol mutu yang ketat, sekaligus mendorong inovasi berkelanjutan dalam rantai pasok demi efisiensi global. Melalui pembangunan kemitraan strategis yang saling menguntungkan dengan produsen lokal dan klien internasional, kami mendedikasikan diri untuk memperkenalkan produk terbaik Indonesia ke pasar dunia dengan menjunjung tinggi etika bisnis, tanggung jawab sosial, serta pelayanan prima yang profesional." data-en="We are committed to delivering superior product quality through rigorous quality control while driving continuous innovation across the supply chain to achieve global efficiency. By fostering mutually beneficial strategic partnerships with local producers and international clients, we dedicate ourselves to introducing Indonesia’s finest products to the global market, upholding business ethics, social responsibility, and professional, excellent service.">Kami berkomitmen untuk menghadirkan keunggulan kualitas pada setiap produk melalui kontrol mutu yang ketat, sekaligus mendorong inovasi berkelanjutan dalam rantai pasok demi efisiensi global. Melalui pembangunan kemitraan strategis yang saling menguntungkan dengan produsen lokal dan klien internasional, kami mendedikasikan diri untuk memperkenalkan produk terbaik Indonesia ke pasar dunia dengan menjunjung tinggi etika bisnis, tanggung jawab sosial, serta pelayanan prima yang profesional.</p>
       </div>
       <div class="misi-img-wrap reveal">
         <div class="misi-img-placeholder">
@@ -1413,7 +1308,7 @@ section { padding: 100px 2rem; }
           <div class="lokasi-detail-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/></svg></div>
           <div>
             <div class="lokasi-detail-label" data-id="Website" data-en="Website">Website</div>
-            <div class="lokasi-detail-value">BAYSejahteraExport.vercel.app</div>
+            <div class="lokasi-detail-value">baysejahteraexport.vercel.app</div>
           </div>
         </div>
       </div>
@@ -1435,6 +1330,8 @@ section { padding: 100px 2rem; }
   <!-- FOOTER -->
   <!-- FOOTER -->
   <footer class="main-footer" id="footer">
+        <img class="footer-side-photo footer-side-left" src="kiri.png" alt="">
+        <img class="footer-side-photo footer-side-right" src="kanan.png" alt="">
         <div class="footer-container">
 
             <div class="footer-column brand-col">
@@ -1451,20 +1348,28 @@ section { padding: 100px 2rem; }
                 <h3 class="footer-heading">Our Address</h3>
                 <ul class="footer-contact-list">
                     <li>
-                        <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
-                        <span>Jl. Dokter Cipto No. 20, Desa/Kelurahan Bugangan, Kec. Semarang	Timur, Kota Semarang, Provinsi Jawa Tengah, Indonesia</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Jl.+Dokter+Cipto+No.+20%2C+Bugangan%2C+Kec.+Semarang+Timur%2C+Kota+Semarang%2C+Jawa+Tengah" target="_blank" rel="noopener" class="contact-icon" aria-label="Buka lokasi di Google Maps">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Jl.+Dokter+Cipto+No.+20%2C+Bugangan%2C+Kec.+Semarang+Timur%2C+Kota+Semarang%2C+Jawa+Tengah" target="_blank" rel="noopener">Jl. Dokter Cipto No. 20, Desa/Kelurahan Bugangan, Kec. Semarang Timur, Kota Semarang, Provinsi Jawa Tengah, Indonesia</a>
                     </li>
                     <li>
-                        <span class="contact-icon"><i class="fas fa-phone-alt"></i></span>
-                        <a href="tel:+628117033993">+62882000765023</a>
+                        <a href="https://wa.me/62882000765023" target="_blank" rel="noopener" class="contact-icon" aria-label="Hubungi kami via WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://wa.me/62882000765023" target="_blank" rel="noopener">+62882000765023</a>
                     </li>
                     <li>
-                        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
-                        <a href="#">baysejahteraexport@gmail.com</a>
+                        <a href="mailto:baysejahteraexport@gmail.com" class="contact-icon" aria-label="Kirim email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="mailto:baysejahteraexport@gmail.com">baysejahteraexport@gmail.com</a>
                     </li>
                     <li>
-                        <span class="contact-icon"><i class="fas fa-globe"></i></span>
-                        <a href="#" target="_blank">baysejahteraexport.vercel.app</a>
+                        <a href="https://baysejahteraexport.vercel.app" target="_blank" rel="noopener" class="contact-icon" aria-label="Kunjungi website">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                        <a href="https://baysejahteraexport.vercel.app" target="_blank" rel="noopener">baysejahteraexport.vercel.app</a>
                     </li>
                 </ul>
             </div>
@@ -1544,25 +1449,15 @@ const ham = document.getElementById('hamburger');
 const mob = document.getElementById('mobileMenu');
 if (ham && mob) {
   ham.addEventListener('click', () => {
-    const isOpen = ham.classList.toggle('open');
-    mob.classList.toggle('open', isOpen);
-    ham.setAttribute('aria-expanded', isOpen);
-    document.body.classList.toggle('nav-open', isOpen);
-  });
-  mob.querySelectorAll('.drawer-link').forEach(link => {
-    link.addEventListener('click', () => {
-      ham.classList.remove('open');
-      mob.classList.remove('open');
-      ham.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('nav-open');
-    });
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
   });
 }
 
 // ─── NAV ACTIVE PAGE ───
 (function() {
   const currentFile = window.location.pathname.split('/').pop() || 'Index.html';
-  document.querySelectorAll('.nav-link, .drawer-link').forEach(link => {
+  document.querySelectorAll('.nav-link').forEach(link => {
     const linkFile = link.getAttribute('href').split('/').pop();
     if (linkFile.toLowerCase() === currentFile.toLowerCase()) {
       link.classList.add('active');
