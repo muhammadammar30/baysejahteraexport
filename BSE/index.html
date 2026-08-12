@@ -91,6 +91,42 @@
       display: none;
     }
 
+    /* ── HERO COFFEE ACCENTS ── */
+    .hero-coffee {
+      position: absolute;
+      top: 50%;
+      pointer-events: none;
+      opacity: 0;
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,0.55));
+      z-index: 1;
+      animation: coffeeRise ease-out infinite;
+      animation-fill-mode: backwards;
+      will-change: transform, opacity;
+    }
+    .hero-coffee img { display: block; width: 100%; height: auto; }
+
+    .coffee-1 { left: 21%; top: 80%; width: 46px; animation-duration: 16s; animation-delay: 0s; --rot: -12deg; --op: 0.8; }
+    .coffee-2 { left: 30%; top: 88%; width: 30px; animation-duration: 13s; animation-delay: 2.5s; --rot: 18deg; --op: 0.55; }
+    .coffee-3 { left: 16%; top: 84%; width: 36px; animation-duration: 18s; animation-delay: 5s; --rot: -6deg; --op: 0.65; }
+    .coffee-4 { left: 25%; top: 92%; width: 24px; animation-duration: 14s; animation-delay: 7.5s; --rot: 26deg; --op: 0.5; }
+    .coffee-5 { left: 11%; top: 90%; width: 20px; animation-duration: 15s; animation-delay: 9s; --rot: 30deg; --op: 0.45; }
+    .coffee-6 { right: 21%; top: 82%; width: 44px; animation-duration: 15s; animation-delay: 1.6s; --rot: 14deg; --op: 0.8; }
+    .coffee-7 { right: 30%; top: 89%; width: 28px; animation-duration: 13.5s; animation-delay: 4s; --rot: -20deg; --op: 0.55; }
+    .coffee-8 { right: 15%; top: 85%; width: 34px; animation-duration: 17s; animation-delay: 6.4s; --rot: 8deg; --op: 0.65; }
+    .coffee-9 { right: 26%; top: 93%; width: 24px; animation-duration: 12.5s; animation-delay: 8.8s; --rot: -24deg; --op: 0.5; }
+    .coffee-10 { right: 11%; top: 91%; width: 20px; animation-duration: 15.5s; animation-delay: 10.5s; --rot: 22deg; --op: 0.45; }
+
+    @keyframes coffeeRise {
+      0% { transform: translateY(0) rotate(var(--rot)); opacity: 0; }
+      12% { opacity: var(--op); }
+      65% { opacity: var(--op); }
+      100% { transform: translateY(-70vh) rotate(var(--rot)); opacity: 0; }
+    }
+
+    @media (max-width: 900px) {
+      .hero-coffee { display: none; }
+    }
+
     .hero-center-photo {
       position: absolute;
       top: 60%;
@@ -311,15 +347,94 @@
 
     .intro-accent {
       position: absolute;
-      top: 10px;
-      left: -70px;
       width: 260px;
       height: auto;
-      opacity: 0.07;
+      opacity: 0.09;
       pointer-events: none;
       user-select: none;
       z-index: 0;
-      /* transform: rotate(-6deg); */
+      animation: introAccentFloat 7s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    .intro-accent-1 {
+      top: 10px;
+      left: -70px;
+      width: 260px;
+      opacity: 0.09;
+      animation-duration: 7s;
+      animation-delay: 0s;
+    }
+
+    .intro-accent-2 {
+      top: 55%;
+      right: -60px;
+      left: auto;
+      width: 190px;
+      opacity: 0.07;
+      transform: scaleX(-1);
+      animation-name: introAccentFloatAlt;
+      animation-duration: 9s;
+      animation-delay: 1.2s;
+    }
+
+    .intro-accent-3 {
+      bottom: -40px;
+      left: 30%;
+      width: 150px;
+      opacity: 0.06;
+      animation-duration: 11s;
+      animation-delay: 3s;
+    }
+
+    @keyframes introAccentFloat {
+      0%   { transform: translate(0, 0) rotate(-4deg); }
+      25%  { transform: translate(10px, -14px) rotate(-1deg); }
+      50%  { transform: translate(-6px, -22px) rotate(3deg); }
+      75%  { transform: translate(-14px, -8px) rotate(-2deg); }
+      100% { transform: translate(0, 0) rotate(-4deg); }
+    }
+
+    @keyframes introAccentFloatAlt {
+      0%   { transform: scaleX(-1) translate(0, 0) rotate(3deg); }
+      25%  { transform: scaleX(-1) translate(-12px, -10px) rotate(0deg); }
+      50%  { transform: scaleX(-1) translate(8px, -20px) rotate(-4deg); }
+      75%  { transform: scaleX(-1) translate(14px, -6px) rotate(2deg); }
+      100% { transform: scaleX(-1) translate(0, 0) rotate(3deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .intro-accent { animation: none; }
+    }
+
+    /* ── BATIK CENTER ACCENT (Introduction only) ── */
+    .batik-center-accent {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(420px, 55%);
+      height: auto;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      animation: batikFade 12s ease-in-out infinite;
+      will-change: opacity;
+    }
+
+    @keyframes batikFade {
+      0%   { opacity: 0; }
+      50%  { opacity: 0.08; }
+      100% { opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .batik-center-accent { animation: none; opacity: 0.05; }
+    }
+
+    @media (max-width: 768px) {
+      .batik-center-accent { width: 70%; }
     }
 
     #about > div:first-child {
@@ -344,7 +459,9 @@
     } */
 
     @media (max-width: 768px) {
-      .intro-accent { width: 160px; top: -10px; left: -10px; }
+      .intro-accent-1 { width: 160px; top: -10px; left: -10px; }
+      .intro-accent-2 { width: 120px; top: 40%; right: -30px; }
+      .intro-accent-3 { display: none; }
       /* .intro-corner-triangle { width: 150px; height: 150px; } */
     }
 
@@ -899,10 +1016,16 @@
     }
     .marquee-track {
       display: flex;
-      gap: 60px;
-      animation: marquee 20s linear infinite;
+      align-items: center;
+      animation: marquee 26s linear infinite;
       white-space: nowrap;
       width: max-content;
+      will-change: transform;
+    }
+    .marquee-set {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
     }
     .marquee-item {
       font-family: 'Space Grotesk', sans-serif;
@@ -913,7 +1036,8 @@
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 60px;
+      gap: 24px;
+      margin-right: 60px;
     }
     .marquee-item::after {
       content: '✦';
@@ -1396,6 +1520,19 @@
       <img class="hero-side-photo hero-side-left" src="kiri.png" alt="">
       <img class="hero-side-photo hero-side-right" src="kanan.png" alt="">
       <img class="hero-center-photo" src="gunungan.png" alt="">
+
+      <!-- Aksen kopi melayang -->
+      <div class="hero-coffee coffee-1" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
+      <div class="hero-coffee coffee-2" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
+      <div class="hero-coffee coffee-3" aria-hidden="true"><img src="jagung.png" alt=""></div>
+      <div class="hero-coffee coffee-4" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
+      <div class="hero-coffee coffee-5" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
+      <div class="hero-coffee coffee-6" aria-hidden="true"><img src="briket.png" alt=""></div>
+      <div class="hero-coffee coffee-7" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
+      <div class="hero-coffee coffee-8" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
+      <div class="hero-coffee coffee-9" aria-hidden="true"><img src="cengkehh.png" alt=""></div>
+      <div class="hero-coffee coffee-10" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
+
     <div class="hero-grid-overlay"></div>
 
     <div class="hero-eyebrow">Est. 2026</div>
@@ -1429,21 +1566,33 @@
   <!-- MARQUEE -->
   <div class="marquee-section">
     <div class="marquee-track">
-      <span class="marquee-item">Robusta Green Beans</span>
-      <span class="marquee-item">Arabica Green Beans</span>
-      <span class="marquee-item">Roasted Robusta Beans</span>
-      <span class="marquee-item">Roasted Arabica Beans</span>
-      <span class="marquee-item">Briket Arang</span>
-      <span class="marquee-item">Biji Jagung</span>
-      <span class="marquee-item">Jamur Tiram</span>
-      <span class="marquee-item">Beras Lele</span>
-      <span class="marquee-item">Cengkeh Premium</span>
+      <div class="marquee-set">
+        <span class="marquee-item" data-id="Biji Kopi Arabika" data-en="Arabica Coffee Beans">Biji Kopi Arabika</span>
+        <span class="marquee-item" data-id="Biji Kopi Sangrai Arabika" data-en="Roasted Arabica Coffee Beans">Biji Kopi Sangrai Arabika</span>
+        <span class="marquee-item" data-id="Biji Kopi Robusta" data-en="Robusta Coffee Beans">Biji Kopi Robusta</span>
+        <span class="marquee-item" data-id="Biji Kopi Sangrai Robusta" data-en="Roasted Robusta Coffee Beans">Biji Kopi Sangrai Robusta</span>
+        <span class="marquee-item" data-id="Briket Arang" data-en="Charcoal Briquettes">Briket Arang</span>
+        <span class="marquee-item" data-id="Biji Jagung" data-en="Corn Seeds">Biji Jagung</span>
+        <span class="marquee-item" data-id="Cengkeh Pilihan" data-en="Selected Cloves">Cengkeh Pilihan</span>
+      </div>
+      <div class="marquee-set" aria-hidden="true">
+        <span class="marquee-item" data-id="Biji Kopi Arabika" data-en="Arabica Coffee Beans">Biji Kopi Arabika</span>
+        <span class="marquee-item" data-id="Biji Kopi Sangrai Arabika" data-en="Roasted Arabica Coffee Beans">Biji Kopi Sangrai Arabika</span>
+        <span class="marquee-item" data-id="Biji Kopi Robusta" data-en="Robusta Coffee Beans">Biji Kopi Robusta</span>
+        <span class="marquee-item" data-id="Biji Kopi Sangrai Robusta" data-en="Roasted Robusta Coffee Beans">Biji Kopi Sangrai Robusta</span>
+        <span class="marquee-item" data-id="Briket Arang" data-en="Charcoal Briquettes">Briket Arang</span>
+        <span class="marquee-item" data-id="Biji Jagung" data-en="Corn Seeds">Biji Jagung</span>
+        <span class="marquee-item" data-id="Cengkeh Pilihan" data-en="Selected Cloves">Cengkeh Pilihan</span>
+      </div>
     </div>
   </div>
 
   <!-- ABOUT -->
   <section id="about">
-    <img src="cloud-accent.png" alt="" class="intro-accent" aria-hidden="true">
+    <img src="cloud-accent.png" alt="" class="intro-accent intro-accent-1" aria-hidden="true">
+    <img src="cloud-accent.png" alt="" class="intro-accent intro-accent-2" aria-hidden="true">
+    <img src="cloud-accent.png" alt="" class="intro-accent intro-accent-3" aria-hidden="true">
+    <img src="batikcentre-removebg-preview.png" alt="" class="batik-center-accent" aria-hidden="true">
     <!-- <img src="intro-corner.png" alt="" class="intro-corner-triangle" aria-hidden="true"> -->
     <div>
       <h2 class="section-title reveal" data-id="Introduction" data-en="Introduction">Introduction</h2>
@@ -1739,7 +1888,43 @@
         </div>
         <div class="docs-photo-slide" data-index="3">
           <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,3)">
-          <img src="ft2.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img src="dok1.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="docs-photo-slide" data-index="3">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,3)">
+          <img src="dok2.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="docs-photo-slide" data-index="3">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,3)">
+          <img src="dok3.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="docs-photo-slide" data-index="3">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,3)">
+          <img src="dok4.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="docs-photo-slide" data-index="3">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,3)">
+          <img src="dok5.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="docs-photo-slide" data-index="3">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,3)">
+          <img src="dok6.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="docs-photo-slide" data-index="3">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,3)">
+          <img src="dok7.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="docs-photo-slide" data-index="3">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,3)">
+          <img src="dok8.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="docs-photo-slide" data-index="3">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,3)">
+          <img src="dok9.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="docs-photo-slide" data-index="3">
+          <input type="file" accept="image/*" style="display:none" onchange="handleDocsPhoto(event,3)">
+          <img src="dok10.jpeg" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
       </div>
       <button class="docs-carousel-nav prev" onclick="slideDoc(-1)">←</button>
@@ -2083,5 +2268,6 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
   </script>
+
 </body>
 </html>
