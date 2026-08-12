@@ -245,13 +245,51 @@ section + section { border-top: 1px solid var(--border); }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
 /* ─── MISI ─── */
-#misi { background: #ffffff; }
+#misi { background: #ffffff; position: relative; overflow: hidden; }
+.misi-batik-accent {
+  position: absolute;
+  width: 420px;
+  max-width: 42vw;
+  height: auto;
+  opacity: 0.14;
+  pointer-events: none;
+  z-index: 0;
+}
+.misi-batik-accent.top-left {
+  top: -30px;
+  left: -70px;
+  transform: rotate(-8deg);
+}
+.misi-batik-accent.bottom-left {
+  bottom: -50px;
+  left: -70px;
+  transform: rotate(6deg) scaleY(-1);
+}
+.misi-batik-accent-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 450px;
+  max-width: 60vw;
+  height: auto;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: batikSlowFade 8s ease-in-out infinite;
+}
+@keyframes batikSlowFade {
+  0%   { opacity: 0.03; }
+  50%  { opacity: 0.10; }
+  100% { opacity: 0.03; }
+}
 .misi-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
   align-items: center;
   margin-top: 4rem;
+  position: relative;
+  z-index: 1;
 }
 .misi-text {
   display: flex;
@@ -291,10 +329,27 @@ section + section { border-top: 1px solid var(--border); }
   transition: filter 0.5s ease;
 }
 .misi-img-placeholder:hover img { filter: brightness(1.05) contrast(1.05); }
+
+/* ── MISI SLIDESHOW: beberapa foto bergantian, sama seperti Introduction di index.html ── */
+.misi-img-placeholder .misi-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+  display: block;
+}
+.misi-img-placeholder .misi-slide.active {
+  opacity: 1;
+}
+
 .misi-img-badge {
   position: absolute;
   bottom: 1.5rem;
   left: 1.5rem;
+  z-index: 2;
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(10px);
   border: 1px solid var(--border);
@@ -315,7 +370,24 @@ section + section { border-top: 1px solid var(--border); }
 }
 
 /* ─── NILAI ─── */
-.nilai-section { background: #f5f5f5; }
+.nilai-section { background: #f5f5f5; position: relative; overflow: hidden; }
+.nilai-corner {
+  position: absolute;
+  width: clamp(120px, 14vw, 220px);
+  height: clamp(120px, 14vw, 220px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+.nilai-corner-top {
+  top: 0;
+  left: 0;
+}
+.nilai-corner-bottom {
+  bottom: 0;
+  right: 0;
+}
+.nilai-section .section-inner { position: relative; z-index: 1; }
 .nilai-header {
   display: flex;
   align-items: flex-end;
@@ -678,7 +750,28 @@ section + section { border-top: 1px solid var(--border); }
 }
 
 /* ─── LOKASI ─── */
-.lokasi-section { background: #ffffff; }
+.lokasi-section { background: #ffffff; position: relative; overflow: hidden; }
+.lokasi-corner-accent {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  width: clamp(300px, 20vw, 320px);
+  height: auto;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+.lokasi-corner-accent-left {
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+  width: clamp(220px, 16vw, 260px);
+  height: auto;
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+}
+.lokasi-section .section-inner { position: relative; z-index: 1; }
 .lokasi-inner {
   display: grid;
   grid-template-columns: 1fr 1.6fr;
@@ -740,7 +833,23 @@ section + section { border-top: 1px solid var(--border); }
 }
 
 /* ─── PROGRESS TABS (interactif) ─── */
-.tabs-section { background: #f5f5f5; }
+.tabs-section { background: #f5f5f5; position: relative; overflow: hidden; }
+.perjalanan-batik-accent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 420px;
+  max-width: 40vw;
+  background-image: url('kanan-outline.png');
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 100% 100%;
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+}
+.tabs-section .section-inner { position: relative; z-index: 1; }
 .tabs-nav {
   display: flex;
   gap: 0;
@@ -1038,6 +1147,9 @@ section + section { border-top: 1px solid var(--border); }
 
 <!-- MISI -->
 <section id="misi">
+  <img src="batik-outline-accent.png" alt="" class="misi-batik-accent top-left" aria-hidden="true">
+  <img src="batik-outline-accent.png" alt="" class="misi-batik-accent bottom-left" aria-hidden="true">
+  <img src="batik-tengah-outline.png" alt="" class="misi-batik-accent-center" aria-hidden="true">
   <div class="section-inner">
     <!-- <div class="section-label reveal">Misi Kami</div> -->
     <div class="misi-grid">
@@ -1049,12 +1161,14 @@ section + section { border-top: 1px solid var(--border); }
         <p class="reveal reveal-delay-1" style="margin-top:2rem;" data-id="Kami berkomitmen untuk menghadirkan keunggulan kualitas pada setiap produk melalui kontrol mutu yang ketat, sekaligus mendorong inovasi berkelanjutan dalam rantai pasok demi efisiensi global. Melalui pembangunan kemitraan strategis yang saling menguntungkan dengan produsen lokal dan klien internasional, kami mendedikasikan diri untuk memperkenalkan produk terbaik Indonesia ke pasar dunia dengan menjunjung tinggi etika bisnis, tanggung jawab sosial, serta pelayanan prima yang profesional." data-en="We are committed to delivering superior product quality through rigorous quality control while driving continuous innovation across the supply chain to achieve global efficiency. By fostering mutually beneficial strategic partnerships with local producers and international clients, we dedicate ourselves to introducing Indonesia’s finest products to the global market, upholding business ethics, social responsibility, and professional, excellent service.">Kami berkomitmen untuk menghadirkan keunggulan kualitas pada setiap produk melalui kontrol mutu yang ketat, sekaligus mendorong inovasi berkelanjutan dalam rantai pasok demi efisiensi global. Melalui pembangunan kemitraan strategis yang saling menguntungkan dengan produsen lokal dan klien internasional, kami mendedikasikan diri untuk memperkenalkan produk terbaik Indonesia ke pasar dunia dengan menjunjung tinggi etika bisnis, tanggung jawab sosial, serta pelayanan prima yang profesional.</p>
       </div>
       <div class="misi-img-wrap reveal">
-        <div class="misi-img-placeholder">
-          <img
-            src="ppp.jpg"
-            alt="Petani Indonesia"
-            onerror="this.style.display='none'"
-          >
+        <div class="misi-img-placeholder" id="misiVisualInner" style="position:relative;">
+          <img class="misi-slide active" src="arabicagreenbeans.png" alt="Foto Misi 1" onerror="this.style.display='none'">
+          <img class="misi-slide" src="arabicaroastedbeans.png" alt="Foto Misi 2" onerror="this.style.display='none'">
+          <img class="misi-slide" src="robustapart2.jpeg" alt="Foto Misi 3" onerror="this.style.display='none'">
+          <img class="misi-slide" src="robustaroastedbeans.png" alt="Foto Misi 4" onerror="this.style.display='none'">
+          <img class="misi-slide" src="briket arang.jpg" alt="Foto Misi 5" onerror="this.style.display='none'">
+          <img class="misi-slide" src="biji jagung.jpg" alt="Foto Misi 6" onerror="this.style.display='none'">
+          <img class="misi-slide" src="cengkeh.jpg" alt="Foto Misi 7" onerror="this.style.display='none'">
           <div class="misi-img-badge">
             <strong>2026</strong>
             <span data-id="Berdiri di Semarang, Jawa Tengah" data-en="Founded in Semarang, Central Java">Berdiri di Semarang, Jawa Tengah</span>
@@ -1067,6 +1181,7 @@ section + section { border-top: 1px solid var(--border); }
 
 <!-- PERJALANAN (Tab Interaktif) -->
 <section class="tabs-section" id="perjalanan">
+  <div class="perjalanan-batik-accent" aria-hidden="true"></div>
   <div class="section-inner">
     <!-- <div class="section-label reveal">Profil Perusahaan</div> -->
     <div class="section-title reveal" data-id="Lebih dalam tentang kami" data-en="Learn more about us">Lebih dalam tentang kami</div>
@@ -1163,6 +1278,8 @@ section + section { border-top: 1px solid var(--border); }
 
 <!-- NILAI -->
 <section class="nilai-section" id="nilai">
+  <img src="sudutatas.png" alt="" class="nilai-corner nilai-corner-top">
+  <img src="sudutbawah.png" alt="" class="nilai-corner nilai-corner-bottom">
   <div class="section-inner">
     <div class="nilai-header">
       <div>
@@ -1277,6 +1394,8 @@ section + section { border-top: 1px solid var(--border); }
 
 <!-- LOKASI -->
 <section class="lokasi-section" id="lokasi">
+  <img src="sudutpojok.png" alt="" class="lokasi-corner-accent" aria-hidden="true">
+  <img src="sudut-kiri-bawah-outline.png" alt="" class="lokasi-corner-accent-left" aria-hidden="true">
   <div class="section-inner">
     <!-- <div class="section-label reveal">Lokasi Kami</div> -->
     <div class="section-title reveal" data-id="Lokasi Kami" data-en="Our Location">Lokasi Kami</div>
@@ -1428,6 +1547,18 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ─── MISI SLIDESHOW: ganti gambar otomatis tiap 3 detik (sama seperti Introduction di index.html) ───
+(function() {
+  const slides = document.querySelectorAll('#misiVisualInner .misi-slide');
+  if (slides.length <= 1) return;
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 3000);
+})();
 
 // ─── TABS ───
 document.querySelectorAll('.tab-btn').forEach(btn => {
