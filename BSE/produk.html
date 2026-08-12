@@ -44,9 +44,59 @@
 
   /* HERO */
   .hero1 {
+    position: relative;
     padding: 3.5rem 2.5rem 2.5rem;
     border-bottom: 1px solid var(--border);
     margin-top: 50px;
+    overflow: hidden;
+  }
+  .hero-cloud-accent {
+    position: absolute;
+    top: 40px;
+    right: -50px;
+    width: 300px;
+    height: auto;
+    opacity: 0.16;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    animation: cloud-float 7s ease-in-out infinite;
+    will-change: transform;
+  }
+  .hero-cloud-accent-2 {
+    position: absolute;
+    top: 150px;
+    left: -60px;
+    width: 170px;
+    height: auto;
+    opacity: 0.1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    transform: scaleX(-1);
+    animation: cloud-float-2 9s ease-in-out infinite;
+    will-change: transform;
+  }
+  @keyframes cloud-float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-14px, 16px) rotate(-3deg); }
+  }
+  @keyframes cloud-float-2 {
+    0%, 100% { transform: scaleX(-1) translate(0, 0) rotate(0deg); }
+    50% { transform: scaleX(-1) translate(12px, -12px) rotate(3deg); }
+  }
+  .hero1 .hero-eyebrow,
+  .hero1 h1,
+  .hero1 p {
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 640px) {
+    .hero-cloud-accent { width: 130px; top: -10px; right: -10px; }
+    .hero-cloud-accent-2 { width: 90px; top: 120px; left: -30px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cloud-accent, .hero-cloud-accent-2 { animation: none; }
   }
   .hero-eyebrow {
     font-size: 11px;
@@ -185,6 +235,18 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
     padding: 2rem 2.5rem;
+    background-color: #f5f5f5;
+    background-image: url('batik-outline-bw.png');
+    background-repeat: repeat;
+    background-size: 420px auto;
+    position: relative;
+  }
+  .product-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(245, 245, 245, 0.75);
+    pointer-events: none;
   }
   .card {
     border: 1px solid var(--border);
@@ -192,11 +254,12 @@
     overflow: hidden;
     cursor: pointer;
     transition: border-color .2s, box-shadow .2s, transform .2s;
-    background: var(--white);
+    background-color: var(--white);
     width: 100%;
+    position: relative;
+    z-index: 1;
   }
   .card:hover {
-    background: var(--gray-50);
     border-color: var(--gray-600);
     box-shadow: 0 8px 24px rgba(0,0,0,0.07);
     transform: translateY(-3px);
@@ -647,6 +710,8 @@
     </nav>
 
     <section class="hero1">
+  <img src="cloud-accent.png" class="hero-cloud-accent" alt="" aria-hidden="true">
+  <img src="cloud-accent.png" class="hero-cloud-accent-2" alt="" aria-hidden="true">
   <!-- <div class="hero-eyebrow">BAY Sejahtera Export</div> -->
   <h1>Produk Kami</h1>
   <p>Sebagai mitra terpercaya dalam perdagangan internasional, kami mempersembahkan lini produk pilihan terbaik yang siap diekspor ke berbagai belahan dunia. Mulai dari spesifikasi standar hingga kustomisasi sesuai kebutuhan industri Anda, dapatkan solusi produk langsung dari sumber tangan pertama perusahaan kami dengan jaminan kualitas dan legalitas ekspor yang teruji.</p>
@@ -727,7 +792,7 @@
     </div>
   </div>
   <div class="card" data-cat="kopi" data-harga="325000" data-rating="4.7" data-terjual="6198" data-slug="kopi-sangrai-arabika"
-       onclick="openModal({name:'Biji Kopi Sangrai Arabika',name_en:'Roasted Arabica Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp325.000',stock:150,sold:'6.198',rating:'4.7',reviews:2,images:['arabicaroastedbeans.png','arabikaroastedbeans2.png'],desc:'Biji Kopi Sangrai Arabika diproses dengan tingkat roasting yang terjaga untuk menghasilkan aroma khas dan rasa yang kaya. Siap seduh maupun diolah lebih lanjut untuk kebutuhan kedai kopi.',desc_en:'Roasted Arabica coffee beans processed with carefully controlled roasting to bring out a distinctive aroma and rich flavor. Ready to brew or further processed for coffee shop needs.',ulasan:[{nama:'Dewi K.',bintang:5,teks:'Aroma sangrainya pas, tidak gosong. Rasanya nikmat saat diseduh.',teks_en:'The roast aroma is just right, not burnt. Tastes great when brewed.'},{nama:'Hendra L.',bintang:4,teks:'Kemasan rapi dan kopi tetap segar sampai tujuan.',teks_en:'Neat packaging and the coffee stayed fresh until it arrived.'}]})">
+       onclick="openModal({name:'Biji Kopi Sangrai Arabika',name_en:'Roasted Arabica Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp325.000',stock:150,sold:'6.198',rating:'4.7',reviews:2,images:['arabicaroastedbeans.png','arabicaroastedbeans2.png'],desc:'Biji Kopi Sangrai Arabika diproses dengan tingkat roasting yang terjaga untuk menghasilkan aroma khas dan rasa yang kaya. Siap seduh maupun diolah lebih lanjut untuk kebutuhan kedai kopi.',desc_en:'Roasted Arabica coffee beans processed with carefully controlled roasting to bring out a distinctive aroma and rich flavor. Ready to brew or further processed for coffee shop needs.',ulasan:[{nama:'Dewi K.',bintang:5,teks:'Aroma sangrainya pas, tidak gosong. Rasanya nikmat saat diseduh.',teks_en:'The roast aroma is just right, not burnt. Tastes great when brewed.'},{nama:'Hendra L.',bintang:4,teks:'Kemasan rapi dan kopi tetap segar sampai tujuan.',teks_en:'Neat packaging and the coffee stayed fresh until it arrived.'}]})">
     <div class="card-img"><img src="arabicaroastedbeans.png" alt="Biji Kopi Sangrai Arabika"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Kopi" data-en="Coffee">Kopi</div>
@@ -1278,7 +1343,7 @@
       var lang = getCurrentLang();
       var msg = getBuyMessage(lang);
       closeBuyModal();
-      window.open('https://wa.me/6281225353152?text=' + encodeURIComponent(msg), '_blank');
+      window.open('https://wa.me/62882000765023?text=' + encodeURIComponent(msg), '_blank');
     }
 
     function switchTab(tab, el) {
