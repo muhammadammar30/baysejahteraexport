@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bay Sejahtera Export</title>
+    <title>Katalog Produk Ekspor | Kopi, Cengkeh, Jagung, Briket Arang - BAY Sejahtera Export</title>
+    <meta name="description" content="Katalog produk ekspor BAY Sejahtera Export: biji kopi arabika & robusta (green & roasted), cengkeh pilihan, jagung, briket arang. Lengkap dengan HS Code dan spesifikasi ekspor." />
+    <meta property="og:site_name" content="Bay Sejahtera Export" />
+    <meta property="og:title" content="Katalog Produk Ekspor - BAY Sejahtera Export" />
+    <meta property="og:description" content="Kopi, cengkeh, jagung, dan briket arang siap ekspor dengan HS Code dan spesifikasi lengkap." />
+    <meta property="og:image" content="https://baysejahteraexport.vercel.app/favicon.png" />
+    <meta property="og:url" content="https://baysejahteraexport.vercel.app/produk.html" />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://baysejahteraexport.vercel.app/produk.html" />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -346,17 +354,145 @@
   /* SVG icon helpers */
   .icon { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
 
+  /* ══════════════════════════════════════════════════════════
+     HAMBURGER & MOBILE MENU (fallback bila belum ada di stylee.css)
+     ══════════════════════════════════════════════════════════ */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 0;
+  }
+  .ham-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #191B19;
+    border-radius: 2px;
+    transition: transform .3s ease, opacity .3s ease, background .3s ease;
+  }
+  .hamburger.open .ham-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open .ham-bar:nth-child(2) { opacity: 0; }
+  .hamburger.open .ham-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    transition: max-height .35s ease;
+  }
+  .mobile-menu.open { max-height: 500px; }
+  .mobile-nav-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: .5rem 1.5rem 1.25rem;
+    margin: 0;
+  }
+  .mobile-nav-menu li { border-bottom: 1px solid var(--border); }
+  .mobile-nav-menu li:last-child { border-bottom: none; }
+  .mobile-nav-menu a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .mobile-nav-menu a.active { font-weight: 700; }
+
+  /* ══════════════════════════════════════════════════════════
+     RESPONSIVE — TABLET (max-width: 1024px)
+     ══════════════════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .hero1 { padding: 3rem 1.75rem 2rem; }
+    .hero1 h1 { font-size: 32px; }
+    .toolbar { padding: .875rem 1.75rem; }
+    .filter-panel { padding: 0 1.75rem; }
+    .filter-panel.open { padding: 1.5rem 1.75rem; }
+    .fp-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .product-grid { grid-template-columns: repeat(3, 1fr); padding: 1.75rem; gap: 18px; }
+    .footer-bar { padding: 1.1rem 1.75rem; }
+    .modal-box { max-width: 92vw; }
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     RESPONSIVE — HP / MOBILE (max-width: 768px)
+     ══════════════════════════════════════════════════════════ */
   @media (max-width: 768px) {
+    /* NAV */
+    .nav-menu { display: none !important; }
+    .hamburger { display: flex; }
+    .mobile-menu { display: flex; }
+    .nav-logo { font-size: 13px; }
+    .lang-switch-container { transform: scale(.88); transform-origin: right center; }
+
     nav { padding: 0 1.25rem; }
-    .nav-links { display: none; }
-    .hero1 { padding: 2rem 1.25rem 1.5rem; }
-    .hero1 h1 { font-size: 30px; }
-    .hero1 p { font-size: 15px; }
-    .toolbar { padding: .75rem 1.25rem; }
+    .hero1 { padding: 2rem 1.25rem 1.5rem; margin-top: 56px; }
+    .hero1 h1 { font-size: 26px; }
+    .hero1 p { font-size: 14px; }
+
+    .toolbar { padding: .75rem 1.25rem; gap: 10px; }
+    .toolbar-left { gap: 6px; }
+    .chip { padding: 5px 10px; font-size: 11px; }
+    .toolbar-right { width: 100%; justify-content: space-between; }
+
+    .filter-panel { padding: 0 1.25rem; }
     .filter-panel.open { padding: 1.25rem; }
     .fp-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+
     .product-grid { grid-template-columns: repeat(2, 1fr); padding: 1rem 1.25rem; gap: 12px; }
-    .footer-bar { padding: 1rem 1.25rem; }
+    .card-img { aspect-ratio: 1/1; }
+    .card-body { padding: .9rem .85rem 1rem; }
+    .card-name { font-size: 14px; margin-bottom: 8px; }
+    .card-price { font-size: 13px; }
+    .card-sold, .card-rating { font-size: 11px; }
+    .badge-tag { font-size: 10px; }
+
+    .footer-bar { padding: 1rem 1.25rem; flex-wrap: wrap; gap: 10px; }
+
+    /* MODAL */
+    .modal-box { max-height: 94vh; }
+    .modal-breadcrumb { padding: 14px 16px 0; font-size: 11px; }
+    .modal-top { padding: 12px 16px 18px; gap: 1.25rem; }
+    .modal-product-name { font-size: 17px; }
+    .modal-price { font-size: 22px; }
+    .modal-tabs { padding: 0 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .modal-tab { padding: 12px 12px; font-size: 12px; white-space: nowrap; }
+    .modal-tab-content { padding: 16px 16px 22px; }
+    .spec-table td:first-child { width: 46%; }
+
+    /* BUY MODAL */
+    .buy-modal-box { padding: 22px 18px; max-width: 92vw; }
+
+    /* FOOTER */
+    .footer-container { grid-template-columns: 1fr !important; gap: 2rem !important; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .footer-side-photo { display: none !important; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     RESPONSIVE — HP KECIL (max-width: 480px)
+     ══════════════════════════════════════════════════════════ */
+  @media (max-width: 480px) {
+    .hero1 h1 { font-size: 22px; }
+    .product-grid { grid-template-columns: 1fr; }
+    .card-img { aspect-ratio: 4/3; }
+    .fp-grid { grid-template-columns: 1fr; }
+    .toolbar-left { flex-wrap: wrap; }
+    .chip { flex: 1 1 auto; justify-content: center; }
+    .filter-chip { flex-basis: 100%; }
   }
 
   /* ── PRODUCT DETAIL MODAL ── */
@@ -542,6 +678,8 @@
     display: none;
   }
   .modal-tab-content.active { display: block; }
+  .modal-tab-content p { margin: 0 0 12px; }
+  .modal-tab-content p:last-child { margin-bottom: 0; }
 
   /* Review item */
   .review-item {
@@ -563,6 +701,57 @@
   .review-meta strong { color: var(--text-primary); font-size: 13px; }
   .review-stars { color: #f59e0b; font-size: 12px; }
   .review-text { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+
+  /* Export spec tab */
+  .spec-hs-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gray-50);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    margin-bottom: 16px;
+  }
+  .spec-hs-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--text-tertiary);
+  }
+  .spec-hs-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'Inter', monospace;
+  }
+  .spec-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .spec-table tr { border-bottom: 1px solid var(--border); }
+  .spec-table tr:last-child { border-bottom: none; }
+  .spec-table td {
+    padding: 9px 0;
+    font-size: 13px;
+    vertical-align: top;
+  }
+  .spec-table td:first-child {
+    color: var(--text-tertiary);
+    width: 42%;
+    padding-right: 12px;
+  }
+  .spec-table td:last-child {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .spec-disclaimer {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    font-style: italic;
+    line-height: 1.6;
+  }
   /* ── RFQ BUTTON IN MODAL ── */
   .modal-rfq-btn {
     display: flex;
@@ -706,6 +895,20 @@
                 <span class="lang-label">EN</span>
             </div>
         </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu">
+            <span class="ham-bar"></span>
+            <span class="ham-bar"></span>
+            <span class="ham-bar"></span>
+        </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html" class="nav-link" data-id="Home" data-en="Home">Home</a></li>
+            <li><a href="produk.html" class="nav-link" data-id="Produk" data-en="Products">Produk</a></li>
+            <li><a href="About.html" class="nav-link" data-id="Tentang Kami" data-en="About Us">About Us</a></li>
+        </ul>
     </div>
     </nav>
 
@@ -779,7 +982,7 @@
 
 <div class="product-grid" id="product-grid">
   <div class="card" data-cat="kopi" data-harga="190000" data-rating="4.8" data-terjual="6198" data-slug="kopi-arabika"
-       onclick="openModal({name:'Biji Kopi Arabika',name_en:'Arabica Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp190.000',stock:150,sold:'6.198',rating:'4.8',reviews:2,images:['arabicagreenbeans.png','arabicagreenbeans2.png'],desc:'Biji Kopi Arabika Grade A dipanen dari perkebunan pilihan di Semarang, Jawa Tengah. Memiliki cita rasa lembut dengan tingkat keasaman seimbang, cocok untuk kebutuhan roasting maupun ekspor green bean.',desc_en:'Grade A Arabica coffee beans harvested from selected plantations in Semarang, Central Java. Known for a smooth flavor with balanced acidity, ideal for roasting or green bean export.',ulasan:[{nama:'Budi S.',bintang:5,teks:'Kualitasnya sangat baik, aroma kopi terasa kuat dan segar. Pengiriman juga cepat!',teks_en:'The quality is very good, the coffee aroma is strong and fresh. Shipping was fast too!'},{nama:'Sari W.',bintang:5,teks:'Sudah beli berkali-kali, konsisten kualitasnya. Highly recommended!',teks_en:'I have bought this many times, the quality is consistently good. Highly recommended!'}]})">
+       onclick="openModal({name:'Biji Kopi Arabika',name_en:'Arabica Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp190.000',stock:150,sold:'6.198',rating:'4.8',reviews:2,images:['arabicagreenbeans.png','arabicagreenbeans2.png'],desc:'Biji Kopi Hijau Arabika merupakan kopi pilihan yang berasal dari dataran tinggi Temanggung, Jawa Tengah, Indonesia. Kopi ini tumbuh di lingkungan perkebunan dengan ketinggian dan kondisi iklim yang mendukung perkembangan karakter rasa serta aroma yang kompleks. Karakteristik tersebut menjadikan Arabika Temanggung memiliki keunikan tersendiri sebagai salah satu kopi khas dari kawasan Jawa Tengah.\n\nKeistimewaan kopi ini terletak pada aroma yang harum, cita rasa yang kompleks, serta keseimbangan antara keasaman dan rasa manis alami. Proses budidaya di tanah vulkanik yang subur membantu menghasilkan biji kopi dengan potensi flavor yang beragam dan karakter yang dapat berkembang dengan baik melalui proses sangrai yang tepat.\n\nSaat diseduh, Arabika dapat menampilkan aroma yang lembut dan kompleks dengan karakter floral, fruity, caramel, chocolate, dan spicy. Pada cangkir, kopi ini memiliki acidity yang cerah dan seimbang, body yang medium, rasa manis yang menyenangkan, serta aftertaste yang bersih dan bertahan. Perpaduan karakter tersebut memberikan pengalaman minum kopi yang lebih aromatik dan berlapis, dengan perubahan rasa yang dapat dirasakan dari aroma awal hingga aftertaste.\n\nDengan karakter aromatik dan kompleksitas cita rasanya, Arabika sangat sesuai bagi specialty coffee roasters, coffee enthusiasts, maupun penikmat kopi yang mengutamakan keunikan aroma, flavor, sweetness, acidity, dan keseimbangan dalam setiap cangkir.',desc_en:'These Arabica green coffee beans are premium quality beans sourced from the highlands of Temanggung, Central Java, Indonesia. Grown in an environment where the altitude and climate foster the development of complex flavor profiles and aromas, Temanggung Arabica possesses a distinctive character that sets it apart as a signature coffee from the Central Java region. \n\nThis coffee is distinguished by its fragrant aroma, complex flavor profile, and a harmonious balance between acidity and natural sweetness. Cultivation in fertile volcanic soil yields beans with diverse flavor potential—characteristics that are beautifully enhanced through precise roasting. \n\nWhen brewed, the coffee reveals a delicate yet complex aroma featuring floral, fruity, caramel, chocolate, and spicy notes. In the cup, it offers bright, balanced acidity, a medium body, pleasant sweetness, and a clean, lingering aftertaste. This combination of traits creates a multi-layered, aromatic coffee experience, with flavor nuances that evolve from the initial aroma through to the finish. \n\nWith its aromatic profile and flavor complexity, this Arabica is ideal for specialty coffee roasters, enthusiasts, and connoisseurs who value unique aromas, flavors, sweetness, acidity, and balance in every cup.',hs:'0901.11.10',specs:[{label_id:'Varietas',label_en:'Variety',val_id:'Arabika',val_en:'Arabica'},{label_id:'Grade',label_en:'Grade',val_id:'Grade A (Specialty, Screen 16-18)',val_en:'Grade A (Specialty, Screen 16-18)'},{label_id:'Kadar air',label_en:'Moisture content',val_id:'11–12%',val_en:'11–12%'},{label_id:'Defect count',label_en:'Defect count',val_id:'Maks. 5 defect/300gr',val_en:'Max. 5 defects/300gr'},{label_id:'Kemasan',label_en:'Packaging',val_id:'Karung goni/jute bag, netto 60 kg dengan GrainPro liner',val_en:'Jute bag, 60 kg net, with GrainPro liner'},{label_id:'Kapasitas per kontainer 20ft',label_en:'20ft container capacity',val_id:'± 18–19 ton (± 300 karung)',val_en:'± 18–19 tons (± 300 bags)'},{label_id:'MOQ',label_en:'MOQ',val_id:'1 ton (dapat disesuaikan)',val_en:'1 ton (negotiable)'},{label_id:'Term pembayaran',label_en:'Payment terms',val_id:'TT 30% DP, 70% sebelum pengiriman',val_en:'TT 30% deposit, 70% before shipment'},{label_id:'Incoterms',label_en:'Incoterms',val_id:'FOB Tanjung Emas / CIF / EXW',val_en:'FOB Tanjung Emas / CIF / EXW'},{label_id:'Lead time produksi',label_en:'Production lead time',val_id:'7–14 hari kerja setelah PO',val_en:'7–14 working days after PO'}],ulasan:[{nama:'Budi S.',bintang:5,teks:'Kualitasnya sangat baik, aroma kopi terasa kuat dan segar. Pengiriman juga cepat!',teks_en:'The quality is very good, the coffee aroma is strong and fresh. Shipping was fast too!'},{nama:'Sari W.',bintang:5,teks:'Sudah beli berkali-kali, konsisten kualitasnya. Highly recommended!',teks_en:'I have bought this many times, the quality is consistently good. Highly recommended!'}]})">
     <div class="card-img"><img src="arabicagreenbeans.png" alt="Biji Kopi Arabika"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Kopi" data-en="Coffee">Kopi</div>
@@ -792,7 +995,7 @@
     </div>
   </div>
   <div class="card" data-cat="kopi" data-harga="325000" data-rating="4.7" data-terjual="6198" data-slug="kopi-sangrai-arabika"
-       onclick="openModal({name:'Biji Kopi Sangrai Arabika',name_en:'Roasted Arabica Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp325.000',stock:150,sold:'6.198',rating:'4.7',reviews:2,images:['arabicaroastedbeans.png','arabicaroastedbeans2.png'],desc:'Biji Kopi Sangrai Arabika diproses dengan tingkat roasting yang terjaga untuk menghasilkan aroma khas dan rasa yang kaya. Siap seduh maupun diolah lebih lanjut untuk kebutuhan kedai kopi.',desc_en:'Roasted Arabica coffee beans processed with carefully controlled roasting to bring out a distinctive aroma and rich flavor. Ready to brew or further processed for coffee shop needs.',ulasan:[{nama:'Dewi K.',bintang:5,teks:'Aroma sangrainya pas, tidak gosong. Rasanya nikmat saat diseduh.',teks_en:'The roast aroma is just right, not burnt. Tastes great when brewed.'},{nama:'Hendra L.',bintang:4,teks:'Kemasan rapi dan kopi tetap segar sampai tujuan.',teks_en:'Neat packaging and the coffee stayed fresh until it arrived.'}]})">
+       onclick="openModal({name:'Biji Kopi Sangrai Arabika',name_en:'Roasted Arabica Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp325.000',stock:150,sold:'6.198',rating:'4.7',reviews:2,images:['arabicaroastedbeans.png','arabicaroastedbeans2.png'],desc:'Biji Kopi Arabika merupakan kopi pilihan yang berasal dari dataran tinggi Temanggung, Jawa Tengah, Indonesia. Kopi ini tumbuh di lingkungan perkebunan dengan ketinggian dan kondisi iklim yang mendukung perkembangan karakter rasa serta aroma yang kompleks. Karakteristik tersebut menjadikan Arabika Temanggung memiliki keunikan tersendiri sebagai salah satu kopi khas dari kawasan Jawa Tengah.\n\nKeistimewaan kopi ini terletak pada aroma yang harum, cita rasa yang kompleks, serta keseimbangan antara keasaman dan rasa manis alami. Proses budidaya di tanah vulkanik yang subur membantu menghasilkan biji kopi dengan potensi flavor yang beragam dan karakter yang dapat berkembang dengan baik melalui proses sangrai yang tepat.\n\nSaat diseduh, Arabika dapat menampilkan aroma yang lembut dan kompleks dengan karakter floral, fruity, caramel, chocolate, dan spicy. Pada cangkir, kopi ini memiliki acidity yang cerah dan seimbang, body yang medium, rasa manis yang menyenangkan, serta aftertaste yang bersih dan bertahan. Perpaduan karakter tersebut memberikan pengalaman minum kopi yang lebih aromatik dan berlapis, dengan perubahan rasa yang dapat dirasakan dari aroma awal hingga aftertaste.\n\nDengan karakter aromatik dan kompleksitas cita rasanya, Arabika sangat sesuai bagi specialty coffee roasters, coffee enthusiasts, maupun penikmat kopi yang mengutamakan keunikan aroma, flavor, sweetness, acidity, dan keseimbangan dalam setiap cangkir.',desc_en:'These Arabica coffee beans are premium quality beans sourced from the highlands of Temanggung, Central Java, Indonesia. Grown in an environment where the altitude and climate foster the development of complex flavor profiles and aromas, Temanggung Arabica possesses a distinctive character that sets it apart as a signature coffee from the Central Java region. \n\nThis coffee is distinguished by its fragrant aroma, complex flavor profile, and a harmonious balance between acidity and natural sweetness. Cultivation in fertile volcanic soil yields beans with diverse flavor potential—characteristics that are beautifully enhanced through precise roasting. \n\nWhen brewed, the coffee reveals a delicate yet complex aroma featuring floral, fruity, caramel, chocolate, and spicy notes. In the cup, it offers bright, balanced acidity, a medium body, pleasant sweetness, and a clean, lingering aftertaste. This combination of traits creates a multi-layered, aromatic coffee experience, with flavor nuances that evolve from the initial aroma through to the finish. \n\nWith its aromatic profile and flavor complexity, this Arabica is ideal for specialty coffee roasters, enthusiasts, and connoisseurs who value unique aromas, flavors, sweetness, acidity, and balance in every cup.',hs:'0901.21.10',specs:[{label_id:'Varietas',label_en:'Variety',val_id:'Arabika',val_en:'Arabica'},{label_id:'Tingkat roasting',label_en:'Roast level',val_id:'Light / Medium / Dark (sesuai permintaan)',val_en:'Light / Medium / Dark (upon request)'},{label_id:'Kadar air',label_en:'Moisture content',val_id:'3–4%',val_en:'3–4%'},{label_id:'Kemasan',label_en:'Packaging',val_id:'Standing pouch food-grade dengan one-way valve, netto 250 g / 1 kg, atau bulk 25 kg',val_en:'Food-grade standing pouch with one-way valve, 250 g / 1 kg net, or 25 kg bulk'},{label_id:'MOQ',label_en:'MOQ',val_id:'500 kg (dapat disesuaikan)',val_en:'500 kg (negotiable)'},{label_id:'Term pembayaran',label_en:'Payment terms',val_id:'TT / L/C at sight',val_en:'TT / L/C at sight'},{label_id:'Incoterms',label_en:'Incoterms',val_id:'FOB / CIF',val_en:'FOB / CIF'},{label_id:'Lead time produksi',label_en:'Production lead time',val_id:'5–10 hari kerja (roasting fresh sesuai order)',val_en:'5–10 working days (freshly roasted per order)'},{label_id:'Shelf life',label_en:'Shelf life',val_id:'12 bulan dari tanggal roasting (unopened)',val_en:'12 months from roast date (unopened)'}],ulasan:[{nama:'Dewi K.',bintang:5,teks:'Aroma sangrainya pas, tidak gosong. Rasanya nikmat saat diseduh.',teks_en:'The roast aroma is just right, not burnt. Tastes great when brewed.'},{nama:'Hendra L.',bintang:4,teks:'Kemasan rapi dan kopi tetap segar sampai tujuan.',teks_en:'Neat packaging and the coffee stayed fresh until it arrived.'}]})">
     <div class="card-img"><img src="arabicaroastedbeans.png" alt="Biji Kopi Sangrai Arabika"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Kopi" data-en="Coffee">Kopi</div>
@@ -805,7 +1008,7 @@
     </div>
   </div>
   <div class="card" data-cat="kopi" data-harga="115000" data-rating="4.9" data-terjual="10598" data-slug="kopi-robusta"
-       onclick="openModal({name:'Biji Kopi Robusta',name_en:'Robusta Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp115.000',stock:200,sold:'10.598',rating:'4.9',reviews:2,images:['robustagreenbeans.png','robustagreenbeans2.png'],desc:'Biji Kopi Robusta Premium dari Semarang, Jawa Tengah dengan kandungan kafein tinggi dan cita rasa kuat. Cocok untuk campuran espresso maupun produk kopi premium lainnya.',desc_en:'Premium Robusta coffee beans from Semarang, Central Java, with high caffeine content and a bold flavor. Ideal for espresso blends or other premium coffee products.',ulasan:[{nama:'Ahmad R.',bintang:5,teks:'Kualitas robustanya konsisten, cocok untuk campuran espresso.',teks_en:'The robusta quality is consistent, great for espresso blends.'},{nama:'Rizky M.',bintang:5,teks:'Sudah repeat order berkali-kali, kualitas terjaga terus.',teks_en:'I have reordered many times, the quality stays consistent.'}]})">
+       onclick="openModal({name:'Biji Kopi Robusta',name_en:'Robusta Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp115.000',stock:200,sold:'10.598',rating:'4.9',reviews:2,images:['robustagreenbeans.png','robustagreenbeans2.png'],desc:'Biji Kopi hijau robusta dengan varietas robusta temanggung merupakan salah satu kopi unggulan dari wilayah Temanggung, Jawa Tengah, Indonesia. Kopi ini dikenal karena kualitas bijinya yang baik, karakter rasa yang kuat, serta cita rasa khas yang mencerminkan kondisi geografis dan lingkungan perkebunan Temanggung.\n\nBiji kopi ini menawarkan pengalaman menikmati kopi yang kaya dan berkarakter. Produk ini mencerminkan kekayaan kopi Indonesia karena dibudidayakan di wilayah dataran tinggi dengan tanah vulkanik yang subur serta kondisi iklim yang mendukung pertumbuhan tanaman kopi. Lingkungan tersebut membantu menghasilkan biji Robusta dengan karakter yang khas dan konsisten.\n\nBiji Kopi robusta dengan grade 1 memiliki profil rasa yang kuat dan kompleks, dengan karakter body yang tebal, tingkat keasaman yang cenderung rendah hingga seimbang, serta cita rasa khas seperti cokelat, kacang-kacangan, rempah, dan sedikit rasa earthy. Karakter tersebut menjadikan Robusta Temanggung cocok untuk berbagai kebutuhan, baik sebagai bahan single origin, campuran, maupun bahan baku industri kopi.',desc_en:'Temanggung variety Robusta green coffee beans are a premium product from the Temanggung region of Central Java, Indonesia. This coffee is renowned for its high bean quality, robust flavor profile, and distinctive taste that reflects the unique geography and environmental conditions of Temanggung’s plantations. \n\nThese beans offer a rich and characterful coffee experience. The product embodies the excellence of Indonesian coffee, as it is cultivated in highland areas featuring fertile volcanic soil and a climate ideal for coffee plant growth. This environment contributes to the production of Robusta beans with a distinctive and consistent character. \n\nGrade 1 Robusta beans possess a bold, complex flavor profile characterized by a full body, low-to-balanced acidity, and distinctive notes of chocolate, nuts, spices, and a hint of earthiness. These qualities make Temanggung Robusta suitable for various applications, whether as a single-origin offering, a component in blends, or a raw material for the coffee industry.',hs:'0901.11.10',specs:[{label_id:'Varietas',label_en:'Variety',val_id:'Robusta',val_en:'Robusta'},{label_id:'Grade',label_en:'Grade',val_id:'Grade A (Screen 16+)',val_en:'Grade A (Screen 16+)'},{label_id:'Kadar air',label_en:'Moisture content',val_id:'12–13%',val_en:'12–13%'},{label_id:'Defect count',label_en:'Defect count',val_id:'Maks. 8 defect/300gr',val_en:'Max. 8 defects/300gr'},{label_id:'Kemasan',label_en:'Packaging',val_id:'Karung goni, netto 60 kg',val_en:'Jute bag, 60 kg net'},{label_id:'Kapasitas per kontainer 20ft',label_en:'20ft container capacity',val_id:'± 19–20 ton',val_en:'± 19–20 tons'},{label_id:'MOQ',label_en:'MOQ',val_id:'1 ton',val_en:'1 ton'},{label_id:'Term pembayaran',label_en:'Payment terms',val_id:'TT / L/C',val_en:'TT / L/C'},{label_id:'Incoterms',label_en:'Incoterms',val_id:'FOB Tanjung Emas / CIF',val_en:'FOB Tanjung Emas / CIF'},{label_id:'Lead time produksi',label_en:'Production lead time',val_id:'7–14 hari kerja',val_en:'7–14 working days'}],ulasan:[{nama:'Ahmad R.',bintang:5,teks:'Kualitas robustanya konsisten, cocok untuk campuran espresso.',teks_en:'The robusta quality is consistent, great for espresso blends.'},{nama:'Rizky M.',bintang:5,teks:'Sudah repeat order berkali-kali, kualitas terjaga terus.',teks_en:'I have reordered many times, the quality stays consistent.'}]})">
     <div class="card-img"><img src="robustagreenbeans.png" alt="Biji Kopi Robusta"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Kopi" data-en="Coffee">Kopi</div>
@@ -819,7 +1022,7 @@
     </div>
   </div>
   <div class="card" data-cat="kopi" data-harga="235000" data-rating="4.6" data-terjual="6198" data-slug="kopi-sangrai-robusta"
-       onclick="openModal({name:'Biji Kopi Sangrai Robusta',name_en:'Roasted Robusta Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp235.000',stock:150,sold:'6.198',rating:'4.6',reviews:1,images:['robustaroastedbeans.png','robustaroastedbeans2.png'],desc:'Biji Kopi Sangrai Robusta menawarkan rasa yang tegas dan aroma sangrai yang kuat, hasil proses roasting yang konsisten dari biji robusta pilihan asal Semarang.',desc_en:'Roasted Robusta coffee beans offer a bold taste and strong roast aroma, the result of consistent roasting from selected robusta beans from Semarang.',ulasan:[{nama:'Tono S.',bintang:5,teks:'Rasanya kuat dan pas untuk kopi hitam sehari-hari.',teks_en:'The taste is bold and perfect for everyday black coffee.'}]})">
+       onclick="openModal({name:'Biji Kopi Sangrai Robusta',name_en:'Roasted Robusta Coffee Beans',cat:'Kopi',cat_en:'Coffee',price:'Rp235.000',stock:150,sold:'6.198',rating:'4.6',reviews:1,images:['robustaroastedbeans.png','robustaroastedbeans2.png'],desc:'Biji Kopi robusta dengan varietas robusta temanggung merupakan salah satu kopi unggulan dari wilayah Temanggung, Jawa Tengah, Indonesia. Kopi ini dikenal karena kualitas bijinya yang baik, karakter rasa yang kuat, serta cita rasa khas yang mencerminkan kondisi geografis dan lingkungan perkebunan Temanggung.\n\nBiji kopi ini menawarkan pengalaman menikmati kopi yang kaya dan berkarakter. Produk ini mencerminkan kekayaan kopi Indonesia karena dibudidayakan di wilayah dataran tinggi dengan tanah vulkanik yang subur serta kondisi iklim yang mendukung pertumbuhan tanaman kopi. Lingkungan tersebut membantu menghasilkan biji Robusta dengan karakter yang khas dan konsisten.\n\nBiji Kopi robusta dengan grade 1 memiliki profil rasa yang kuat dan kompleks, dengan karakter body yang tebal, tingkat keasaman yang cenderung rendah hingga seimbang, serta cita rasa khas seperti cokelat, kacang-kacangan, rempah, dan sedikit rasa earthy. Karakter tersebut menjadikan Robusta Temanggung cocok untuk berbagai kebutuhan, baik sebagai bahan single origin, campuran, maupun bahan baku industri kopi.',desc_en:'Temanggung variety Robusta coffee beans are a premium product from the Temanggung region of Central Java, Indonesia. This coffee is renowned for its high bean quality, robust flavor profile, and distinctive taste that reflects the unique geography and environmental conditions of Temanggung’s plantations. \n\nThese beans offer a rich and characterful coffee experience. The product embodies the excellence of Indonesian coffee, as it is cultivated in highland areas featuring fertile volcanic soil and a climate ideal for coffee plant growth. This environment contributes to the production of Robusta beans with a distinctive and consistent character. \n\nGrade 1 Robusta beans possess a bold, complex flavor profile characterized by a full body, low-to-balanced acidity, and distinctive notes of chocolate, nuts, spices, and a hint of earthiness. These qualities make Temanggung Robusta suitable for various applications, whether as a single-origin offering, a component in blends, or a raw material for the coffee industry.',hs:'0901.21.10',specs:[{label_id:'Varietas',label_en:'Variety',val_id:'Robusta',val_en:'Robusta'},{label_id:'Tingkat roasting',label_en:'Roast level',val_id:'Medium / Dark',val_en:'Medium / Dark'},{label_id:'Kadar air',label_en:'Moisture content',val_id:'3–4%',val_en:'3–4%'},{label_id:'Kemasan',label_en:'Packaging',val_id:'Standing pouch food-grade, netto 250 g / 1 kg, atau bulk 25 kg',val_en:'Food-grade standing pouch, 250 g / 1 kg net, or 25 kg bulk'},{label_id:'MOQ',label_en:'MOQ',val_id:'500 kg',val_en:'500 kg'},{label_id:'Term pembayaran',label_en:'Payment terms',val_id:'TT / L/C at sight',val_en:'TT / L/C at sight'},{label_id:'Incoterms',label_en:'Incoterms',val_id:'FOB / CIF',val_en:'FOB / CIF'},{label_id:'Lead time produksi',label_en:'Production lead time',val_id:'5–10 hari kerja',val_en:'5–10 working days'}],ulasan:[{nama:'Tono S.',bintang:5,teks:'Rasanya kuat dan pas untuk kopi hitam sehari-hari.',teks_en:'The taste is bold and perfect for everyday black coffee.'}]})">
     <div class="card-img"><img src="robustaroastedbeans.png" alt="Biji Kopi Sangrai Robusta"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Kopi" data-en="Coffee">Kopi</div>
@@ -832,7 +1035,7 @@
     </div>
   </div>
   <div class="card" data-cat="briket" data-harga="43000" data-rating="4.5" data-terjual="5298" data-slug="briket-arang"
-       onclick="openModal({name:'Briket Arang',name_en:'Charcoal Briquettes',cat:'Briket',cat_en:'Briquettes',price:'Rp43.000',stock:100,sold:'5.298',rating:'4.5',reviews:2,images:['briket arang.jpg','briketarang2.png'],desc:'Briket arang asal Jawa Tengah yang diproses untuk menghasilkan panas tinggi, tahan lama, dan rendah asap. Cocok untuk kebutuhan ekspor maupun penggunaan komersial.',desc_en:'Charcoal briquettes from Central Java processed to produce high heat, long burn time, and low smoke. Suitable for export needs or commercial use.',ulasan:[{nama:'Fauzi A.',bintang:5,teks:'Briketnya panas merata dan tidak cepat habis.',teks_en:'The briquettes burn evenly and last a long time.'},{nama:'Lina F.',bintang:4,teks:'Asapnya minim, sesuai untuk ekspor.',teks_en:'Very little smoke, suitable for export.'}]})">
+       onclick="openModal({name:'Briket Arang',name_en:'Charcoal Briquettes',cat:'Briket',cat_en:'Briquettes',price:'Rp43.000',stock:100,sold:'5.298',rating:'4.5',reviews:2,images:['briket arang.jpg','briketarang2.png'],desc:'Briket arang asal Jawa Tengah yang diproses untuk menghasilkan panas tinggi, tahan lama, dan rendah asap. Cocok untuk kebutuhan ekspor maupun penggunaan komersial.',desc_en:'Charcoal briquettes from Central Java processed to produce high heat, long burn time, and low smoke. Suitable for export needs or commercial use.',hs:'4402.90.00',specs:[{label_id:'Bahan baku',label_en:'Raw material',val_id:'Tempurung kelapa / kayu (sesuai varian)',val_en:'Coconut shell / wood (depending on variant)'},{label_id:'Bentuk',label_en:'Shape',val_id:'Cube / Hexagonal / Pillow',val_en:'Cube / Hexagonal / Pillow'},{label_id:'Kadar air',label_en:'Moisture content',val_id:'Maks. 8%',val_en:'Max. 8%'},{label_id:'Fixed carbon',label_en:'Fixed carbon',val_id:'Min. 75%',val_en:'Min. 75%'},{label_id:'Kadar abu',label_en:'Ash content',val_id:'Maks. 3–5%',val_en:'Max. 3–5%'},{label_id:'Burning time',label_en:'Burning time',val_id:'± 2–3 jam',val_en:'± 2–3 hours'},{label_id:'Kemasan',label_en:'Packaging',val_id:'Karton box 10 kg atau bulk bag 500 kg/1 ton',val_en:'10 kg carton box or 500 kg/1 ton bulk bag'},{label_id:'Kapasitas per kontainer 20ft',label_en:'20ft container capacity',val_id:'± 18–20 ton',val_en:'± 18–20 tons'},{label_id:'MOQ',label_en:'MOQ',val_id:'1 ton',val_en:'1 ton'},{label_id:'Term pembayaran',label_en:'Payment terms',val_id:'TT 30/70 atau L/C',val_en:'TT 30/70 or L/C'},{label_id:'Incoterms',label_en:'Incoterms',val_id:'FOB / CIF',val_en:'FOB / CIF'},{label_id:'Lead time produksi',label_en:'Production lead time',val_id:'14–21 hari kerja',val_en:'14–21 working days'}],ulasan:[{nama:'Fauzi A.',bintang:5,teks:'Briketnya panas merata dan tidak cepat habis.',teks_en:'The briquettes burn evenly and last a long time.'},{nama:'Lina F.',bintang:4,teks:'Asapnya minim, sesuai untuk ekspor.',teks_en:'Very little smoke, suitable for export.'}]})">
     <div class="card-img"><img src="briket arang.jpg" alt="Briket Arang"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Briket" data-en="Briquette">Briket</div>
@@ -845,7 +1048,7 @@
     </div>
   </div>
   <div class="card" data-cat="biji" data-harga="73000" data-rating="4.3" data-terjual="320" data-slug="biji-jagung"
-       onclick="openModal({name:'Biji Jagung',name_en:'Corn Seeds',cat:'Biji-bijian',cat_en:'Grains',price:'Rp73.000',stock:200,sold:'320',rating:'4.3',reviews:1,images:['biji jagung.jpg','bijijagung2.png'],desc:'Biji Jagung pilihan dari Jawa Tengah dan Tuban, diproses dari hasil panen terbaik. Cocok untuk kebutuhan industri pakan ternak maupun ekspor langsung.',desc_en:'Selected corn seeds from Central Java and Tuban, processed from the best harvests. Suitable for the animal feed industry or direct export.',ulasan:[{nama:'Rina H.',bintang:4,teks:'Jagungnya bersih dan kering, sesuai ekspektasi.',teks_en:'The corn is clean and dry, matches my expectations.'}]})">
+       onclick="openModal({name:'Biji Jagung',name_en:'Corn Seeds',cat:'Biji-bijian',cat_en:'Grains',price:'Rp73.000',stock:200,sold:'320',rating:'4.3',reviews:1,images:['biji jagung.jpg','bijijagung2.png'],desc:'Biji Jagung pilihan dari Jawa Tengah dan Tuban, diproses dari hasil panen terbaik. Cocok untuk kebutuhan industri pakan ternak maupun ekspor langsung.',desc_en:'Selected corn seeds from Central Java and Tuban, processed from the best harvests. Suitable for the animal feed industry or direct export.',hs:'1005.90.90',specs:[{label_id:'Jenis',label_en:'Type',val_id:'Jagung pipil kering',val_en:'Dried kernel corn'},{label_id:'Kadar air',label_en:'Moisture content',val_id:'Maks. 14%',val_en:'Max. 14%'},{label_id:'Broken kernel',label_en:'Broken kernel',val_id:'Maks. 2%',val_en:'Max. 2%'},{label_id:'Foreign matter',label_en:'Foreign matter',val_id:'Maks. 1%',val_en:'Max. 1%'},{label_id:'Aflatoxin',label_en:'Aflatoxin',val_id:'Sesuai ambang batas negara tujuan (umumnya <20 ppb)',val_en:'Per destination country threshold (typically <20 ppb)'},{label_id:'Kemasan',label_en:'Packaging',val_id:'Karung PP 50 kg atau bulk container',val_en:'PP sack 50 kg or bulk container'},{label_id:'MOQ',label_en:'MOQ',val_id:'5 ton',val_en:'5 tons'},{label_id:'Term pembayaran',label_en:'Payment terms',val_id:'TT / L/C',val_en:'TT / L/C'},{label_id:'Incoterms',label_en:'Incoterms',val_id:'FOB / CIF',val_en:'FOB / CIF'},{label_id:'Lead time produksi',label_en:'Production lead time',val_id:'7–14 hari kerja',val_en:'7–14 working days'}],ulasan:[{nama:'Rina H.',bintang:4,teks:'Jagungnya bersih dan kering, sesuai ekspektasi.',teks_en:'The corn is clean and dry, matches my expectations.'}]})">
     <div class="card-img"><img src="biji jagung.jpg" alt="Biji Jagung"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Biji-bijian" data-en="Grains">Biji-bijian</div>
@@ -858,7 +1061,7 @@
     </div>
   </div>
   <div class="card" data-cat="kopi" data-harga="195000" data-rating="4.8" data-terjual="145" data-slug="cengkeh"
-       onclick="openModal({name:'Cengkeh Pilihan',name_en:'Selected Cloves',cat:'Rempah',cat_en:'Spices',price:'Rp195.000',stock:75,sold:'145',rating:'4.8',reviews:1,images:['cengkeh.jpg','cengkeh2.png'],desc:'Cengkeh Pilihan asal Maluku dan Sulawesi dengan aroma khas yang kuat dan kualitas premium. Diproses dan disortir dengan teliti untuk memenuhi standar ekspor internasional.',desc_en:'Selected cloves from Maluku and Sulawesi with a strong distinctive aroma and premium quality. Carefully processed and sorted to meet international export standards.',ulasan:[{nama:'Agus B.',bintang:5,teks:'Cengkehnya wangi dan kering sempurna, kualitas ekspor.',teks_en:'The cloves are fragrant and perfectly dried, export quality.'}]})">
+       onclick="openModal({name:'Cengkeh Pilihan',name_en:'Selected Cloves',cat:'Rempah',cat_en:'Spices',price:'Rp195.000',stock:75,sold:'145',rating:'4.8',reviews:1,images:['cengkeh.jpg','cengkeh2.png'],desc:'Cengkeh Pilihan asal Maluku dan Sulawesi dengan aroma khas yang kuat dan kualitas premium. Diproses dan disortir dengan teliti untuk memenuhi standar ekspor internasional.',desc_en:'Selected cloves from Maluku and Sulawesi with a strong distinctive aroma and premium quality. Carefully processed and sorted to meet international export standards.',hs:'0907.10.00',specs:[{label_id:'Grade',label_en:'Grade',val_id:'Super / Grade A',val_en:'Super / Grade A'},{label_id:'Kadar air',label_en:'Moisture content',val_id:'Maks. 12%',val_en:'Max. 12%'},{label_id:'Kadar minyak atsiri',label_en:'Oil content',val_id:'Min. 15–18%',val_en:'Min. 15–18%'},{label_id:'Foreign matter',label_en:'Foreign matter',val_id:'Maks. 1%',val_en:'Max. 1%'},{label_id:'Stem content',label_en:'Stem content',val_id:'Maks. 5% (untuk grade whole clove)',val_en:'Max. 5% (for whole clove grade)'},{label_id:'Kemasan',label_en:'Packaging',val_id:'Karung goni, netto 25 kg / 50 kg',val_en:'Jute bag, 25 kg / 50 kg net'},{label_id:'MOQ',label_en:'MOQ',val_id:'500 kg',val_en:'500 kg'},{label_id:'Term pembayaran',label_en:'Payment terms',val_id:'TT / L/C',val_en:'TT / L/C'},{label_id:'Incoterms',label_en:'Incoterms',val_id:'FOB / CIF',val_en:'FOB / CIF'},{label_id:'Lead time produksi',label_en:'Production lead time',val_id:'7–14 hari kerja',val_en:'7–14 working days'}],ulasan:[{nama:'Agus B.',bintang:5,teks:'Cengkehnya wangi dan kering sempurna, kualitas ekspor.',teks_en:'The cloves are fragrant and perfectly dried, export quality.'}]})">
     <div class="card-img"><img src="cengkeh.jpg" alt="Cengkeh Pilihan"></div>
     <div class="card-body">
       <div class="card-cat" data-id="Rempah" data-en="Spices">Rempah</div>
@@ -1175,9 +1378,11 @@
       <!-- Tabs -->
       <div class="modal-tabs">
         <button class="modal-tab active" data-id="Deskripsi" data-en="Description" onclick="switchTab('deskripsi', this)">Deskripsi</button>
-        <button class="modal-tab" id="modal-tab-ulasan" data-id="Ulasan (" data-en="Reviews (" onclick="switchTab('ulasan', this)">Ulasan (<span id="modal-ulasan-count">0</span>)</button>
+        <button class="modal-tab" id="modal-tab-spesifikasi" data-id="Spesifikasi" data-en="Specifications" onclick="switchTab('spesifikasi', this)">Spesifikasi</button>
+        <button class="modal-tab" id="modal-tab-ulasan" data-id="Ulasan" data-en="Reviews" onclick="switchTab('ulasan', this)">Ulasan</button>
       </div>
       <div class="modal-tab-content active" id="tab-deskripsi"></div>
+      <div class="modal-tab-content" id="tab-spesifikasi"></div>
       <div class="modal-tab-content" id="tab-ulasan"></div>
     </div>
   </div>
@@ -1263,12 +1468,33 @@
         thumbsEl.appendChild(t);
       });
 
-      // Description
-      document.getElementById('tab-deskripsi').textContent = desc;
+      // Description (mendukung banyak paragraf, dipisah dengan \n\n pada string desc)
+      var descEl = document.getElementById('tab-deskripsi');
+      var paragraphs = desc.split(/\n\s*\n/).filter(function (t) { return t.trim().length > 0; });
+      descEl.innerHTML = paragraphs.map(function (t) { return '<p>' + t.trim() + '</p>'; }).join('');
+
+      // Export Specifications (HS Code + technical specs table)
+      var specEl = document.getElementById('tab-spesifikasi');
+      specEl.innerHTML = '';
+      if (p.hs) {
+        var hsLabel = lang === 'en' ? 'HS Code' : 'Kode HS';
+        specEl.innerHTML += '<div class="spec-hs-box"><span class="spec-hs-label">' + hsLabel + '</span><span class="spec-hs-value">' + p.hs + '</span></div>';
+      }
+      if (p.specs && p.specs.length) {
+        var rows = '';
+        p.specs.forEach(function (s) {
+          var label = lang === 'en' ? s.label_en : s.label_id;
+          var val   = lang === 'en' ? s.val_en   : s.val_id;
+          rows += '<tr><td>' + label + '</td><td>' + val + '</td></tr>';
+        });
+        specEl.innerHTML += '<table class="spec-table">' + rows + '</table>';
+      }
+      var disclaimer = lang === 'en'
+        ? 'Specifications can be customized according to buyer requirements and contract terms.'
+        : 'Spesifikasi dapat disesuaikan (customized) sesuai permintaan buyer dan kontrak.';
+      specEl.innerHTML += '<div class="spec-disclaimer">' + disclaimer + '</div>';
 
       // Reviews
-      document.getElementById('modal-ulasan-count').textContent = p.reviews;
-      document.getElementById('modal-tab-ulasan').querySelector('span').textContent = p.reviews;
       var ulasanEl = document.getElementById('tab-ulasan');
       ulasanEl.innerHTML = '';
       (p.ulasan || []).forEach(function(u) {
@@ -1284,6 +1510,8 @@
       // Update tab label "Deskripsi/Description" sesuai bahasa
       var tabDesk = document.querySelectorAll('.modal-tab')[0];
       if (tabDesk) tabDesk.textContent = lang === 'en' ? 'Description' : 'Deskripsi';
+      var tabSpec = document.getElementById('modal-tab-spesifikasi');
+      if (tabSpec) tabSpec.textContent = lang === 'en' ? 'Specifications' : 'Spesifikasi';
 
       // Reset tab hanya saat modal baru dibuka, bukan saat sekadar ganti bahasa
       if (resetTab) switchTab('deskripsi', document.querySelectorAll('.modal-tab')[0]);
@@ -1473,15 +1701,6 @@
     function applyLanguage(lang) {
       // 1. Elemen dengan data-id / data-en
       document.querySelectorAll('[data-id][data-en]').forEach(function (el) {
-        // Khusus tab ulasan: ada <span> di dalamnya, jangan overwrite seluruh innerHTML
-        if (el.id === 'modal-tab-ulasan') {
-          var span = el.querySelector('span');
-          var count = span ? span.textContent : '0';
-          var label = lang === 'en' ? 'Reviews (' : 'Ulasan (';
-          // Rebuild: label + span + ')'
-          el.innerHTML = label + '<span id="modal-ulasan-count">' + count + '</span>)';
-          return;
-        }
         el.textContent = lang === 'en' ? el.dataset.en : el.dataset.id;
       });
 
@@ -1543,6 +1762,25 @@
     }
     window.addEventListener('scroll', updateNav, { passive: true });
     updateNav();
+  })();
+
+  // ─── HAMBURGER / MOBILE MENU ───
+  (function() {
+    var ham = document.getElementById('hamburger');
+    var mob = document.getElementById('mobileMenu');
+    if (!ham || !mob) return;
+    ham.addEventListener('click', function() {
+      var isOpen = ham.classList.toggle('open');
+      mob.classList.toggle('open', isOpen);
+      ham.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    mob.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        ham.classList.remove('open');
+        mob.classList.remove('open');
+        ham.setAttribute('aria-expanded', 'false');
+      });
+    });
   })();
 
   // ─── AUTO-OPEN MODAL DARI LINK PRODUK (mis. produk.html?produk=kopi-arabika) ───
