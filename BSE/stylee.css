@@ -291,18 +291,58 @@
 }
 
 /* ── Responsive ── */
+
+/* Tablet (≤ 1024px): rapatkan sedikit, nav-menu masih tampil horizontal */
+@media (max-width: 1024px) {
+  .nav-container { padding: 0 32px; gap: 16px; }
+  .nav-menu { gap: 2px; }
+  .nav-link { padding: 8px 12px; font-size: 15px; }
+  .nav-cta { padding: 8px 16px; font-size: 12px; }
+  .logo-img { height: 42px; }
+  .nav-logo { font-size: 17px; }
+}
+
+/* Tablet kecil / HP besar (≤ 860px): mulai sempit, turunkan ke hamburger lebih awal
+   supaya menu tidak berdesakan di layar tablet potret */
+@media (max-width: 860px) {
+  .nav-menu { display: none; }
+  .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .nav-drawer { display: block; }
+  .nav-container { padding: 0 24px; }
+
+  body.nav-open { overflow: hidden; }
+}
+
+/* HP (≤ 768px) */
 @media (max-width: 768px) {
   .nav-menu { display: none; }
   .nav-cta { display: none; }
   .hamburger { display: flex; }
   .nav-drawer { display: block; }
-  .nav-container { padding: 0 20px; }
+  .nav-container { padding: 0 20px; gap: 12px; }
+  .logo-img { height: 36px; }
+  .nav-logo { font-size: 15px; letter-spacing: 0.02em; }
+
+  .navbar { padding: 16px 0; }
+  .navbar.scrolled { padding: 12px 0; }
 
   body.nav-open { overflow: hidden; }
 }
 
+/* HP kecil (≤ 480px) */
 @media (max-width: 480px) {
   .lang-switch-container .lang-label { display: none; }
+  .lang-switch-container { padding: 3px 8px; gap: 6px; }
+  .nav-container { padding: 0 16px; gap: 10px; }
+  .nav-logo { font-size: 13px; }
+  .logo-img { height: 32px; }
+  .hamburger { width: 32px; height: 32px; }
+}
+
+/* HP sangat kecil (≤ 360px): sembunyikan teks brand, sisakan logo saja */
+@media (max-width: 360px) {
+  .nav-logo { display: none; }
 }
 
 
@@ -552,6 +592,14 @@
         text-align: center;
         gap: 16px;
     }
+}
+
+@media (max-width: 400px) {
+    .main-footer { padding: 48px 16px 0; }
+    .footer-side-photo { display: none; }
+    .logo-main-title { font-size: 1.35rem; }
+    .footer-logo-img { height: 44px; }
+    .social-link-item { width: 2.3rem; height: 2.3rem; font-size: 0.95rem; }
 }
 
 /* Container Utama Kapsul Putih */
@@ -1258,6 +1306,12 @@ body {
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+@media (max-width: 900px) {
+  .wcu { padding: 84px 24px 100px; }
+  .wcu__grid { gap: 16px; }
+  .wcu-card { padding: 26px 22px; gap: 18px; }
+}
+
 @media (max-width: 680px) {
   .wcu {
     padding: 72px 20px 88px;
@@ -1275,6 +1329,13 @@ body {
     font-size: 72px;
     bottom: -8px;
   }
+}
+
+@media (max-width: 400px) {
+  .wcu { padding: 56px 16px 72px; }
+  .wcu-card { padding: 22px 18px; gap: 16px; flex-direction: column; }
+  .wcu-card__icon { width: 44px; height: 44px; }
+  .wcu-card__icon svg { width: 22px; height: 22px; }
 }
 
 /* ============================================================
