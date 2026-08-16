@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bay Sejahtera Export</title>
+    <title>Tentang Kami | PT BAY Sejahtera Export - Eksportir Terpercaya Sejak 2026</title>
+    <meta name="description" content="PT BAY Sejahtera Export berbasis di Semarang, Jawa Tengah, menghadirkan komoditas unggulan Indonesia ke pasar global dengan proses ekspor legal, aman, dan sesuai standar internasional." />
+    <meta property="og:site_name" content="Bay Sejahtera Export" />
+    <meta property="og:title" content="Tentang PT BAY Sejahtera Export" />
+    <meta property="og:description" content="Eksportir komoditas Indonesia terpercaya dari Semarang, melayani lebih dari 20 negara tujuan ekspor." />
+    <meta property="og:image" content="https://baysejahteraexport.vercel.app/favicon.png" />
+    <meta property="og:url" content="https://baysejahteraexport.vercel.app/About.html" />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://baysejahteraexport.vercel.app/About.html" />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1033,6 +1041,204 @@ section + section { border-top: 1px solid var(--border); }
   letter-spacing: 0.02em;
 }
 .btn-outline:hover { border-color: #ffffff; background: rgba(255,255,255,0.08); }
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE — HAMBURGER & MOBILE MENU (fallback, jaga-jaga
+   apabila stylee.css belum menyediakan style navbar mobile)
+   ══════════════════════════════════════════════════════════ */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 0;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+}
+.navbar.scrolled .hamburger span,
+.hamburger.open span { background: #1a1a1a; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border-top: 1px solid var(--border);
+  transition: max-height 0.35s ease;
+}
+.mobile-menu.open { max-height: 500px; }
+.mobile-nav-menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1.5rem 1.25rem;
+  margin: 0;
+}
+.mobile-nav-menu li { border-bottom: 1px solid var(--border); }
+.mobile-nav-menu li:last-child { border-bottom: none; }
+.mobile-nav-menu a {
+  display: block;
+  padding: 14px 4px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+.mobile-nav-menu a.active { font-weight: 700; }
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE — TABLET (max-width: 1024px)
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  section { padding: 70px 1.75rem; }
+
+  .hero { padding: calc(5rem + 60px) 1.75rem 3.5rem; min-height: auto; }
+  .hero h1 { font-size: clamp(2.6rem, 6.5vw, 5rem) !important; }
+
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item { border-bottom: 1px solid var(--border); padding: 2rem 1.5rem; }
+  .stat-item:nth-last-child(-n+2) { border-bottom: none; }
+
+  .misi-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .misi-img-wrap { position: static; order: -1; }
+
+  .nilai-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .pasar-grid { grid-template-columns: 1fr; }
+
+  .lokasi-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .lokasi-map { height: 320px; }
+
+  .org-tree { width: 100%; }
+  .org-h-line { width: 90vw !important; max-width: 90vw; }
+  .org-children-wrap { flex-wrap: wrap; row-gap: 2rem; }
+
+  .tim-card, .tim-card.ceo-card { width: 300px; }
+
+  .cert-list { grid-template-columns: repeat(2, 1fr); }
+
+  .tabs-nav { width: 100%; overflow-x: auto; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE — HP / MOBILE (max-width: 768px)
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  body { font-size: 15px; }
+
+  section { padding: 56px 1.25rem; }
+  section + section { border-top: 1px solid var(--border); }
+
+  /* ── NAV ── */
+  .nav-menu { display: none !important; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+  .nav-container { flex-wrap: nowrap; }
+  .nav-logo { font-size: 13px; }
+  .lang-switch-container { transform: scale(0.9); transform-origin: right center; }
+
+  /* ── HERO ── */
+  .hero { padding: calc(4.5rem + 60px) 1.25rem 3rem; min-height: auto; }
+  .hero h1 { font-size: clamp(2.2rem, 9vw, 3.2rem) !important; max-width: 100%; margin-bottom: 1.4rem; }
+  .hero-sub { font-size: 14px; max-width: 100%; }
+  .hero-scroll-hint { display: none; }
+
+  /* ── STATS ── */
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-item { padding: 1.5rem 1rem; }
+  .stat-num { font-size: 2.2rem; }
+  .stat-label { font-size: 10px; }
+
+  /* ── SECTION HEADINGS ── */
+  .section-title { font-size: clamp(1.7rem, 7vw, 2.4rem); }
+  .section-desc { max-width: 100%; font-size: 14px; }
+
+  /* ── MISI ── */
+  .misi-grid { grid-template-columns: 1fr; gap: 2rem; margin-top: 2.5rem; }
+  .misi-img-wrap { position: static; order: -1; }
+  .misi-batik-accent { max-width: 55vw; }
+  .misi-img-badge { padding: 0.8rem 1rem; bottom: 1rem; left: 1rem; }
+  .misi-img-badge strong { font-size: 1.5rem; }
+
+  /* ── NILAI ── */
+  .nilai-header { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 2.5rem; }
+  .nilai-grid { grid-template-columns: 1fr; }
+  .nilai-card { padding: 1.75rem; }
+
+  /* ── PASAR ── */
+  .pasar-grid { grid-template-columns: 1fr; gap: 1.25rem; margin-top: 2.5rem; }
+  .pasar-card { padding: 1.75rem; }
+
+  /* ── TIM / ORG CHART ── */
+  .org-tree { margin-top: 2.5rem; }
+  .org-level, .org-children-wrap { flex-direction: column; align-items: center; gap: 1.5rem; }
+  .org-h-line { display: none; }
+  .org-connector-branch { display: none; }
+  .org-child-col .org-connector-down { height: 12px; }
+  .tim-card, .tim-card.ceo-card { width: 100%; max-width: 340px; }
+
+  /* ── LOKASI ── */
+  .lokasi-inner { grid-template-columns: 1fr; gap: 2rem; margin-top: 2.5rem; }
+  .lokasi-map { height: 260px; }
+  .lokasi-corner-accent, .lokasi-corner-accent-left { display: none; }
+  .lokasi-detail-value { font-size: 13px; }
+
+  /* ── TABS / TIMELINE ── */
+  .tabs-nav { width: 100%; margin-top: 2rem; }
+  .tab-btn { flex: 1; padding: 10px 12px; font-size: 12px; text-align: center; }
+  .timeline-item { grid-template-columns: 20px 1fr; gap: 1rem; }
+  .timeline::before { left: 9px; }
+  .timeline-dot { width: 20px; height: 20px; }
+
+  /* ── CERTIFICATION ── */
+  .cert-list { grid-template-columns: 1fr; }
+  .cert-item { padding: 1.4rem 1.25rem; }
+
+  /* ── CTA ── */
+  .cta-section { padding: 70px 1.25rem; }
+  .cta-title { font-size: clamp(1.7rem, 8vw, 2.5rem); }
+  .cta-buttons { flex-direction: column; width: 100%; }
+  .btn-primary, .btn-outline { width: 100%; text-align: center; }
+
+  /* ── FOOTER ── */
+  .footer-container { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .footer-side-photo { display: none !important; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE — HP KECIL (max-width: 480px)
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .stats-inner { grid-template-columns: 1fr; }
+  .stat-item { border-right: none !important; border-bottom: 1px solid var(--border); }
+  .stat-item:last-child { border-bottom: none; }
+
+  .hero h1 { font-size: 2rem !important; }
+  .section-title { font-size: 1.6rem; }
+
+  .tim-card, .tim-card.ceo-card { max-width: 100%; }
+  .tabs-nav { flex-wrap: wrap; }
+  .tab-btn { flex: 1 1 50%; }
+}
 </style>
 </head>
 <body>
@@ -1109,6 +1315,20 @@ section + section { border-top: 1px solid var(--border); }
                 <span class="lang-label">EN</span>
             </div>
         </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html" class="nav-link" data-id="Home" data-en="Home">Home</a></li>
+            <li><a href="produk.html" class="nav-link" data-id="Produk" data-en="Products">Produk</a></li>
+            <li><a href="About.html" class="nav-link" data-id="Tentang Kami" data-en="About Us">About Us</a></li>
+        </ul>
     </div>
 </nav>
 <!-- HERO -->
