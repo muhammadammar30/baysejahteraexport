@@ -4,13 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:site_name" content="Bay Sejahtera Export" />
-    <meta property="og:title" content="BAY Sejahtera Export" />
-    <meta property="og:description" content="Berdiri sejak tahun 2026 di Semarang, PT BAY Sejahtera Export memiliki visi menjadi eksportir utama dengan mengutamakan kualitas dan keberlanjutan." />
+    <meta property="og:title" content="BAY Sejahtera Export | Indonesian Commodity Exporter" />
+    <meta property="og:description" content="Eksportir kopi, cengkeh, jagung, dan briket arang dari Semarang, Indonesia. Kualitas terjamin, dokumen ekspor lengkap." />
     <meta property="og:image" content="https://baysejahteraexport.vercel.app/favicon.png" />
     <meta property="og:url" content="https://baysejahteraexport.vercel.app" />
     <meta property="og:type" content="website" />
-    <meta name="description" content="Berdiri sejak tahun 2026 di Semarang, PT BAY Sejahtera Export memiliki visi menjadi eksportir utama dengan mengutamakan kualitas dan keberlanjutan." />
-    <title>Bay Sejahtera Export</title>
+    <meta name="description" content="PT BAY Sejahtera Export adalah eksportir komoditas Indonesia dari Semarang — kopi arabika & robusta, cengkeh, jagung, dan briket arang. Ekspor legal dengan dokumen lengkap ke lebih dari 20 negara." />
+    <link rel="canonical" href="https://baysejahteraexport.vercel.app" />
+    <title>BAY Sejahtera Export | Eksportir Kopi, Cengkeh, Jagung & Briket Arang Indonesia</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "PT BAY Sejahtera Export",
+      "url": "https://baysejahteraexport.vercel.app",
+      "logo": "https://baysejahteraexport.vercel.app/favicon.png",
+      "foundingDate": "2026",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Semarang",
+        "addressRegion": "Jawa Tengah",
+        "addressCountry": "ID"
+      }
+    }
+    </script>
     
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1471,6 +1488,86 @@
       .product-card { flex: 0 0 84vw; }
       .docs-photo-slide { flex: 0 0 calc(100% - 24px); }
     }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE — NAVBAR / HAMBURGER
+       (fallback, jaga-jaga bila stylee.css belum
+        menyediakan style navbar mobile)
+       ══════════════════════════════════════════ */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 0;
+    }
+    .ham-bar {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: transform .3s ease, opacity .3s ease, background .3s ease;
+    }
+    .navbar.scrolled .ham-bar { background: #ffffff; }
+    .hamburger.open .ham-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open .ham-bar:nth-child(2) { opacity: 0; }
+    .hamburger.open .ham-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 900px) {
+      .hamburger { display: flex; }
+      .nav-menu {
+        position: fixed;
+        inset: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background: rgba(10,10,10,0.98);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity .3s ease, transform .3s ease, visibility .3s;
+        z-index: 999;
+      }
+      .nav-menu.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .nav-menu .nav-item { width: 100%; text-align: center; }
+      .nav-menu .nav-link {
+        display: block;
+        padding: 16px 24px;
+        color: #ffffff;
+        font-size: 22px;
+        font-family: 'Space Grotesk', sans-serif;
+        text-decoration: none;
+      }
+      .nav-menu .nav-link.active { font-weight: 700; }
+      body.nav-open { overflow: hidden; }
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE — FOOTER (fallback)
+       ══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .footer-container { grid-template-columns: 1fr !important; gap: 2rem !important; }
+      .footer-side-photo { display: none !important; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
   </style>
 </head>
 <body>
@@ -1595,7 +1692,7 @@
     <img src="batikcentre-removebg-preview.png" alt="" class="batik-center-accent" aria-hidden="true">
     <!-- <img src="intro-corner.png" alt="" class="intro-corner-triangle" aria-hidden="true"> -->
     <div>
-      <h2 class="section-title reveal" data-id="Introduction" data-en="Introduction">Introduction</h2>
+      <h2 class="section-title reveal" data-id="Introduksi" data-en="Introduction">Introduction</h2>
       <p class="section-body reveal" data-id="Berdiri sejak Januari 2026 di Semarang, PT BAY Sejahtera Export memiliki visi menjadi eksportir utama dengan memprioritaskan kualitas dan keberlanjutan. Kami menawarkan beragam produk unggulan seperti kopi, jagung, cengkeh, dan lainnya untuk pasar global." data-en="Founded in January 2026 in Semarang, PT BAY Sejahtera Export envisions becoming a leading exporter by prioritizing quality and sustainability. We offer a wide range of premium products such as coffee, corn, cloves, and more for global markets.">
         Berdiri sejak tahun 2026 di Semarang, PT BAY Sejahtera Export memiliki visi menjadi eksportir utama dengan memprioritaskan kualitas dan keberlanjutan. Kami menawarkan beragam produk unggulan seperti kopi, jagung, cengkeh, dan lainnya untuk pasar global.
       </p>
@@ -2234,6 +2331,27 @@
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
+
+    // ─── HAMBURGER / MOBILE NAV ───
+    (function() {
+      const ham = document.getElementById('hamburger');
+      const menu = document.getElementById('nav-menu');
+      if (!ham || !menu) return;
+      function closeMenu() {
+        ham.classList.remove('open');
+        menu.classList.remove('open');
+        ham.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('nav-open');
+      }
+      ham.addEventListener('click', () => {
+        const isOpen = ham.classList.toggle('open');
+        menu.classList.toggle('open', isOpen);
+        ham.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        document.body.classList.toggle('nav-open', isOpen);
+      });
+      menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    })();
 
     const reveals = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
