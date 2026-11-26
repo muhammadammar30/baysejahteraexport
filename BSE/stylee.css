@@ -1,4 +1,5 @@
 /* Reset Style Dasar */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 * {
     margin: 0;
     padding: 0;
@@ -292,7 +293,7 @@
 
 /* ── Responsive ── */
 
-/* Tablet (≤ 1024px): rapatkan sedikit, nav-menu masih tampil horizontal */
+/* Tablet landscape (≤ 1024px): rapatkan, menu masih horizontal */
 @media (max-width: 1024px) {
   .nav-container { padding: 0 32px; gap: 16px; }
   .nav-menu { gap: 2px; }
@@ -302,32 +303,40 @@
   .nav-logo { font-size: 17px; }
 }
 
-/* Tablet kecil / HP besar (≤ 860px): mulai sempit, turunkan ke hamburger lebih awal
-   supaya menu tidak berdesakan di layar tablet potret */
-@media (max-width: 860px) {
+/* Tablet portrait + HP (≤ 900px): menu jadi hamburger.
+   Breakpoint disamakan dengan inline CSS di index/blog/About/produk. */
+@media (max-width: 900px) {
   .nav-menu { display: none; }
   .nav-cta { display: none; }
   .hamburger { display: flex; }
   .nav-drawer { display: block; }
-  .nav-container { padding: 0 24px; }
+  .nav-container { padding: 0 24px; gap: 12px; }
 
   body.nav-open { overflow: hidden; }
+
+  /* PENTING: backdrop-filter pada .navbar.scrolled membuat navbar menjadi
+     "containing block" untuk elemen position:fixed di dalamnya, sehingga
+     overlay menu (.nav-menu.open) hanya setinggi navbar, bukan layar penuh.
+     Saat menu terbuka, matikan efek blur itu. */
+  body.nav-open .navbar,
+  body.nav-open .navbar.scrolled {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  /* Logo, toggle bahasa & hamburger tetap terlihat di atas overlay menu */
+  .nav-left,
+  .nav-actions { position: relative; z-index: 1001; }
 }
 
 /* HP (≤ 768px) */
 @media (max-width: 768px) {
-  .nav-menu { display: none; }
-  .nav-cta { display: none; }
-  .hamburger { display: flex; }
-  .nav-drawer { display: block; }
   .nav-container { padding: 0 20px; gap: 12px; }
   .logo-img { height: 36px; }
   .nav-logo { font-size: 15px; letter-spacing: 0.02em; }
 
   .navbar { padding: 16px 0; }
   .navbar.scrolled { padding: 12px 0; }
-
-  body.nav-open { overflow: hidden; }
 }
 
 /* HP kecil (≤ 480px) */
@@ -337,12 +346,29 @@
   .nav-container { padding: 0 16px; gap: 10px; }
   .nav-logo { font-size: 13px; }
   .logo-img { height: 32px; }
-  .hamburger { width: 32px; height: 32px; }
+
+  /* Nama brand boleh turun 2 baris dan bisa mengecil, supaya hamburger
+     tidak terdorong keluar layar di HP 375–414px */
+  .nav-left { min-width: 0; flex-shrink: 1; gap: 8px; }
+  .nav-logo { max-width: 125px; line-height: 1.15; white-space: normal; }
 }
 
-/* HP sangat kecil (≤ 360px): sembunyikan teks brand, sisakan logo saja */
-@media (max-width: 360px) {
+/* HP sangat kecil (≤ 370px): sembunyikan teks brand, sisakan logo */
+@media (max-width: 370px) {
   .nav-logo { display: none; }
+}
+
+/* Layar sentuh: hilangkan efek hover yang "menempel" setelah di-tap */
+@media (hover: none) {
+  .nav-link:hover { background: transparent; }
+  .social-link-item:hover,
+  .back-to-top:hover { transform: none; }
+}
+
+/* HP landscape (tinggi layar pendek): navbar lebih tipis */
+@media (max-height: 480px) and (orientation: landscape) {
+  .navbar { padding: 10px 0; }
+  .navbar.scrolled { padding: 8px 0; }
 }
 
 
@@ -591,7 +617,21 @@
         flex-direction: column-reverse;
         text-align: center;
         gap: 16px;
+        margin-top: 3rem;
     }
+    /* garis pemisah di samping subjudul jadi aneh saat logo turun baris */
+    .logo-sub-title { padding-left: 0; border-left: none; width: 100%; }
+    .footer-heading { margin-bottom: 16px; }
+    .social-icons-wrapper { flex-wrap: wrap; }
+    /* area tap minimal ±44px */
+    .back-to-top { min-height: 44px; }
+    .footer-contact-list a { display: inline-block; padding: 2px 0; }
+}
+
+/* Tablet (640–1023px): footer 2 kolom, padding lebih lega */
+@media (min-width: 640px) and (max-width: 1023px) {
+    .main-footer { padding: 72px 32px 0; }
+    .footer-bottom { margin-top: 3.5rem; }
 }
 
 @media (max-width: 400px) {
