@@ -11,7 +11,7 @@
     <meta property="og:type" content="website" />
     <meta name="description" content="PT BAY Sejahtera Export adalah eksportir komoditas Indonesia dari Semarang — kopi arabika & robusta, cengkeh, jagung, dan briket arang. Ekspor legal dengan dokumen lengkap ke lebih dari 20 negara." />
     <link rel="canonical" href="https://baysejahteraexport.vercel.app" />
-    <title>BAY Sejahtera Export | Eksportir Kopi, Cengkeh, Jagung & Briket Arang Indonesia</title>
+    <title>BAY Sejahtera Export | Eksportir Kopi Indonesia</title>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -84,12 +84,13 @@
     .hero-side-photo {
   position: absolute;
   top: 0;
-  height: 100%;
+  height: 100vh;
   width: 45%;
   object-fit: cover;
   object-position: center;
   opacity: 0.4;
   pointer-events: none;
+  z-index: 0;
 }
 
 .hero-side-left {
@@ -582,9 +583,10 @@
       text-transform: uppercase;
     }
 
-    /* ── PRODUCTS ── */
+    /* ── PRODUCTS (carousel horizontal) ── */
     #products {
-      padding: 100px 0 100px 60px;
+      --pad: 60px;
+      padding: 100px var(--pad);
       border-top: 1px solid var(--border);
       overflow: hidden;
     }
@@ -594,38 +596,68 @@
       align-items: flex-end;
       justify-content: space-between;
       margin-bottom: 48px;
-      padding-right: 60px;
+    }
+
+    .products-nav {
+      display: flex;
+      gap: 10px;
+    }
+    .products-nav button {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+    }
+    .products-nav button:hover:not(:disabled) {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+    .products-nav button:disabled {
+      opacity: 0.35;
+      cursor: default;
     }
 
     .products-carousel-wrapper {
       position: relative;
     }
 
+    /* track keluar sampai tepi layar, kartu terakhir terlihat "mengintip" */
     .products-carousel {
       display: flex;
-      gap: 20px;
+      gap: 30px;
+      margin: 0 calc(var(--pad) * -1);
+      padding: 8px var(--pad) 28px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      scroll-padding-left: var(--pad);
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      padding-right: 60px;
-      padding-bottom: 8px;
       cursor: grab;
     }
-    .products-carousel:active { cursor: grabbing; }
     .products-carousel::-webkit-scrollbar { display: none; }
+    .products-carousel.dragging {
+      cursor: grabbing;
+      scroll-snap-type: none;
+      user-select: none;
+    }
+    .products-carousel.dragging a { pointer-events: none; }
 
     .product-card {
+      flex: 0 0 390px;
+      scroll-snap-align: start;
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px 24px;
-      cursor: pointer;
+      border-radius: 28px;
+      padding: 36px;
       position: relative;
-      overflow: hidden;
       transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-      flex: 0 0 260px;
-      scroll-snap-align: start;
       display: flex;
       flex-direction: column;
     }
@@ -635,120 +667,93 @@
       border-color: var(--border-light);
     }
 
-    .product-card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 20px;
+    .product-card .product-img-wrap {
+      height: 225px;
+      border-radius: 18px;
+      margin-bottom: 24px;
+    }
+    .product-card .product-img-wrap img {
+      -webkit-user-drag: none;
     }
 
-    .product-icon {
-      width: 56px;
-      height: 56px;
-      background: var(--bg-raised);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      transition: background 0.25s, transform 0.25s;
-    }
-    .product-card:hover .product-icon {
-      background: #e8f5ec;
-      transform: scale(1.08);
-    }
-
+    /* tombol panah bulat (kanan) */
     .product-arrow {
-      width: 32px;
-      height: 32px;
+      align-self: flex-end;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--text-dim);
-      font-size: 14px;
+      font-size: 15px;
+      text-decoration: none;
+      margin-bottom: 30px;
       transition: background 0.2s, color 0.2s, border-color 0.2s;
       flex-shrink: 0;
     }
-    .product-card:hover .product-arrow {
+    .product-card:hover .product-arrow,
+    .product-arrow:hover {
       background: var(--text);
       color: var(--bg);
       border-color: var(--text);
+    }
+
+    /* tag pill selebar kartu */
+    .product-tag {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 9px 15px;
+      background: var(--bg-raised);
+      border-radius: 20px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
     }
 
     .product-name {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
+      font-size: 22px;
       font-weight: 600;
       letter-spacing: -0.3px;
-      margin-bottom: 6px;
+      padding-bottom: 20px;
     }
-    .product-origin {
-      font-size: 11px;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 20px;
-    }
+
     .product-meta {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
       margin-top: auto;
-      padding-top: 16px;
+      padding-top: 24px;
       border-top: 1px solid var(--border);
     }
     .product-price {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
+      font-family: 'Courier New', Courier, ui-monospace, monospace;
+      font-size: 26px;
       font-weight: 700;
       letter-spacing: -0.5px;
+      line-height: 1.1;
       color: var(--text);
     }
-    .product-sold {
-      font-size: 11px;
-      color: var(--text-dim);
-      text-align: right;
-    }
-    .product-tag {
-      display: inline-flex;
-      align-items: center;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      background: var(--bg-raised);
-      border-radius: 20px;
+    .product-price small {
+      font-family: 'Inter', 'Space Grotesk', system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0;
       color: var(--text-muted);
-      margin-bottom: 16px;
+      margin-left: 4px;
+    }
+    .product-sold {
+      font-size: 17px;
+      color: var(--text-dim);
+      text-align: left;
     }
 
-    .products-nav {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .products-nav-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      color: var(--text-muted);
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-    }
-    .products-nav-btn:hover {
-      background: var(--text);
-      color: var(--bg);
-      border-color: var(--text);
-    }
 
     /* ── WHY US ── */
     #why {
@@ -1034,7 +1039,7 @@
     .marquee-track {
       display: flex;
       align-items: center;
-      animation: marquee 26s linear infinite;
+      animation: marquee 32s linear infinite;
       white-space: nowrap;
       width: max-content;
       will-change: transform;
@@ -1391,9 +1396,7 @@
 
       #about { padding: 100px 40px; gap: 60px; }
 
-      #products { padding: 90px 0 90px 40px; }
-      .products-header { padding-right: 40px; }
-      .products-carousel { padding-right: 40px; }
+      #products { --pad: 40px; padding: 90px var(--pad); }
 
       #why { padding: 90px 40px; }
 
@@ -1416,10 +1419,10 @@
       #about { grid-template-columns: 1fr; padding: 80px 24px; gap: 40px; }
       .about-visual { max-width: 380px; margin: 0 auto; }
 
-      #products { padding: 80px 0 80px 24px; }
-      .products-header { padding-right: 24px; flex-wrap: wrap; gap: 16px; }
-      .products-carousel { padding-right: 24px; }
-      .product-card { flex: 0 0 220px; }
+      #products { --pad: 24px; padding: 80px var(--pad); }
+      .products-header { flex-wrap: wrap; gap: 16px; }
+      .product-card { flex-basis: 340px; padding: 28px; }
+      .product-card .product-img-wrap { height: 200px; }
 
       #why { padding: 80px 24px; }
 
@@ -1438,6 +1441,7 @@
 
       /* Hero */
       #hero { padding: 0 20px 40px; min-height: 100svh; }
+      .hero-side-photo { height: 100svh; }
       .hero-eyebrow { margin-bottom: 20px; font-size: 10px; }
       .hero-headline { letter-spacing: -1.5px; margin-bottom: 24px; }
       .hero-bottom { flex-direction: column; align-items: stretch; gap: 24px; }
@@ -1452,11 +1456,20 @@
       .about-visual { display: none; }
 
       /* Products */
-      #products { padding: 60px 0 60px 20px; }
-      .products-header { padding-right: 20px; align-items: flex-start; }
+      #products { --pad: 20px; padding: 60px var(--pad); }
+      .products-header { align-items: flex-start; }
       .products-header .section-title { font-size: 26px; }
-      .products-carousel { padding-right: 20px; gap: 14px; }
-      .product-card { flex: 0 0 200px; padding: 22px 18px; }
+      .products-carousel { gap: 16px; }
+      .products-nav button { width: 40px; height: 40px; }
+      .product-card { flex-basis: 78vw; padding: 20px; border-radius: 22px; }
+      .product-card .product-img-wrap { height: 170px; margin-bottom: 18px; }
+      .product-arrow { width: 40px; height: 40px; margin-bottom: 20px; }
+      .product-tag { font-size: 11px; letter-spacing: 1.5px; margin-bottom: 18px; }
+      .product-name { font-size: 18px; padding-bottom: 16px; }
+      .product-meta { padding-top: 18px; }
+      .product-price { font-size: 22px; }
+      .product-price small { font-size: 13px; }
+      .product-sold { font-size: 14px; }
 
       /* Why Us */
       #why { padding: 60px 20px; }
@@ -1485,7 +1498,6 @@
     /* ── HP KECIL (≤ 400px) ── */
     @media (max-width: 400px) {
       .hero-headline { font-size: 40px; }
-      .product-card { flex: 0 0 84vw; }
       .docs-photo-slide { flex: 0 0 calc(100% - 24px); }
     }
 
@@ -1586,6 +1598,7 @@
             <li class="nav-item"><a href="index.html" class="nav-link" data-id="Home" data-en="Home">Home</a></li>
             <li class="nav-item"><a href="produk.html" class="nav-link" data-id="Produk" data-en="Products">Produk</a></li>
             <li class="nav-item"><a href="About.html" class="nav-link" data-id="Tentang Kami" data-en="About Us">About Us</a></li>
+            <li class="nav-item"><a href="blog.html" class="nav-link" data-id="Blog" data-en="Blog">Blog</a></li>
         </ul>
             
         <div class="nav-actions" id="nav-actions">
@@ -1621,13 +1634,13 @@
       <!-- Aksen kopi melayang -->
       <div class="hero-coffee coffee-1" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
       <div class="hero-coffee coffee-2" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
-      <div class="hero-coffee coffee-3" aria-hidden="true"><img src="jagung.png" alt=""></div>
+      <div class="hero-coffee coffee-3" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
       <div class="hero-coffee coffee-4" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
       <div class="hero-coffee coffee-5" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
-      <div class="hero-coffee coffee-6" aria-hidden="true"><img src="briket.png" alt=""></div>
+      <div class="hero-coffee coffee-6" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
       <div class="hero-coffee coffee-7" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
       <div class="hero-coffee coffee-8" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
-      <div class="hero-coffee coffee-9" aria-hidden="true"><img src="cengkehh.png" alt=""></div>
+      <div class="hero-coffee coffee-9" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
       <div class="hero-coffee coffee-10" aria-hidden="true"><img src="biji-kopi.png" alt=""></div>
 
     <div class="hero-grid-overlay"></div>
@@ -1664,22 +1677,58 @@
   <div class="marquee-section">
     <div class="marquee-track">
       <div class="marquee-set">
-        <span class="marquee-item" data-id="Biji Kopi Arabika" data-en="Arabica Coffee Beans">Biji Kopi Arabika</span>
-        <span class="marquee-item" data-id="Biji Kopi Sangrai Arabika" data-en="Roasted Arabica Coffee Beans">Biji Kopi Sangrai Arabika</span>
-        <span class="marquee-item" data-id="Biji Kopi Robusta" data-en="Robusta Coffee Beans">Biji Kopi Robusta</span>
-        <span class="marquee-item" data-id="Biji Kopi Sangrai Robusta" data-en="Roasted Robusta Coffee Beans">Biji Kopi Sangrai Robusta</span>
-        <span class="marquee-item" data-id="Briket Arang" data-en="Charcoal Briquettes">Briket Arang</span>
-        <span class="marquee-item" data-id="Biji Jagung" data-en="Corn Seeds">Biji Jagung</span>
-        <span class="marquee-item" data-id="Cengkeh Pilihan" data-en="Selected Cloves">Cengkeh Pilihan</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Arabika</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Sangrai Arabika</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Robusta</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Sangrai Robusta</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Briket Arang</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Jagung</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Cengkeh Pilihan</span>
       </div>
       <div class="marquee-set" aria-hidden="true">
-        <span class="marquee-item" data-id="Biji Kopi Arabika" data-en="Arabica Coffee Beans">Biji Kopi Arabika</span>
-        <span class="marquee-item" data-id="Biji Kopi Sangrai Arabika" data-en="Roasted Arabica Coffee Beans">Biji Kopi Sangrai Arabika</span>
-        <span class="marquee-item" data-id="Biji Kopi Robusta" data-en="Robusta Coffee Beans">Biji Kopi Robusta</span>
-        <span class="marquee-item" data-id="Biji Kopi Sangrai Robusta" data-en="Roasted Robusta Coffee Beans">Biji Kopi Sangrai Robusta</span>
-        <span class="marquee-item" data-id="Briket Arang" data-en="Charcoal Briquettes">Briket Arang</span>
-        <span class="marquee-item" data-id="Biji Jagung" data-en="Corn Seeds">Biji Jagung</span>
-        <span class="marquee-item" data-id="Cengkeh Pilihan" data-en="Selected Cloves">Cengkeh Pilihan</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Arabika</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Sangrai Arabika</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Robusta</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Sangrai Robusta</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Briket Arang</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Jagung</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Cengkeh Pilihan</span>
+      </div>
+      <div class="marquee-set" aria-hidden="true">
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Arabika</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Sangrai Arabika</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Robusta</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Sangrai Robusta</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Briket Arang</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Jagung</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Cengkeh Pilihan</span>
+      </div>
+      <div class="marquee-set" aria-hidden="true">
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Arabika</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Sangrai Arabika</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Robusta</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Sangrai Robusta</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Briket Arang</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Jagung</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Cengkeh Pilihan</span>
+      </div>
+      <div class="marquee-set" aria-hidden="true">
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Arabika</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Sangrai Arabika</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Robusta</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Sangrai Robusta</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Briket Arang</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Jagung</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Cengkeh Pilihan</span>
+      </div>
+      <div class="marquee-set" aria-hidden="true">
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Arabika</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Sangrai Arabika</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Robusta</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Kopi Sangrai Robusta</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Briket Arang</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Biji Jagung</span>
+        <span class="marquee-item" data-id="Kopi" data-en="Coffee">Cengkeh Pilihan</span>
       </div>
     </div>
   </div>
@@ -1704,12 +1753,6 @@
     <div class="about-visual reveal" id="aboutVisualWrap">
       <div class="about-visual-inner" id="aboutVisualInner" style="position:relative;">
         <img class="about-slide active" src="arabicagreenbeans.png" alt="Foto Introduction 1" onerror="this.style.display='none'">
-        <img class="about-slide" src="arabicaroastedbeans.png" alt="Foto Introduction 2" onerror="this.style.display='none'">
-        <img class="about-slide" src="robustagreenbeans.png" alt="Foto Introduction 3" onerror="this.style.display='none'">
-        <img class="about-slide" src="robustaroastedbeans.png" alt="Foto Introduction 4" onerror="this.style.display='none'">
-        <img class="about-slide" src="briket arang.jpg" alt="Foto Introduction 5" onerror="this.style.display='none'">
-        <img class="about-slide" src="biji jagung.jpg" alt="Foto Introduction 6" onerror="this.style.display='none'">
-        <img class="about-slide" src="cengkeh.jpg" alt="Foto Introduction 7" onerror="this.style.display='none'">
         <div id="aboutFallback" style="display:none;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;gap:12px;">
           <div class="warehouse-icon">🏭</div>
           <div class="warehouse-label">Gudang Utama</div>
@@ -1727,122 +1770,67 @@
       <div>
         <h2 class="section-title" style="margin-bottom:0;" data-id="Produk Kami." data-en="Our Products.">Produk Kami.</h2>
       </div>
-      <div style="display:flex;align-items:center;gap:16px;">
-        <div class="products-nav">
-          <button class="products-nav-btn" id="prevBtn" onclick="scrollCarousel(-1)">←</button>
-          <button class="products-nav-btn" id="nextBtn" onclick="scrollCarousel(1)">→</button>
-        </div>
-        <a href="produk.html" class="btn-ghost" data-id="Lihat Selengkapnya →" data-en="View All →">Lihat Selengkapnya →</a>
+      <div class="products-nav">
+        <button type="button" id="prodPrev" aria-label="Sebelumnya">←</button>
+        <button type="button" id="prodNext" aria-label="Berikutnya">→</button>
       </div>
     </div>
 
     <div class="products-carousel-wrapper">
-      <div class="products-carousel" id="productsCarousel">
+      <div class="products-carousel" id="productsGrid">
 
-        <div class="product-card reveal" onclick="location.href='produk.html?produk=kopi-arabika'">
+        <div class="product-card reveal">
           <div class="product-img-wrap">
-            <img src="arabicagreenbeans.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="robustagreenbeans.png" alt="Biji Kopi Robusta Non Size" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
-          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
-            <div class="product-arrow">↗</div>
-          </div>
-          <div class="product-tag" data-id="Arabika · Grade A" data-en="Arabica · Grade A">Arabika · Grade A</div>
-          <div class="product-name" data-id="Biji Kopi Arabika" data-en="Arabica Coffee Beans">Arabica Coffee Beans</div>
+          <a href="produk.html?produk=kopi-robusta" class="product-arrow" aria-label="Lihat selengkapnya">↗</a>
+          <div class="product-tag" data-id="Robusta · Non Size" data-en="Robusta · Non Size">Robusta · Non Size</div>
+          <div class="product-name" data-id="Biji Kopi Robusta Non Size" data-en="Robusta Beans Non Size">Biji Kopi Robusta Non Size</div>
           <div class="product-meta">
-            <div class="product-price">Rp195.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
-            <div class="product-sold" data-id="6.198+ Terjual" data-en="6,198+ Sold">6.198+ Terjual</div>
-          </div>
-        </div>
-
-        <div class="product-card reveal" onclick="location.href='produk.html?produk=kopi-sangrai-arabika'">
-          <div class="product-img-wrap">
-            <img src="arabicaroastedbeans.png" style="width:100%;height:100%;object-fit:cover;display:block;">
-          </div>
-          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
-            <div class="product-arrow">↗</div>
-          </div>
-          <div class="product-tag" data-id="Arabika · Grade A" data-en="Arabica · Grade A">Arabika · Grade A</div>
-          <div class="product-name" data-id="Biji Kopi Sangrai Arabika" data-en="Roasted Arabica Coffee Beans">Roasted Arabica Coffee Beans</div>
-          <div class="product-meta">
-            <div class="product-price">Rp325.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
-            <div class="product-sold" data-id="6.198+ Terjual" data-en="6,198+ Sold">6.198+ Terjual</div>
-          </div>
-        </div>
-
-        <div class="product-card reveal" onclick="location.href='produk.html?produk=kopi-robusta'">
-          <div class="product-img-wrap">
-            <img src="robustagreenbeans.png" style="width:100%;height:100%;object-fit:cover;display:block;">
-          </div>
-          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
-            <div class="product-arrow">↗</div>
-          </div>
-          <div class="product-tag" data-id="Robusta · Grade A" data-en="Robusta · Grade A">Robusta · Grade A</div>
-          <div class="product-name" data-id="Biji Kopi Robusta" data-en="Robusta Coffee Beans">Robusta Coffee Beans</div>
-          <div class="product-meta">
-            <div class="product-price">Rp140.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
+            <div class="product-price"><span data-id="Rp92.692,50" data-en="$5.10">Rp92.692,50</span><small>/Kg</small></div>
             <div class="product-sold" data-id="10.598+ Terjual" data-en="10,598+ Sold">10.598+ Terjual</div>
           </div>
         </div>
 
-        <div class="product-card reveal" onclick="location.href='produk.html?produk=kopi-sangrai-robusta'">
+        <div class="product-card reveal">
           <div class="product-img-wrap">
-            <img src="robustaroastedbeans.png" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="robustagreenbeans.png" alt="Biji Kopi Robusta Size 18" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
-          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
-            <div class="product-arrow">↗</div>
-          </div>
-          <div class="product-tag" data-id="Robusta · Grade A" data-en="Robusta · Grade A">Robusta · Grade A</div>
-          <div class="product-name" data-id="Biji Kopi Sangrai Robusta" data-en="Roasted Robusta Coffee Beans">Roasted Robusta Coffee Beans</div>
+          <a href="produk.html?produk=kopi-robusta-size-18" class="product-arrow" aria-label="Lihat selengkapnya">↗</a>
+          <div class="product-tag" data-id="Robusta · Size 18" data-en="Robusta · Size 18">Robusta · Size 18</div>
+          <div class="product-name" data-id="Biji Kopi Robusta Size 18" data-en="Robusta Beans Size 18">Biji Kopi Robusta Size 18</div>
           <div class="product-meta">
-            <div class="product-price">Rp150.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
+            <div class="product-price"><span data-id="Rp98.145" data-en="$5.40">Rp98.145</span><small>/Kg</small></div>
+            <div class="product-sold" data-id="5.862+ Terjual" data-en="5,862+ Sold">5.862+ Terjual</div>
+          </div>
+        </div>
+
+        <div class="product-card reveal">
+          <div class="product-img-wrap">
+            <img src="robustaroastedbeans.png" alt="Biji Kopi Sangrai Robusta Non Size" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <a href="produk.html?produk=kopi-sangrai-robusta" class="product-arrow" aria-label="Lihat selengkapnya">↗</a>
+          <div class="product-tag" data-id="Robusta · Non Size" data-en="Robusta · Non Size">Robusta · Non Size</div>
+          <div class="product-name" data-id="Biji Kopi Sangrai Robusta Non Size" data-en="Roasted Robusta Beans Non Size">Biji Kopi Sangrai Robusta Non Size</div>
+          <div class="product-meta">
+            <div class="product-price"><span data-id="Rp125.407,50" data-en="$6.90">Rp125.407,50</span><small>/Kg</small></div>
             <div class="product-sold" data-id="6.198+ Terjual" data-en="6,198+ Sold">6.198+ Terjual</div>
           </div>
         </div>
 
-        <div class="product-card reveal" onclick="location.href='produk.html?produk=briket-arang'">
+        <div class="product-card reveal">
           <div class="product-img-wrap">
-            <img src="briket arang.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="robustaroastedbeans.png" alt="Biji Kopi Sangrai Robusta Size 18" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
-          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
-            <div class="product-arrow">↗</div>
-          </div>
-          <div class="product-tag" data-id="Briket · Ekspor" data-en="Briquettes · Export">Briket · Ekspor</div>
-          <div class="product-name" data-id="Briket Arang" data-en="Charcoal Briquettes">Briket</div>
+          <a href="produk.html?produk=kopi-sangrai-robusta-size-18" class="product-arrow" aria-label="Lihat selengkapnya">↗</a>
+          <div class="product-tag" data-id="Robusta · Size 18" data-en="Robusta · Size 18">Robusta · Size 18</div>
+          <div class="product-name" data-id="Biji Kopi Sangrai Robusta Size 18" data-en="Roasted Robusta Beans Size 18">Biji Kopi Sangrai Robusta Size 18</div>
           <div class="product-meta">
-            <div class="product-price">Rp43.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
-            <div class="product-sold" data-id="5.298+Sold">5.298+ Terjual</div>
+            <div class="product-price"><span data-id="Rp130.860" data-en="$7.20">Rp130.860</span><small>/Kg</small></div>
+            <div class="product-sold" data-id="4.598+ Terjual" data-en="4,598+ Sold">4.598+ Terjual</div>
           </div>
         </div>
 
-        <div class="product-card reveal" onclick="location.href='produk.html?produk=biji-jagung'">
-          <div class="product-img-wrap">
-            <img src="biji jagung.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
-          </div>
-          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
-            <div class="product-arrow">↗</div>
-          </div>
-          <div class="product-tag" data-id="Jagung · Pilihan" data-en="Corn · Selected">Jagung · Pilihan</div>
-          <div class="product-name" data-id="Biji Jagung" data-en="Corn Seeds">Biji Jagung</div>
-          <div class="product-meta">
-            <div class="product-price">Rp73.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
-            <div class="product-sold" data-id="Stok Tersedia" data-en="Stock Available">Stok Tersedia</div>
-          </div>
-        </div>
-
-        <div class="product-card reveal" onclick="location.href='produk.html?produk=cengkeh'">
-          <div class="product-img-wrap">
-            <img src="cengkeh.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
-          </div>
-          <div class="product-card-top" style="margin-top:16px;justify-content:flex-end;">
-            <div class="product-arrow">↗</div>
-          </div>
-          <div class="product-tag" data-id="Cengkeh · Premium" data-en="Cloves · Premium">Cengkeh · Premium</div>
-          <div class="product-name" data-id="Cengkeh Pilihan" data-en="Selected Cloves">Cengkeh Pilihan</div>
-          <div class="product-meta">
-            <div class="product-price">Rp195.000<small style="font-size:11px;font-weight:400;color:var(--text-muted)">/kg</small></div>
-            <div class="product-sold" data-id="Stok Tersedia" data-en="Stock Available">Stok Tersedia</div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -2062,10 +2050,10 @@
                         <a href="https://wa.me/62882000765023" target="_blank" rel="noopener">+62882000765023</a>
                     </li>
                     <li>
-                        <a href="mailto:baysejahteraexport@gmail.com" class="contact-icon" aria-label="Kirim email">
+                        <a href="mailto:baysejahteraexport@outlook.com" class="contact-icon" aria-label="Kirim email">
                             <i class="fas fa-envelope"></i>
                         </a>
-                        <a href="mailto:baysejahteraexport@gmail.com">baysejahteraexport@gmail.com</a>
+                        <a href="mailto:baysejahteraexport@outlook.com">baysejahteraexport@outlook.com</a>
                     </li>
                     <li>
                         <a href="https://baysejahteraexport.vercel.app" target="_blank" rel="noopener" class="contact-icon" aria-label="Kunjungi website">
@@ -2100,18 +2088,6 @@
     <script src="script.js"></script>
 
   <script>
-    // ── ABOUT SLIDESHOW: ganti gambar otomatis tiap 3 detik ──
-    (function() {
-      const slides = document.querySelectorAll('#aboutVisualInner .about-slide');
-      if (slides.length <= 1) return;
-      let current = 0;
-      setInterval(() => {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-      }, 3000);
-    })();
-
     function triggerDocsPhoto(idx) {
       document.querySelectorAll('#docsCarousel .docs-photo-slide')[idx]
         .querySelector('input[type="file"]').click();
@@ -2282,24 +2258,6 @@
 
     buildDocsDots();
 
-    function scrollCarousel(dir) {
-      document.getElementById('productsCarousel').scrollBy({ left: dir * 300, behavior: 'smooth' });
-    }
-    const carousel = document.getElementById('productsCarousel');
-    let isDown = false, startX, scrollLeft;
-    carousel.addEventListener('mousedown', e => {
-      isDown = true;
-      startX = e.pageX - carousel.offsetLeft;
-      scrollLeft = carousel.scrollLeft;
-    });
-    carousel.addEventListener('mouseleave', () => isDown = false);
-    carousel.addEventListener('mouseup', () => isDown = false);
-    carousel.addEventListener('mousemove', e => {
-      if (!isDown) return;
-      e.preventDefault();
-      carousel.scrollLeft = scrollLeft - (e.pageX - carousel.offsetLeft - startX);
-    });
-
     const langToggle = document.getElementById('lang-toggle');
     let currentLang = 'id';
 
@@ -2387,5 +2345,46 @@
     document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
   </script>
 
+  <script>
+    /* Carousel produk: tombol, drag mouse, dan swipe (native) */
+    (function () {
+      var track = document.getElementById('productsGrid');
+      var prev = document.getElementById('prodPrev');
+      var next = document.getElementById('prodNext');
+      if (!track) return;
+
+      function step() {
+        var card = track.querySelector('.product-card');
+        return card ? card.offsetWidth + parseFloat(getComputedStyle(track).columnGap || 24) : 300;
+      }
+      function update() {
+        if (!prev || !next) return;
+        prev.disabled = track.scrollLeft <= 4;
+        next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+      }
+      if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+
+      /* drag dengan mouse (desktop) */
+      var down = false, moved = false, startX = 0, startLeft = 0;
+      track.addEventListener('mousedown', function (e) {
+        down = true; moved = false; startX = e.pageX; startLeft = track.scrollLeft;
+      });
+      window.addEventListener('mousemove', function (e) {
+        if (!down) return;
+        var dx = e.pageX - startX;
+        if (Math.abs(dx) > 5) { moved = true; track.classList.add('dragging'); }
+        if (moved) track.scrollLeft = startLeft - dx;
+      });
+      window.addEventListener('mouseup', function () {
+        if (!down) return;
+        down = false;
+        track.classList.remove('dragging');
+      });
+    })();
+  </script>
 </body>
 </html>
