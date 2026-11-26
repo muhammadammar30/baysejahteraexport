@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <meta property="og:site_name" content="Bay Sejahtera Export" />
     <meta property="og:title" content="BAY Sejahtera Export | Indonesian Commodity Exporter" />
     <meta property="og:description" content="Eksportir kopi, cengkeh, jagung, dan briket arang dari Semarang, Indonesia. Kualitas terjamin, dokumen ekspor lengkap." />
@@ -1580,6 +1580,16 @@
       .footer-side-photo { display: none !important; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     }
+  
+    html { -webkit-text-size-adjust: 100%; }
+
+    /* ── ANTI "HALAMAN TERKECIL" DI BROWSER HP ──
+       Marquee (±10.000px) dan carousel sengaja lebih lebar dari layar. Sebagian browser HP
+       tetap menghitung lebar itu lalu memperkecil seluruh halaman (tampil seperti desktop).
+       contain/clip mengurung konten lebar itu di dalam section-nya saja. */
+    .marquee-section { width: 100%; max-width: 100%; overflow: hidden; overflow: clip; contain: paint; }
+    #hero, #about, #products, #why, #process, #docs { overflow: hidden; overflow: clip; max-width: 100%; }
+    .products-carousel, .docs-photo-carousel { max-width: none; }
   </style>
 </head>
 <body>
@@ -2309,6 +2319,8 @@
       });
       menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+      // Lepas kunci scroll bila layar diputar ke landscape (> 900px) saat menu terbuka
+      window.matchMedia('(min-width: 901px)').addEventListener('change', e => { if (e.matches) closeMenu(); });
     })();
 
     const reveals = document.querySelectorAll('.reveal');
