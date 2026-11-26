@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog BAY Sejahtera Export: kabar, tips, dan wawasan seputar ekspor kopi, cengkeh, jagung, dan briket arang dari Indonesia.">
+  <title>Blog | BAY Sejahtera Export</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylee.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#FFFFFF; --bg-card:#F8F8F6; --bg-raised:#F0EFEB; --border:#E5E4E0; --border-light:#D8D7D2;
+      --text:#0F0F0F; --text-muted:#6B6B6B; --text-dim:#ABABAB; --accent-green:#1A6B3A;
+    }
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:16px; line-height:1.6; overflow-x:hidden; }
+
+    /* Header (gelap, supaya navbar putih tetap terbaca) */
+    #blog-hero { background:#0F0F0F; color:#fff; padding:170px 60px 90px; }
+    .blog-hero-inner { max-width:1100px; margin:0 auto; }
+    .blog-hero h1, #blog-hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(44px,7vw,88px); font-weight:700; letter-spacing:-3px; line-height:1; margin-bottom:20px; }
+    #blog-hero p { max-width:520px; color:rgba(255,255,255,.7); font-size:15px; line-height:1.8; }
+
+    /* Daftar artikel */
+    #blog-list { padding:80px 60px 110px; }
+    .blog-inner { max-width:1100px; margin:0 auto; }
+
+    .post-featured { display:grid; grid-template-columns:1.1fr 1fr; gap:0; border:1px solid var(--border); border-radius:20px; overflow:hidden; background:var(--bg-card); margin-bottom:28px; }
+    .post-featured .post-img { min-height:340px; }
+    .post-featured .post-body { padding:40px; display:flex; flex-direction:column; justify-content:center; }
+
+    .blog-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+    .post-card { background:var(--bg-card); border:1px solid var(--border); border-radius:20px; overflow:hidden; display:flex; flex-direction:column; transition:transform .25s, box-shadow .25s, border-color .25s; }
+    .post-card:hover, .post-featured:hover { box-shadow:0 16px 40px rgba(0,0,0,.08); border-color:var(--border-light); }
+    .post-card:hover { transform:translateY(-4px); }
+    .post-card .post-img { height:210px; }
+    .post-card .post-body { padding:26px 26px 28px; display:flex; flex-direction:column; flex:1; }
+
+    .post-img { background:var(--bg-raised) center/cover no-repeat; position:relative; }
+    .post-img::after { content:''; position:absolute; inset:0; background:linear-gradient(160deg,rgba(26,107,58,.14),transparent 60%); }
+
+    .post-meta { display:flex; align-items:center; gap:12px; font-size:12px; color:var(--text-muted); margin-bottom:14px; }
+    .post-tag { font-size:11px; font-weight:600; padding:4px 10px; background:var(--bg-raised); border-radius:20px; color:var(--text-muted); }
+    .post-title { font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:600; letter-spacing:-.5px; line-height:1.25; margin-bottom:12px; }
+    .post-featured .post-title { font-size:clamp(26px,3vw,34px); letter-spacing:-1px; }
+    .post-excerpt { color:var(--text-muted); font-size:14.5px; line-height:1.75; margin-bottom:20px; }
+
+    .post-full { display:none; color:var(--text-muted); font-size:14.5px; line-height:1.8; margin-bottom:20px; }
+    .post-full p + p { margin-top:12px; }
+    .post-open .post-full { display:block; }
+
+    .post-btn { margin-top:auto; align-self:flex-start; background:var(--text); color:#fff; border:1px solid var(--text); border-radius:12px; padding:11px 20px; font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:background .2s, color .2s; }
+    .post-btn:hover { background:transparent; color:var(--text); }
+    .post-btn:focus-visible { outline:2px solid var(--accent-green); outline-offset:3px; }
+
+    @media (max-width:900px) {
+      #blog-hero { padding:130px 24px 60px; }
+      #blog-list { padding:56px 24px 80px; }
+      .post-featured { grid-template-columns:1fr; }
+      .post-featured .post-img { min-height:220px; }
+      .post-featured .post-body { padding:28px 24px; }
+    }
+    @media (max-width:640px) {
+      .blog-grid { grid-template-columns:1fr; }
+      #blog-hero h1 { letter-spacing:-1.5px; }
+    }
+    @media (prefers-reduced-motion:reduce) { .post-card { transition:none; } html { scroll-behavior:auto; } }
+
+    /* Fallback navbar mobile (sama dengan index.html) */
+    .hamburger { display:none; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:40px; height:40px; background:transparent; border:none; cursor:pointer; z-index:1001; padding:0; }
+    .ham-bar { display:block; width:22px; height:2px; background:#fff; border-radius:2px; transition:transform .3s ease, opacity .3s ease; }
+    .hamburger.open .ham-bar:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open .ham-bar:nth-child(2) { opacity:0; }
+    .hamburger.open .ham-bar:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    @media (max-width:900px) {
+      .hamburger { display:flex; }
+      .nav-menu { position:fixed; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; list-style:none; margin:0; padding:0; background:rgba(10,10,10,.98); opacity:0; visibility:hidden; transform:translateY(-8px); transition:opacity .3s ease, transform .3s ease, visibility .3s; z-index:999; }
+      .nav-menu.open { opacity:1; visibility:visible; transform:translateY(0); }
+      .nav-menu .nav-item { width:100%; text-align:center; }
+      .nav-menu .nav-link { display:block; padding:16px 24px; color:#fff; font-size:22px; font-family:'Space Grotesk',sans-serif; text-decoration:none; }
+      .nav-menu .nav-link.active { font-weight:700; }
+      body.nav-open { overflow:hidden; }
+    }
+    @media (max-width:768px) {
+      .footer-container { grid-template-columns:1fr !important; gap:2rem !important; }
+      .footer-side-photo { display:none !important; }
+      .footer-bottom { flex-direction:column; gap:12px; text-align:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="index.html"><img src="logou.png" alt="Logo" class="logo-img" onerror="this.style.display='none'"></a>
+        <span class="nav-logo">BAY SEJAHTERA EXPORT</span>
+      </div>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link" data-id="Home" data-en="Home">Home</a></li>
+        <li class="nav-item"><a href="produk.html" class="nav-link" data-id="Produk" data-en="Products">Produk</a></li>
+        <li class="nav-item"><a href="About.html" class="nav-link" data-id="Tentang Kami" data-en="About Us">About Us</a></li>
+        <li class="nav-item"><a href="blog.html" class="nav-link" data-id="Blog" data-en="Blog">Blog</a></li>
+      </ul>
+
+      <div class="nav-actions" id="nav-actions">
+        <div class="lang-switch-container">
+          <img src="https://flagcdn.com/w40/id.png" class="flag-icon" alt="ID">
+          <span class="lang-label">ID</span>
+          <label class="switch">
+            <input type="checkbox" id="lang-toggle">
+            <span class="slider round"></span>
+          </label>
+          <img src="https://flagcdn.com/w40/gb.png" class="flag-icon" alt="EN">
+          <span class="lang-label">EN</span>
+        </div>
+      </div>
+
+      <button type="button" class="hamburger" id="hamburger" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-menu">
+        <span class="ham-bar"></span><span class="ham-bar"></span><span class="ham-bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <section id="blog-hero">
+    <div class="blog-hero-inner">
+      <h1 data-id="Blog" data-en="Blog">Blog</h1>
+      <p data-id="Kabar, tips, dan wawasan seputar ekspor komoditas Indonesia dari tim BAY Sejahtera Export." data-en="News, tips, and insights on exporting Indonesian commodities from the BAY Sejahtera Export team.">Kabar, tips, dan wawasan seputar ekspor komoditas Indonesia dari tim BAY Sejahtera Export.</p>
+    </div>
+  </section>
+
+  <!-- DAFTAR ARTIKEL -->
+  <section id="blog-list">
+    <div class="blog-inner">
+
+      <!-- Artikel utama. Ganti foto lewat style background-image -->
+      <article class="post-featured">
+        <div class="post-img" style="background-image:url('arabicagreenbeans.png')" role="img" aria-label="Biji kopi arabika"></div>
+        <div class="post-body">
+          <div class="post-meta"><span class="post-tag" data-id="Kopi" data-en="Coffee">Kopi</span><span>21 Okt 2026</span></div>
+          <h2 class="post-title" data-id="Arabika vs Robusta: Mana yang Cocok untuk Pasar Anda?" data-en="Arabica vs Robusta: Which Suits Your Market?">Arabika vs Robusta: Mana yang Cocok untuk Pasar Anda?</h2>
+          <p class="post-excerpt" data-id="Dua jenis kopi ini punya karakter, harga, dan kebutuhan pasar yang berbeda. Kenali perbedaannya sebelum menentukan pesanan." data-en="These two coffees differ in character, price, and market demand. Know the differences before placing your order.">Dua jenis kopi ini punya karakter, harga, dan kebutuhan pasar yang berbeda. Kenali perbedaannya sebelum menentukan pesanan.</p>
+          <div class="post-full" id="full-1">
+            <p data-id="Arabika dikenal dengan aroma kompleks dan tingkat keasaman yang lebih tinggi, sehingga banyak dicari untuk segmen specialty. Robusta lebih pahit, berbadan tebal, dan kandungan kafeinnya lebih tinggi, sehingga umum dipakai untuk espresso blend dan kopi instan." data-en="Arabica is known for its complex aroma and higher acidity, making it popular in the specialty segment. Robusta is more bitter, fuller-bodied, and higher in caffeine, so it is commonly used in espresso blends and instant coffee.">Arabika dikenal dengan aroma kompleks dan tingkat keasaman yang lebih tinggi, sehingga banyak dicari untuk segmen specialty. Robusta lebih pahit, berbadan tebal, dan kandungan kafeinnya lebih tinggi, sehingga umum dipakai untuk espresso blend dan kopi instan.</p>
+            <p data-id="Bila ragu, hubungi tim kami. Kami akan membantu mencocokkan spesifikasi dengan kebutuhan negara tujuan Anda." data-en="If you are unsure, contact our team. We will help match specifications to your destination country's needs.">Bila ragu, hubungi tim kami. Kami akan membantu mencocokkan spesifikasi dengan kebutuhan negara tujuan Anda.</p>
+          </div>
+          <button type="button" class="post-btn" aria-expanded="false" aria-controls="full-1" data-id="Baca selengkapnya" data-en="Read more">Baca selengkapnya</button>
+        </div>
+      </article>
+
+      <div class="blog-grid">
+        <article class="post-card">
+          <div class="post-img" style="background-image:url('doksi1.jpeg')" role="img" aria-label="Proses pengemasan"></div>
+          <div class="post-body">
+            <div class="post-meta"><span class="post-tag" data-id="Ekspor" data-en="Export">Ekspor</span><span>10 Okt 2026</span></div>
+            <h2 class="post-title" data-id="Dokumen Ekspor yang Wajib Disiapkan" data-en="Export Documents You Must Prepare">Dokumen Ekspor yang Wajib Disiapkan</h2>
+            <p class="post-excerpt" data-id="Dari invoice hingga sertifikat asal, ini gambaran dokumen yang umumnya diminta dalam pengiriman komoditas." data-en="From invoices to certificates of origin, an overview of documents commonly required for commodity shipments.">Dari invoice hingga sertifikat asal, ini gambaran dokumen yang umumnya diminta dalam pengiriman komoditas.</p>
+            <div class="post-full" id="full-2">
+              <p data-id="Dokumen yang umum diperlukan antara lain commercial invoice, packing list, bill of lading, dan sertifikat asal. Kebutuhan pastinya bergantung pada komoditas dan regulasi negara tujuan." data-en="Commonly required documents include the commercial invoice, packing list, bill of lading, and certificate of origin. Exact requirements depend on the commodity and the destination country's regulations.">Dokumen yang umum diperlukan antara lain commercial invoice, packing list, bill of lading, dan sertifikat asal. Kebutuhan pastinya bergantung pada komoditas dan regulasi negara tujuan.</p>
+            </div>
+            <button type="button" class="post-btn" aria-expanded="false" aria-controls="full-2" data-id="Baca selengkapnya" data-en="Read more">Baca selengkapnya</button>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-img" style="background-image:url('robustaroastedbeans.png')" role="img" aria-label="Biji kopi sangrai"></div>
+          <div class="post-body">
+            <div class="post-meta"><span class="post-tag" data-id="Kualitas" data-en="Quality">Kualitas</span><span>28 Sep 2026</span></div>
+            <h2 class="post-title" data-id="Cara Kami Menjaga Mutu dari Gudang hingga Kontainer" data-en="How We Maintain Quality from Warehouse to Container">Cara Kami Menjaga Mutu dari Gudang hingga Kontainer</h2>
+            <p class="post-excerpt" data-id="Sortasi, pengemasan food-grade, dan pemeriksaan batch menjadi bagian rutin sebelum barang dikirim." data-en="Sorting, food-grade packaging, and batch checks are routine steps before goods are shipped.">Sortasi, pengemasan food-grade, dan pemeriksaan batch menjadi bagian rutin sebelum barang dikirim.</p>
+            <div class="post-full" id="full-3">
+              <p data-id="Setiap batch diperiksa sebelum masuk gudang, disortir, lalu dikemas dengan material food-grade sesuai standar ekspor internasional." data-en="Every batch is inspected before entering the warehouse, sorted, then packed with food-grade materials according to international export standards.">Setiap batch diperiksa sebelum masuk gudang, disortir, lalu dikemas dengan material food-grade sesuai standar ekspor internasional.</p>
+            </div>
+            <button type="button" class="post-btn" aria-expanded="false" aria-controls="full-3" data-id="Baca selengkapnya" data-en="Read more">Baca selengkapnya</button>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="main-footer" id="footer">
+    <img class="footer-side-photo footer-side-left" src="kiri.png" alt="">
+    <img class="footer-side-photo footer-side-right" src="kanan.png" alt="">
+    <div class="footer-container">
+      <div class="footer-column brand-col">
+        <div class="footer-logo">
+          <img src="logou.png" alt="Logo PT BAY Sejahtera Export" class="footer-logo-img">
+          <span class="logo-main-title">BAY Sejahtera Export</span>
+        </div>
+        <p class="footer-description" data-id="PT BAY Sejahtera Export adalah mitra terpercaya yang menghadirkan produk premium Indonesia ke pasar global. Kami menjamin proses ekspor yang sepenuhnya legal, aman, dan patuh pada standar regulasi internasional. Bersama tim ahli dan manajemen logistik yang efisien, kami memastikan konsistensi kualitas dan ketepatan waktu pengiriman langsung ke bisnis Anda." data-en="PT BAY Sejahtera Export is a trusted partner delivering premium Indonesian products to global markets. We guarantee a fully legal, safe, and internationally compliant export process. With our expert team and efficient logistics management, we ensure quality consistency and timely delivery to your business.">PT BAY Sejahtera Export adalah mitra terpercaya yang menghadirkan produk premium Indonesia ke pasar global. Kami menjamin proses ekspor yang sepenuhnya legal, aman, dan patuh pada standar regulasi internasional. Bersama tim ahli dan manajemen logistik yang efisien, kami memastikan konsistensi kualitas dan ketepatan waktu pengiriman langsung ke bisnis Anda.</p>
+      </div>
+      <div class="footer-column address-col">
+        <h3 class="footer-heading">Our Address</h3>
+        <ul class="footer-contact-list">
+          <li>
+            <a href="https://www.google.com/maps/search/?api=1&query=Jl.+Dokter+Cipto+No.+20%2C+Bugangan%2C+Kec.+Semarang+Timur%2C+Kota+Semarang%2C+Jawa+Tengah" target="_blank" rel="noopener" class="contact-icon" aria-label="Buka lokasi di Google Maps"><i class="fas fa-map-marker-alt"></i></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Jl.+Dokter+Cipto+No.+20%2C+Bugangan%2C+Kec.+Semarang+Timur%2C+Kota+Semarang%2C+Jawa+Tengah" target="_blank" rel="noopener">Jl. Dokter Cipto No. 20, Desa/Kelurahan Bugangan, Kec. Semarang Timur, Kota Semarang, Provinsi Jawa Tengah, Indonesia</a>
+          </li>
+          <li>
+            <a href="https://wa.me/62882000765023" target="_blank" rel="noopener" class="contact-icon" aria-label="Hubungi kami via WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/62882000765023" target="_blank" rel="noopener">+62882000765023</a>
+          </li>
+          <li>
+            <a href="mailto:baysejahteraexport@outlook.com" class="contact-icon" aria-label="Kirim email"><i class="fas fa-envelope"></i></a>
+            <a href="mailto:baysejahteraexport@outlook.com">baysejahteraexport@outlook.com</a>
+          </li>
+          <li>
+            <a href="https://baysejahteraexport.vercel.app" target="_blank" rel="noopener" class="contact-icon" aria-label="Kunjungi website"><i class="fas fa-globe"></i></a>
+            <a href="https://baysejahteraexport.vercel.app" target="_blank" rel="noopener">baysejahteraexport.vercel.app</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-column social-col">
+        <h3 class="footer-heading">Follow Us</h3>
+        <div class="social-icons-wrapper">
+          <a href="#" aria-label="Instagram" class="social-link-item"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 BAY Sejahtera Export Indonesia &bull; All Rights Reserved</p>
+      <a href="#blog-hero" class="back-to-top">
+        <span data-id="Kembali ke atas" data-en="Back to top">Kembali ke atas</span>
+        <i class="fas fa-arrow-up"></i>
+      </a>
+    </div>
+  </footer>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script src="script.js"></script>
+  <script>
+    let currentLang = 'id';
+    function translatePage(lang) {
+      document.querySelectorAll('[data-id][data-en]').forEach(el => {
+        const t = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-id');
+        if (t !== null) el.innerHTML = t;
+      });
+      currentLang = lang;
+    }
+    const langToggle = document.getElementById('lang-toggle');
+    if (langToggle) langToggle.addEventListener('change', function () { translatePage(this.checked ? 'en' : 'id'); });
+
+    // Tombol "Baca selengkapnya"
+    document.querySelectorAll('.post-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const post = btn.closest('article');
+        const open = post.classList.toggle('post-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        const lbl = open ? ['Tutup', 'Close'] : ['Baca selengkapnya', 'Read more'];
+        btn.setAttribute('data-id', lbl[0]);
+        btn.setAttribute('data-en', lbl[1]);
+        btn.textContent = currentLang === 'en' ? lbl[1] : lbl[0];
+      });
+    });
+
+    // Link aktif di navbar
+    (function () {
+      const cur = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-link').forEach(l => {
+        if (l.getAttribute('href').toLowerCase() === cur.toLowerCase()) l.classList.add('active');
+      });
+    })();
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+    // Hamburger
+    (function () {
+      const ham = document.getElementById('hamburger'), menu = document.getElementById('nav-menu');
+      if (!ham || !menu) return;
+      const close = () => { ham.classList.remove('open'); menu.classList.remove('open'); ham.setAttribute('aria-expanded', 'false'); document.body.classList.remove('nav-open'); };
+      ham.addEventListener('click', () => {
+        const o = ham.classList.toggle('open');
+        menu.classList.toggle('open', o);
+        ham.setAttribute('aria-expanded', o ? 'true' : 'false');
+        document.body.classList.toggle('nav-open', o);
+      });
+      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+  </script>
+</body>
+</html>
